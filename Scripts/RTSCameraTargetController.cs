@@ -139,8 +139,6 @@ public class RTSCameraTargetController : MonoBehaviour
 
                     mouseDragEndPoint.SetActive(true);
                     Cursor.visible = false;
-
-
                 }
                 else
                 {
