@@ -7,6 +7,9 @@ public class RTSCameraTargetController : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera virtualCamera;
 
+    [SerializeField]
+    private Transform cameraTarget;
+
     [Space]
     [Header("Camera")]
     [SerializeField]
@@ -212,6 +215,6 @@ public class RTSCameraTargetController : MonoBehaviour
         camRight.Normalize();
         Vector3 relativeDir = (camForward * direction.z) + (camRight * direction.x);
 
-        transform.Translate(relativeDir * (relativeZoomCameraMoveSpeed * speed) * Time.deltaTime);
+        cameraTarget.Translate(relativeDir * (relativeZoomCameraMoveSpeed * speed) * Time.deltaTime);
     }
 }

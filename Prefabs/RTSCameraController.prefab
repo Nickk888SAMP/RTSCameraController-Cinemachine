@@ -66,8 +66,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b4de11f2a83575649945482b79dc9d3e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 54367b6c14cd2cd44b26e247fbafa018, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 249069c2274f6f8458a54dce3c46a836, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ddccc331c8faa554ea73f2ef5eeb5539, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e043ea7461509f4080942a00efcccd4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -530,7 +530,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4c57e9aab1362fe4d993dfbdd18ae409, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab2be9889b7675f4ab4f1323ff3dc6a6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -606,7 +606,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2956780e17625c7419c3098f3c9e17ea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b4de11f2a83575649945482b79dc9d3e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -682,7 +682,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 202913089f033f64a89f43b23453124f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 961791aea211b6f42a09b0deb1e8a342, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -805,7 +805,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5524602137987408595}
-  - component: {fileID: 5524602137987408594}
   m_Layer: 0
   m_Name: CameraTarget
   m_TagString: Untagged
@@ -828,32 +827,6 @@ Transform:
   m_Father: {fileID: 5524602138380265803}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5524602137987408594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5524602137987408593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d57dde2bf9c4d00499473219ddadc409, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 5524602137410515193}
-  cameraTilt: 50
-  cameraMouseSpeed: 2
-  cameraKeysSpeed: 4
-  cameraZoomSpeed: 4
-  cameraMoveDeadZone: 5
-  cameraZoomSmoothTime: 0.075
-  cameraZoomSlider: {fileID: 5524602137142699062}
-  cameraZoomMinMax: {x: 8, y: 100}
-  mouseDragCanvasGameObject: {fileID: 5524602137590102574}
-  mouseDragStartPoint: {fileID: 5524602137227135747}
-  mouseDragEndPoint: {fileID: 5524602137349566288}
-  rotateCameraCanvasGameObject: {fileID: 5524602137610333466}
-  compasUImageGameObject: {fileID: 5524602138760156461}
 --- !u!1 &5524602138043651667
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,7 +944,6 @@ GameObject:
   - component: {fileID: 5524602138118368226}
   - component: {fileID: 5524602138118368225}
   - component: {fileID: 5524602138118368224}
-  - component: {fileID: 5524602138118368227}
   - component: {fileID: 5524602138118368228}
   m_Layer: 0
   m_Name: Main Camera
@@ -1046,39 +1018,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5524602138118368239}
   m_Enabled: 1
---- !u!114 &5524602138118368227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5524602138118368239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
 --- !u!114 &5524602138118368228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1122,6 +1061,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5524602138380265803}
+  - component: {fileID: 1835259192517180277}
   m_Layer: 0
   m_Name: RTSCameraController
   m_TagString: Untagged
@@ -1148,6 +1088,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1835259192517180277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524602138380265802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57dde2bf9c4d00499473219ddadc409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 5524602137410515193}
+  cameraTarget: {fileID: 5524602137987408595}
+  cameraTilt: 50
+  cameraMouseSpeed: 2
+  cameraKeysSpeed: 4
+  cameraZoomSpeed: 4
+  cameraMoveDeadZone: 5
+  cameraZoomSmoothTime: 0.075
+  cameraZoomSlider: {fileID: 5524602137142699062}
+  cameraZoomMinMax: {x: 8, y: 100}
+  mouseDragCanvasGameObject: {fileID: 5524602137590102574}
+  mouseDragStartPoint: {fileID: 5524602137227135747}
+  mouseDragEndPoint: {fileID: 5524602137349566288}
+  rotateCameraCanvasGameObject: {fileID: 5524602137610333466}
+  compasUImageGameObject: {fileID: 5524602138760156461}
 --- !u!1 &5524602138529658979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,7 +1181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 60e5b6f4275daf245a26f5f15a7626dd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf014d75d80a3e549a3f50378f524643, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1329,7 +1296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e7f87ed8f4bf8574aa5ca9c26e77bccd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e461da48a71ced40b22069a944a2622, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
