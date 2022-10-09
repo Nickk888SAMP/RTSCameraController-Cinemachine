@@ -3,7 +3,7 @@
 <img src="/Preview/1.gif" width="250" height="250"><img src="/Preview/2.gif" width="250" height="250"><img src="/Preview/3.gif" width="250" height="250">
 
 This project is a Camera Controller for RTS style games.
-It works by adding the script to a Gameobject that is tracked by a Cinemachine Virtual Camera. 
+It works by adding the script to a Gameobject and placing references for the Virtual Camera and the Target itself.
 The script controlls the Target and the Virtual Camera.
 
 ## Features
