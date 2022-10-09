@@ -36,9 +36,10 @@ public class RTSCameraTargetController : MonoBehaviour
     private Slider cameraZoomSlider;
 
     [SerializeField]
+    [Tooltip("The Minimum and Maximum zoom factor. X = Min | Y = Max")]
     private Vector2 cameraZoomMinMax = new Vector2(5, 100);
 
-    [Space] [Header("Drag Mouse Canvas")]
+    [Space] [Header("Drag Mouse Canvas (Optional)")]
     [SerializeField]
     private GameObject mouseDragCanvasGameObject;
 
@@ -48,12 +49,12 @@ public class RTSCameraTargetController : MonoBehaviour
     [SerializeField]
     private GameObject mouseDragEndPoint;
 
-    [Space] [Header("Rotate Camera Canvas")]
+    [Space] [Header("Rotate Camera Canvas (Optional)")]
     [SerializeField]
     private GameObject rotateCameraCanvasGameObject;
 
     [SerializeField]
-    private GameObject compasUImageGameObject;
+    private GameObject compasUiImageGameObject;
 
     private Vector3 mouseLockPos;
     private Camera cam;
@@ -66,30 +67,6 @@ public class RTSCameraTargetController : MonoBehaviour
     private bool isRotating;
     private bool isDragging;
 
-    private void OnEnable()
-    {
-        if(mouseDragCanvasGameObject == null)
-        {
-            Debug.LogError("Mouse Drag Canvas Game Object not applied!");
-        }
-        if(mouseDragStartPoint == null)
-        {
-            Debug.LogError("Mouse Drag Start Point Game Object not applied!");
-        }
-        if(mouseDragEndPoint == null)
-        {
-            Debug.LogError("Mouse Drag End Point Game Object not applied!");
-        }
-        if(rotateCameraCanvasGameObject == null)
-        {
-            Debug.LogError("Rotate Camera Canvas Game Object not applied!");
-        }
-        if(compasUImageGameObject == null)
-        {
-            Debug.LogError("Compas UI Image Game Object not applied!");
-        }
-    }
-
     private void Awake()
     {
         cam = Camera.main;
@@ -101,8 +78,10 @@ public class RTSCameraTargetController : MonoBehaviour
         virtualCameraGameObject.transform.rotation = Quaternion.Euler(cameraTilt, virtualCameraGameObject.transform.rotation.y, 0);
         framingTransposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         cameraZoomSmoothDamp = framingTransposer.m_CameraDistance;
-        mouseDragCanvasGameObject.SetActive(false);
-        rotateCameraCanvasGameObject.SetActive(false);
+        if(mouseDragCanvasGameObject != null)
+            mouseDragCanvasGameObject.SetActive(false);
+        if(rotateCameraCanvasGameObject != null)
+            rotateCameraCanvasGameObject.SetActive(false);
     }
 
     void Update()
@@ -114,14 +93,17 @@ public class RTSCameraTargetController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(2))
             {
-                mouseDragCanvasGameObject.SetActive(true);
+                if(mouseDragCanvasGameObject != null)
+                    mouseDragCanvasGameObject.SetActive(true);
                 mouseLockPos = Input.mousePosition;
                 isDragging = true;
-                mouseDragStartPoint.transform.position = new Vector2(mouseLockPos.x, mouseLockPos.y);
+                if(mouseDragStartPoint != null)
+                    mouseDragStartPoint.transform.position = new Vector2(mouseLockPos.x, mouseLockPos.y);
             }
             if (Input.GetMouseButtonUp(2))
             {
-                mouseDragCanvasGameObject.SetActive(false);
+                if(mouseDragCanvasGameObject != null)
+                    mouseDragCanvasGameObject.SetActive(false);
                 Cursor.visible = true;
                 isDragging = false;
             }
@@ -131,21 +113,25 @@ public class RTSCameraTargetController : MonoBehaviour
                 float distance = vectorChange.magnitude;
                 if (distance > cameraMoveDeadZone)
                 {
-                    mouseDragEndPoint.transform.position = Input.mousePosition;
-
                     // Get the Drag direction
-                    Vector3 dir = (Input.mousePosition - mouseDragStartPoint.transform.position);
-                    mouseDragEndPoint.transform.right = dir;
+                    if (mouseDragStartPoint != null)
+                    {
+                        mouseDragEndPoint.transform.position = Input.mousePosition;
+                        Vector3 dir = (Input.mousePosition - mouseDragStartPoint.transform.position);
+                        mouseDragEndPoint.transform.right = dir;
+                        mouseDragEndPoint.SetActive(true);
+                    }
 
                     // Move target relative to Camera
                     MoveTargetRelativeToCamera(vectorChange, cameraMouseSpeed / 100);
 
-                    mouseDragEndPoint.SetActive(true);
+                    
                     Cursor.visible = false;
                 }
                 else
                 {
-                    mouseDragEndPoint.SetActive(false);
+                    if (mouseDragStartPoint != null)
+                        mouseDragEndPoint.SetActive(false);
                     Cursor.visible = true;
                 }
             }
@@ -168,9 +154,12 @@ public class RTSCameraTargetController : MonoBehaviour
         cameraZoomSmoothDamp -= Input.mouseScrollDelta.y * (cameraZoomSpeed * 100) * Time.deltaTime;
         cameraZoomSmoothDamp = Mathf.Clamp(cameraZoomSmoothDamp, cameraZoomMinMax.x, cameraZoomMinMax.y);
         framingTransposer.m_CameraDistance = Mathf.SmoothDamp(framingTransposer.m_CameraDistance, cameraZoomSmoothDamp, ref cameraZoomSmoothDampVel_ref, cameraZoomSmoothTime);
-        cameraZoomSlider.minValue = cameraZoomMinMax.x;
-        cameraZoomSlider.maxValue = cameraZoomMinMax.y;
-        cameraZoomSlider.value = framingTransposer.m_CameraDistance;
+        if (cameraZoomSlider != null)
+        {
+            cameraZoomSlider.minValue = cameraZoomMinMax.x;
+            cameraZoomSlider.maxValue = cameraZoomMinMax.y;
+            cameraZoomSlider.value = framingTransposer.m_CameraDistance;
+        }
 
         // Mouse Rotate
         if (!isDragging)
@@ -180,14 +169,16 @@ public class RTSCameraTargetController : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 isRotating = true;
-                rotateCameraCanvasGameObject.SetActive(true);
+                if(rotateCameraCanvasGameObject != null)
+                    rotateCameraCanvasGameObject.SetActive(true);
             }
             if (Input.GetMouseButtonUp(1))
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 isRotating = false;
-                rotateCameraCanvasGameObject.SetActive(false);
+                if(rotateCameraCanvasGameObject != null)
+                    rotateCameraCanvasGameObject.SetActive(false);
             }
             if (Input.GetMouseButton(1))
             {
@@ -196,12 +187,15 @@ public class RTSCameraTargetController : MonoBehaviour
                 {
                     currentRotateDir = (horizontalMouse > 0 ? true : false);
                     virtualCameraGameObject.transform.Rotate(0, horizontalMouse, 0, Space.World);
-                    rotateCameraCanvasGameObject.transform.rotation = Quaternion.Euler(rotateCameraCanvasGameObject.transform.eulerAngles.x, rotateCameraCanvasGameObject.transform.eulerAngles.y, virtualCameraGameObject.transform.eulerAngles.y * (currentRotateDir ? 1 : -1));
+                    if(rotateCameraCanvasGameObject != null)
+                        rotateCameraCanvasGameObject.transform.rotation = Quaternion.Euler(rotateCameraCanvasGameObject.transform.eulerAngles.x, rotateCameraCanvasGameObject.transform.eulerAngles.y, virtualCameraGameObject.transform.eulerAngles.y * (currentRotateDir ? 1 : -1));
                 }
-                rotateCameraCanvasGameObject.transform.rotation = Quaternion.Euler(rotateCameraCanvasGameObject.transform.eulerAngles.x, Mathf.SmoothDamp(rotateCameraCanvasGameObject.transform.eulerAngles.y, (currentRotateDir ? 180 : 0), ref RotateFlipSmoothDampVel_ref, 0.1f), rotateCameraCanvasGameObject.transform.eulerAngles.z);
+                if(rotateCameraCanvasGameObject != null)
+                    rotateCameraCanvasGameObject.transform.rotation = Quaternion.Euler(rotateCameraCanvasGameObject.transform.eulerAngles.x, Mathf.SmoothDamp(rotateCameraCanvasGameObject.transform.eulerAngles.y, (currentRotateDir ? 180 : 0), ref RotateFlipSmoothDampVel_ref, 0.1f), rotateCameraCanvasGameObject.transform.eulerAngles.z);
             }
         }
-        compasUImageGameObject.transform.rotation = Quaternion.Euler(0, 0, virtualCameraGameObject.transform.eulerAngles.y);
+        if(compasUiImageGameObject != null)
+            compasUiImageGameObject.transform.rotation = Quaternion.Euler(0, 0, virtualCameraGameObject.transform.eulerAngles.y);
     }
 
     private void MoveTargetRelativeToCamera(Vector3 direction, float speed)
