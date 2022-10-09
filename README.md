@@ -1,6 +1,6 @@
 # Unity 3D RTS Camera Controller for Cinemachine Virtual Camera
 
-<img src="/Preview/1.gif" width="300" height="300"><img src="/Preview/2.gif" width="300" height="300"><img src="/Preview/3.gif" width="300" height="300">
+<img src="/Preview/1.gif" width="200" height="200"><img src="/Preview/2.gif" width="200" height="200"><img src="/Preview/3.gif" width="200" height="200">
 
 This project is a Camera Controller for RTS style games.
 It works by adding the script to a Gameobject that is tracked by a Cinemachine Virtual Camera. 
