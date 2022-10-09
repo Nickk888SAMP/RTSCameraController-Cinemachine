@@ -13,7 +13,7 @@ The script controlls the Target and the Virtual Camera.
 * RTS Style Mouse "Drag" Camera Movement
 * UI Controller (Compas, Zoom Slider, Drag Images, Rotate Image)
 
-## Requirement
+## Requirenment
 * Cinemachine
 * Old Input System
 
