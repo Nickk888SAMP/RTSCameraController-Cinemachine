@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
@@ -54,12 +52,10 @@ public class RTSCameraTargetController : MonoBehaviour
     [SerializeField]
     private GameObject compasUImageGameObject;
 
-
-
+    private Vector3 mouseLockPos;
+    private Camera cam;
     private CinemachineFramingTransposer framingTransposer;
     private GameObject virtualCameraGameObject;
-    Vector3 mouseLockPos;
-    Camera cam;
     private float cameraZoomSmoothDamp;
     private float cameraZoomSmoothDampVel_ref;
     private float RotateFlipSmoothDampVel_ref;
@@ -84,6 +80,10 @@ public class RTSCameraTargetController : MonoBehaviour
         if(rotateCameraCanvasGameObject == null)
         {
             Debug.LogError("Rotate Camera Canvas Game Object not applied!");
+        }
+        if(compasUImageGameObject == null)
+        {
+            Debug.LogError("Compas UI Image Game Object not applied!");
         }
     }
 
