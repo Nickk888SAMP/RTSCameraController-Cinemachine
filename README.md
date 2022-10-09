@@ -16,11 +16,13 @@ The script controlls the Target and the Virtual Camera.
 * Old Input System
 
 ## How To Use
-* IMPORTANT: Make sure you have installed Cinemachine before importing!
+* IMPORTANT: Make sure you have installed the "Cinemachine" package before importing!
 Delete the Camera from the Scene (If exists).
 Place the "RTSCameraController" (located in the "Prefabs" directory) to your Scene.
 That's all.
 
 WASD or Middle Mouse Button - Camera Movement
+
 Right Mouse Button - Rotation
+
 Mouse Scroll Wheel - Zoom-In/Zoom-Out
