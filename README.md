@@ -1,4 +1,4 @@
-# Unity 3D RTS Camera Controller for Cinemachine Virtual Camera
+# Unity 3D Real Time Strategy Camera Controller for Cinemachine Virtual Camera
 
 <img src="/Preview/1.gif" width="250" height="250"><img src="/Preview/2.gif" width="250" height="250"><img src="/Preview/3.gif" width="250" height="250">
 
