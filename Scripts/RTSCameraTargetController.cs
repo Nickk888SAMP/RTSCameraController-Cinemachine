@@ -8,6 +8,9 @@ public class RTSCameraTargetController : MonoBehaviour
     private CinemachineVirtualCamera virtualCamera;
 
     [SerializeField]
+    private LayerMask groundLayer;
+
+    [SerializeField]
     private Transform cameraTarget;
 
     [Space]
@@ -54,7 +57,13 @@ public class RTSCameraTargetController : MonoBehaviour
     [SerializeField]
     private float screenSidesZoneSize = 60f;
 
-    
+    [SerializeField]
+    private float targetLockSpeed = 1.5f;
+
+    [SerializeField]
+    private float cameraTargetGroundHeightCheckSmoothTime = 4f;
+
+
     [Space] [Header("Camera Zoom")]
     [SerializeField]
     private float cameraZoomSmoothTime = 7f;
@@ -87,7 +96,7 @@ public class RTSCameraTargetController : MonoBehaviour
     private Camera cam;
     private CinemachineFramingTransposer framingTransposer;
     private GameObject virtualCameraGameObject;
-    private float cameraZoomSmoothDamp;
+    private float currentCameraZoom;
     private float cameraZoomSmoothDampVel_ref;
     private float RotateFlipSmoothDampVel_ref;
     private float currentCameraRotate;
@@ -96,6 +105,10 @@ public class RTSCameraTargetController : MonoBehaviour
     private bool isRotating;
     private bool isDragging;
     private bool isSideZoneMoving;
+    private bool isLockedOnTarget;
+
+    private Vector3 lockedOnPosition;
+    private float lockedOnZoom;
 
     private void Awake()
     {
@@ -108,7 +121,7 @@ public class RTSCameraTargetController : MonoBehaviour
         currentCameraTilt = Mathf.Lerp(cameraTiltMinMax.x, cameraTiltMinMax.y, 0.5f);
         virtualCameraGameObject.transform.eulerAngles = new Vector3(currentCameraTilt, virtualCameraGameObject.transform.eulerAngles.y, 0);
         framingTransposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
-        cameraZoomSmoothDamp = framingTransposer.m_CameraDistance;
+        currentCameraZoom = framingTransposer.m_CameraDistance;
         if(mouseDragCanvasGameObject != null)
             mouseDragCanvasGameObject.SetActive(false);
         if(rotateCameraCanvasGameObject != null)
@@ -125,9 +138,45 @@ public class RTSCameraTargetController : MonoBehaviour
         HandleKeysMove();
         HandleZoom();
         HandleRotation();
+        HandleTargetLock();
+        GroundHeightCorrection();
 
         if (compasUiImageGameObject != null)
             compasUiImageGameObject.transform.rotation = Quaternion.Euler(0, 0, virtualCameraGameObject.transform.eulerAngles.y);
+    }
+
+    
+    public void LockOnTarget(Vector3 position, float zoom)
+    {
+        lockedOnPosition = position;
+        lockedOnZoom = zoom;
+        isLockedOnTarget = true;
+    }
+
+    public void CancelTargetLock()
+    {
+        isLockedOnTarget = false;
+    }
+
+
+    private void GroundHeightCorrection()
+    {
+        if (!isLockedOnTarget)
+        {
+            if (Physics.Raycast(new Vector3(cameraTarget.position.x, 9999999, cameraTarget.position.z), Vector3.down, out RaycastHit hit, Mathf.Infinity, groundLayer))
+            {
+                cameraTarget.position = Vector3.Lerp(cameraTarget.position, new Vector3(cameraTarget.position.x, hit.point.y, cameraTarget.position.z), cameraTargetGroundHeightCheckSmoothTime * Time.deltaTime);
+            }
+        }
+    }
+
+    private void HandleTargetLock()
+    {
+        if (isLockedOnTarget)
+        {
+            cameraTarget.position = Vector3.Lerp(cameraTarget.position, lockedOnPosition, targetLockSpeed * Time.deltaTime);
+            currentCameraZoom = Mathf.Lerp(currentCameraZoom, lockedOnZoom, targetLockSpeed * Time.deltaTime);
+        }
     }
 
     private void HandleScreenSideMove(Vector3 mousePos)
@@ -136,6 +185,7 @@ public class RTSCameraTargetController : MonoBehaviour
         Vector3 moveVector = new Vector3(widthPos, 0, heightPos);
         if (moveVector != Vector3.zero && !isDragging && !isRotating && allowScreenSideMove)
         {
+            CancelTargetLock();
             MoveTargetRelativeToCamera(moveVector, cameraKeysSpeed);
             isSideZoneMoving = true;
         }
@@ -156,6 +206,7 @@ public class RTSCameraTargetController : MonoBehaviour
             // Move target relative to Camera
             if (vectorChange != Vector3.zero)
             {
+                CancelTargetLock();
                 MoveTargetRelativeToCamera(vectorChange, cameraKeysSpeed);
             }
         }
@@ -171,6 +222,7 @@ public class RTSCameraTargetController : MonoBehaviour
                     mouseDragCanvasGameObject.SetActive(true);
                 mouseLockPos = mousePos;
                 isDragging = true;
+                CancelTargetLock();
                 if (mouseDragStartPoint != null)
                     mouseDragStartPoint.transform.position = new Vector2(mouseLockPos.x, mouseLockPos.y);
             }
@@ -213,11 +265,14 @@ public class RTSCameraTargetController : MonoBehaviour
     {
         if (allowZoom)
         {
-            cameraZoomSmoothDamp -= Input.mouseScrollDelta.y * (cameraZoomSpeed * 100) * Time.deltaTime;
-            cameraZoomSmoothDamp = Mathf.Clamp(cameraZoomSmoothDamp, cameraZoomMinMax.x, cameraZoomMinMax.y);
-
+            currentCameraZoom -= Input.mouseScrollDelta.y * (cameraZoomSpeed * 100) * Time.deltaTime;
+            currentCameraZoom = Mathf.Clamp(currentCameraZoom, cameraZoomMinMax.x, cameraZoomMinMax.y);
+            if(Input.mouseScrollDelta.y != 0)
+            {
+                CancelTargetLock();
+            }
         }
-        framingTransposer.m_CameraDistance = Mathf.SmoothDamp(framingTransposer.m_CameraDistance, cameraZoomSmoothDamp, ref cameraZoomSmoothDampVel_ref, (cameraZoomSmoothTime / 100));
+        framingTransposer.m_CameraDistance = Mathf.SmoothDamp(framingTransposer.m_CameraDistance, currentCameraZoom, ref cameraZoomSmoothDampVel_ref, (cameraZoomSmoothTime / 100));
         if (cameraZoomSlider != null)
         {
             cameraZoomSlider.minValue = cameraZoomMinMax.x;
