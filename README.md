@@ -7,10 +7,13 @@ It works by adding the script to a Gameobject and placing references for the Vir
 The script controlls the Target and the Virtual Camera.
 
 ## Features
-* RTS Style Rotation
+* RTS Style Rotation (With Tilt)
 * RTS Style Zoom
 * RTS Style "WASD" Camera Movement
 * RTS Style Mouse "Drag" Camera Movement
+* RTS Style Screen Sides Camera Movement
+* RTS Style Position and GameObject Lock-On-Target
+* Automatic Ground detection allowing Camera to move up and down depending on the ground.
 * UI Controller (Compas, Zoom Slider, Drag Images, Rotate Image)
 
 ## Requirenment
