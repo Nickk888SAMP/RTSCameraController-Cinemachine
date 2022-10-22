@@ -549,11 +549,6 @@ MonoBehaviour:
     - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
---- !u!1 &71951275 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5524602137227135747, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-  m_PrefabInstance: {fileID: 611717299}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &146037416
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,12 +704,13 @@ GameObject:
   - component: {fileID: 147849873}
   - component: {fileID: 147849872}
   - component: {fileID: 147849875}
+  - component: {fileID: 147849876}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Cubes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &147849871
 Transform:
@@ -764,7 +760,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 677faa981fc82be45aed2ca693541617, type: 2}
+  - {fileID: 2100000, guid: d9a4d054d0b26d646ac0c9a4dced324e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -838,6 +834,21 @@ MonoBehaviour:
     - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+--- !u!114 &147849876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147849870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a83ea8264336e4ebadb6e5290f09ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveRange: 100
+  smoothTranslate: 2
+  timerTime: 4
 --- !u!1 &184604357
 GameObject:
   m_ObjectHideFlags: 0
@@ -3490,11 +3501,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &551653968 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5524602137610333466, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-  m_PrefabInstance: {fileID: 611717299}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &557134259
 GameObject:
   m_ObjectHideFlags: 0
@@ -4027,84 +4033,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: allowZoom
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: allowRotate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: allowDragMove
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: allowTiltRotate
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: cameraKeysSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: targetLockSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: cameraZoomSlider
-      value: 
-      objectReference: {fileID: 1121467312}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: cameraRotateSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: mouseDragEndPoint
-      value: 
-      objectReference: {fileID: 1602747917}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: cameraTiltMinMax.x
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: cameraTiltMinMax.y
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: mouseDragStartPoint
-      value: 
-      objectReference: {fileID: 71951275}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: screenSidesZoneSize
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: cameraZoomSmoothTime
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: compasUiImageGameObject
-      value: 
-      objectReference: {fileID: 642755413}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: mouseDragCanvasGameObject
-      value: 
-      objectReference: {fileID: 638745791}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: cameraGroundHeightSmoothTime
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: rotateCameraCanvasGameObject
-      value: 
-      objectReference: {fileID: 551653968}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: cameraMoveScreenSidesZoneSize
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5524602137660462666, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4310,16 +4240,6 @@ MonoBehaviour:
     - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
---- !u!1 &638745791 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5524602137590102574, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-  m_PrefabInstance: {fileID: 611717299}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &642755413 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5524602138760156461, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-  m_PrefabInstance: {fileID: 611717299}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &654409754
 GameObject:
   m_ObjectHideFlags: 0
@@ -6887,17 +6807,6 @@ MonoBehaviour:
     - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
---- !u!114 &1121467312 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5524602137142699062, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-  m_PrefabInstance: {fileID: 611717299}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1128226354
 GameObject:
   m_ObjectHideFlags: 0
@@ -9993,11 +9902,6 @@ MonoBehaviour:
     - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
---- !u!1 &1602747917 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5524602137349566288, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-  m_PrefabInstance: {fileID: 611717299}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1632708019
 GameObject:
   m_ObjectHideFlags: 0

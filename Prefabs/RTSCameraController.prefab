@@ -1101,20 +1101,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 5524602137410515193}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
   cameraTarget: {fileID: 5524602137987408595}
-  cameraTilt: 50
+  allowRotate: 1
+  allowTiltRotate: 0
+  allowZoom: 1
+  allowDragMove: 1
+  allowKeysMove: 1
+  allowScreenSideMove: 1
+  cameraTiltMinMax: {x: 15, y: 75}
   cameraMouseSpeed: 2
-  cameraKeysSpeed: 4
+  cameraRotateSpeed: 4
+  cameraKeysSpeed: 6
   cameraZoomSpeed: 4
   cameraMoveDeadZone: 5
-  cameraZoomSmoothTime: 0.075
+  screenSidesZoneSize: 60
+  targetLockSpeed: 10
+  cameraTargetGroundHeightCheckSmoothTime: 4
+  cameraZoomSmoothTime: 7
   cameraZoomSlider: {fileID: 5524602137142699062}
   cameraZoomMinMax: {x: 8, y: 100}
   mouseDragCanvasGameObject: {fileID: 5524602137590102574}
   mouseDragStartPoint: {fileID: 5524602137227135747}
   mouseDragEndPoint: {fileID: 5524602137349566288}
   rotateCameraCanvasGameObject: {fileID: 5524602137610333466}
-  compasUImageGameObject: {fileID: 5524602138760156461}
+  compasUiImageGameObject: {fileID: 5524602138760156461}
 --- !u!1 &5524602138529658979
 GameObject:
   m_ObjectHideFlags: 0
