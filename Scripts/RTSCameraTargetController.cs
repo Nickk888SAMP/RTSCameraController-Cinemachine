@@ -116,7 +116,6 @@ public class RTSCameraTargetController : MonoBehaviour
     private void Awake()
     {
         cam = Camera.main;
-        Application.targetFrameRate = 999;
     }
 
     private void Start() 
