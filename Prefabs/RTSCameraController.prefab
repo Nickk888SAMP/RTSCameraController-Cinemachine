@@ -1106,7 +1106,7 @@ MonoBehaviour:
     m_Bits: 8
   cameraTarget: {fileID: 5524602137987408595}
   allowRotate: 1
-  allowTiltRotate: 0
+  allowTiltRotate: 1
   allowZoom: 1
   allowDragMove: 1
   allowKeysMove: 1
@@ -1121,8 +1121,8 @@ MonoBehaviour:
   targetLockSpeed: 10
   cameraTargetGroundHeightCheckSmoothTime: 4
   cameraZoomSmoothTime: 7
-  cameraZoomSlider: {fileID: 5524602137142699062}
   cameraZoomMinMax: {x: 8, y: 100}
+  cameraZoomSlider: {fileID: 5524602137142699062}
   mouseDragCanvasGameObject: {fileID: 5524602137590102574}
   mouseDragStartPoint: {fileID: 5524602137227135747}
   mouseDragEndPoint: {fileID: 5524602137349566288}

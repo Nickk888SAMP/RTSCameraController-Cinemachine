@@ -12,7 +12,7 @@ The script controlls the Target and the Virtual Camera.
 * RTS Style "WASD" Camera Movement
 * RTS Style Mouse "Drag" Camera Movement
 * RTS Style Screen Sides Camera Movement
-* RTS Style Position and GameObject Lock-On-Target
+* RTS Style Position and Transform Lock-On-Target
 * Automatic Ground detection allowing Camera to move up and down depending on the ground.
 * UI Controller (Compas, Zoom Slider, Drag Images, Rotate Image)
 
