@@ -1105,6 +1105,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   cameraTarget: {fileID: 5524602137987408595}
+  independentTimeScale: 1
   allowRotate: 1
   allowTiltRotate: 1
   allowZoom: 1
