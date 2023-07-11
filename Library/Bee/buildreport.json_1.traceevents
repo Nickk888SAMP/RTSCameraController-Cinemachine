@@ -1,0 +1,430 @@
+{ "pid": 0, "tid": -1, "ph": "M", "name": "process_name", "args": { "name": "BeeDriver" } },
+{ "pid": 0, "tid": -1, "ph": "M", "name": "process_sort_index", "args": { "sort_index": "-2" } },
+{ "pid": 0, "tid": 1, "ph": "M", "name": "thread_name", "args": { "name": "" } },
+{ "pid": 0, "tid": 1, "ts": 1666461348578296, "dur": 2611821, "ph": "X", "name": "Build ScriptAssemblies", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461348579844, "dur": 59800, "ph": "X", "name": "WriteBuildProgramData", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461348639865, "dur": 107841, "ph": "X", "name": "Run Backend", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461348747729, "dur": 400573, "ph": "X", "name": "BuildProgram", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461349148304, "dur": 2031752, "ph": "X", "name": "Run Backend", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461351180090, "dur": 10026, "ph": "X", "name": "Finish", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461357658666, "dur": 2314717, "ph": "X", "name": "Build Player", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461357658889, "dur": 51476, "ph": "X", "name": "WriteBuildProgramData", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461357710367, "dur": 273113, "ph": "X", "name": "Run Backend", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461357983482, "dur": 677075, "ph": "X", "name": "BuildProgram", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461358660560, "dur": 1298346, "ph": "X", "name": "Run Backend", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461359958907, "dur": 14475, "ph": "X", "name": "Finish", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461359973950, "dur": 59, "ph": "X", "name": "", "args": {} },
+{ "cat":"", "pid":12345, "tid":0, "ts":0, "ph":"M", "name":"process_name", "args": { "name":"bee_backend" } }
+,{ "pid":12345, "tid":0, "ts":1666461357968990, "dur":1408, "ph":"X", "name": "DriverInitData",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357970411, "dur":384, "ph":"X", "name": "Tundra",  "args": { "detail":"RemoveStaleOutputs" }}
+,{ "pid":12345, "tid":0, "ts":1666461357970820, "dur":25, "ph":"X", "name": "Tundra",  "args": { "detail":"PrepareNodes" }}
+,{ "pid":12345, "tid":0, "ts":1666461357970847, "dur":447, "ph":"X", "name": "Tundra",  "args": { "detail":"BuildQueueInit" }}
+,{ "pid":12345, "tid":0, "ts":1666461357971329, "dur":501, "ph":"X", "name": "EnqueueRequestedNodes",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357971830, "dur":1, "ph":"X", "name": "SortWorkingStack",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975237, "dur":91, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975328, "dur":87, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975416, "dur":134, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975550, "dur":13, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975563, "dur":3, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975566, "dur":7, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975573, "dur":3, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975576, "dur":6, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975582, "dur":3, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975585, "dur":6, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975591, "dur":3, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975594, "dur":6, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975600, "dur":2, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975602, "dur":6, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975608, "dur":2, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975610, "dur":7, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975617, "dur":0, "ph":"X", "name": "SharedResourceDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975618, "dur":1, "ph":"X", "name": "BuildQueueDestroyTail",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357975638, "dur":1270, "ph":"X", "name": "Tundra",  "args": { "detail":"Write AllBuiltNodes" }}
+,{ "pid":12345, "tid":1, "ts":1666461357971619, "dur":224, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461357971847, "dur":3381, "ph":"X", "name": "CheckDagSignatures",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461357971681, "dur":184, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461357971866, "dur":3425, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461357971667, "dur":187, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461357971854, "dur":3468, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461357971723, "dur":153, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461357971876, "dur":3422, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461357971772, "dur":116, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461357971888, "dur":3395, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461357971820, "dur":81, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461357971901, "dur":3347, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461357971892, "dur":0, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461357971893, "dur":3363, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461357971932, "dur":0, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461357971932, "dur":3304, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461357978135, "dur":337, "ph":"X", "name": "ProfilerWriteOutput" }
+,{ "pid": 0, "tid": 1, "ts": 1666461359976561, "dur": 324, "ph": "X", "name": "backend_profiler0.traceevents", "args": {} },
+{ "pid": 35942, "tid": -1, "ph": "M", "name": "process_name", "args": { "name": "netcorerun.dll" } },
+{ "pid": 35942, "tid": -1, "ph": "M", "name": "process_sort_index", "args": { "sort_index": "-1" } },
+{ "pid": 35942, "tid": 1, "ph": "M", "name": "thread_name", "args": { "name": "" } },
+{ "pid": 35942, "tid": 1, "ts": 1666461358421137, "dur": 222095, "ph": "X", "name": "BuildProgram", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1666461358422264, "dur": 47801, "ph": "X", "name": "BuildProgramContextConstructor", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1666461358567485, "dur": 64727, "ph": "X", "name": "OutputData.Write", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1666461358632215, "dur": 11009, "ph": "X", "name": "Backend.Write", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1666461358632946, "dur": 9654, "ph": "X", "name": "JsonToString", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1666461358648137, "dur": 1250, "ph": "X", "name": "", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1666461358647306, "dur": 2106, "ph": "X", "name": "Write chrome-trace events", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461359976929, "dur": 150, "ph": "X", "name": "buildprogram0.traceevents", "args": {} },
+{ "cat":"", "pid":12345, "tid":0, "ts":0, "ph":"M", "name":"process_name", "args": { "name":"bee_backend" } }
+,{ "pid":12345, "tid":0, "ts":1666461358707808, "dur":1362, "ph":"X", "name": "DriverInitData",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461358709183, "dur":118, "ph":"X", "name": "Tundra",  "args": { "detail":"RemoveStaleOutputs" }}
+,{ "pid":12345, "tid":0, "ts":1666461358709312, "dur":20, "ph":"X", "name": "Tundra",  "args": { "detail":"PrepareNodes" }}
+,{ "pid":12345, "tid":0, "ts":1666461358709334, "dur":477, "ph":"X", "name": "Tundra",  "args": { "detail":"BuildQueueInit" }}
+,{ "pid":12345, "tid":0, "ts":1666461358709854, "dur":552, "ph":"X", "name": "EnqueueRequestedNodes",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461358710406, "dur":1, "ph":"X", "name": "SortWorkingStack",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949235, "dur":192, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949438, "dur":19, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949457, "dur":4, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949461, "dur":8, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949469, "dur":3, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949472, "dur":6, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949478, "dur":2, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949480, "dur":6, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949486, "dur":3, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949489, "dur":6, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949495, "dur":2, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949497, "dur":6, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949503, "dur":3, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949506, "dur":6, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949512, "dur":3, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949515, "dur":7, "ph":"X", "name": "ThreadStateDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949522, "dur":0, "ph":"X", "name": "SharedResourceDestroy",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949534, "dur":7, "ph":"X", "name": "BuildQueueDestroyTail",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359949543, "dur":1326, "ph":"X", "name": "Tundra",  "args": { "detail":"Write AllBuiltNodes" }}
+,{ "pid":12345, "tid":1, "ts":1666461358710035, "dur":381, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461358710419, "dur":4056, "ph":"X", "name": "CheckDagSignatures",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461358714496, "dur":2, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"WriteText Library/Bee/artifacts/WinPlayerBuildProgram/Data/app.info" }}
+,{ "pid":12345, "tid":1, "ts":1666461358714498, "dur":42, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461358714547, "dur":2, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/app.info" }}
+,{ "pid":12345, "tid":1, "ts":1666461358714549, "dur":60, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461358714610, "dur":9041, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/4.0/web.config" }}
+,{ "pid":12345, "tid":1, "ts":1666461358723652, "dur":104, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461358723757, "dur":611561, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/UnityPlayer.dll" }}
+,{ "pid":12345, "tid":1, "ts":1666461359335318, "dur":35, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461359335355, "dur":3569, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.Services.Core.Device.dll" }}
+,{ "pid":12345, "tid":1, "ts":1666461359338925, "dur":210, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461359339138, "dur":123369, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.Xml.Linq.dll" }}
+,{ "pid":12345, "tid":1, "ts":1666461359462508, "dur":66, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461359462576, "dur":36362, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.IO.Compression.FileSystem.dll" }}
+,{ "pid":12345, "tid":1, "ts":1666461359498939, "dur":64, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461359499005, "dur":223758, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.Drawing.dll" }}
+,{ "pid":12345, "tid":1, "ts":1666461359722764, "dur":61, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461359722827, "dur":17, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/sharedassets0.assets.resS" }}
+,{ "pid":12345, "tid":1, "ts":1666461359722852, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461359742590, "dur":3504, "ph":"X", "name": "CopyFiles",  "args": { "detail":"Client/RTSCameraController_Data/sharedassets0.assets.resS" }}
+,{ "pid":12345, "tid":1, "ts":1666461359746111, "dur":23, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/level0" }}
+,{ "pid":12345, "tid":1, "ts":1666461359746301, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461359746308, "dur":1370, "ph":"X", "name": "CopyFiles",  "args": { "detail":"Client/RTSCameraController_Data/level0" }}
+,{ "pid":12345, "tid":1, "ts":1666461359747693, "dur":13, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/globalgamemanagers" }}
+,{ "pid":12345, "tid":1, "ts":1666461359747710, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1666461359747714, "dur":1253, "ph":"X", "name": "CopyFiles",  "args": { "detail":"Client/RTSCameraController_Data/globalgamemanagers" }}
+,{ "pid":12345, "tid":1, "ts":1666461359748981, "dur":200255, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461358710086, "dur":341, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461358710427, "dur":4134, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461358714562, "dur":248, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser" }}
+,{ "pid":12345, "tid":2, "ts":1666461358714810, "dur":33, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461358714845, "dur":172, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/4.0/settings.map" }}
+,{ "pid":12345, "tid":2, "ts":1666461358715017, "dur":33, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461358715050, "dur":148, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser" }}
+,{ "pid":12345, "tid":2, "ts":1666461358715198, "dur":25, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461358715223, "dur":9351, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/2.0/web.config" }}
+,{ "pid":12345, "tid":2, "ts":1666461358724574, "dur":62, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461358724637, "dur":172, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Resources/unity default resources" }}
+,{ "pid":12345, "tid":2, "ts":1666461358724809, "dur":35, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461358724845, "dur":74431, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.XRModule.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461358799276, "dur":332, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461358799613, "dur":36685, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461358836299, "dur":35, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461358836336, "dur":53428, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UnityAnalyticsModule.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461358889765, "dur":68, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461358889836, "dur":55712, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.TilemapModule.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461358945548, "dur":43, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461358945592, "dur":49002, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.SubsystemsModule.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461358994595, "dur":321, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461358994920, "dur":20891, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.SpriteMaskModule.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461359015812, "dur":38, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461359015852, "dur":26523, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.ScreenCaptureModule.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461359042376, "dur":58, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461359042436, "dur":33361, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.LocalizationModule.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461359075798, "dur":261, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461359076062, "dur":52540, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.InputLegacyModule.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461359128603, "dur":131, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461359128737, "dur":181512, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.CoreModule.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461359310249, "dur":46, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461359310296, "dur":37280, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.Services.Core.Registration.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461359347576, "dur":70, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461359347649, "dur":66731, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.Transactions.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461359414381, "dur":66, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461359414450, "dur":84618, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.Net.Http.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461359499068, "dur":42, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461359499111, "dur":216384, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461359715496, "dur":67, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461359715565, "dur":128393, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Assembly-CSharp.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461359843972, "dur":2, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1666461359844009, "dur":940, "ph":"X", "name": "CopyFiles",  "args": { "detail":"Client/RTSCameraController_Data/Managed/Assembly-CSharp.dll" }}
+,{ "pid":12345, "tid":2, "ts":1666461359844965, "dur":104298, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461358710130, "dur":309, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461358710439, "dur":4117, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461358714559, "dur":318, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx" }}
+,{ "pid":12345, "tid":3, "ts":1666461358714877, "dur":348, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461358715227, "dur":121, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/2.0/settings.map" }}
+,{ "pid":12345, "tid":3, "ts":1666461358715348, "dur":31, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461358715380, "dur":8903, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/2.0/machine.config" }}
+,{ "pid":12345, "tid":3, "ts":1666461358724284, "dur":33, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461358724318, "dur":52816, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController.exe" }}
+,{ "pid":12345, "tid":3, "ts":1666461358777134, "dur":35, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461358777171, "dur":27297, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.VehiclesModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1666461358804469, "dur":63, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461358804534, "dur":137525, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UnityWebRequestModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1666461358942060, "dur":67, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461358942130, "dur":26668, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.TerrainPhysicsModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1666461358968799, "dur":352, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461358969154, "dur":21601, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.StreamingModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1666461358990756, "dur":63, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461358990822, "dur":24821, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.SpriteShapeModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1666461359015644, "dur":3696, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461359019343, "dur":21537, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.ProfilerModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1666461359040880, "dur":198, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461359041082, "dur":38317, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.NVIDIAModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1666461359079400, "dur":140, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461359079543, "dur":171261, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.IMGUIModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1666461359250805, "dur":293, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461359251100, "dur":83737, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.Timeline.dll" }}
+,{ "pid":12345, "tid":3, "ts":1666461359334838, "dur":59, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461359334900, "dur":46105, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.Services.Core.dll" }}
+,{ "pid":12345, "tid":3, "ts":1666461359381006, "dur":184, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461359381193, "dur":134198, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.Numerics.dll" }}
+,{ "pid":12345, "tid":3, "ts":1666461359515392, "dur":149, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461359515543, "dur":57113, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.Data.DataSetExtensions.dll" }}
+,{ "pid":12345, "tid":3, "ts":1666461359572657, "dur":134, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461359572794, "dur":146654, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.ComponentModel.Composition.dll" }}
+,{ "pid":12345, "tid":3, "ts":1666461359719449, "dur":70, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461359719521, "dur":194, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/StreamingAssets/UnityServicesProjectConfiguration.json" }}
+,{ "pid":12345, "tid":3, "ts":1666461359719715, "dur":34, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461359719750, "dur":17, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Resources/unity_builtin_extra" }}
+,{ "pid":12345, "tid":3, "ts":1666461359719783, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461359742318, "dur":3447, "ph":"X", "name": "CopyFiles",  "args": { "detail":"Client/RTSCameraController_Data/Resources/unity_builtin_extra" }}
+,{ "pid":12345, "tid":3, "ts":1666461359745787, "dur":18, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/level0.resS" }}
+,{ "pid":12345, "tid":3, "ts":1666461359745811, "dur":0, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461359745815, "dur":1813, "ph":"X", "name": "CopyFiles",  "args": { "detail":"Client/RTSCameraController_Data/level0.resS" }}
+,{ "pid":12345, "tid":3, "ts":1666461359747649, "dur":18, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/globalgamemanagers.assets" }}
+,{ "pid":12345, "tid":3, "ts":1666461359747672, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1666461359747677, "dur":1115, "ph":"X", "name": "CopyFiles",  "args": { "detail":"Client/RTSCameraController_Data/globalgamemanagers.assets" }}
+,{ "pid":12345, "tid":3, "ts":1666461359748807, "dur":200425, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461358710186, "dur":259, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461358710446, "dur":4096, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461358714546, "dur":9045, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/4.5/machine.config" }}
+,{ "pid":12345, "tid":4, "ts":1666461358723592, "dur":60, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461358723654, "dur":138437, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll" }}
+,{ "pid":12345, "tid":4, "ts":1666461358862093, "dur":48, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461358862143, "dur":230576, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UIElementsModule.dll" }}
+,{ "pid":12345, "tid":4, "ts":1666461359092719, "dur":69, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461359092792, "dur":29658, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.GridModule.dll" }}
+,{ "pid":12345, "tid":4, "ts":1666461359122451, "dur":58, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461359122511, "dur":28361, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.DirectorModule.dll" }}
+,{ "pid":12345, "tid":4, "ts":1666461359150872, "dur":73, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461359150947, "dur":57032, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.AudioModule.dll" }}
+,{ "pid":12345, "tid":4, "ts":1666461359207980, "dur":63, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461359208045, "dur":53384, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.VisualScripting.State.dll" }}
+,{ "pid":12345, "tid":4, "ts":1666461359261430, "dur":287, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461359261720, "dur":229730, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.TextMeshPro.dll" }}
+,{ "pid":12345, "tid":4, "ts":1666461359491451, "dur":66, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461359491520, "dur":45768, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.EnterpriseServices.dll" }}
+,{ "pid":12345, "tid":4, "ts":1666461359537289, "dur":69, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461359537360, "dur":150060, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.Core.dll" }}
+,{ "pid":12345, "tid":4, "ts":1666461359687421, "dur":79, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461359687502, "dur":261596, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/mscorlib.dll" }}
+,{ "pid":12345, "tid":4, "ts":1666461359949098, "dur":107, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1666461359949208, "dur":1, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"Player" }}
+,{ "pid":12345, "tid":4, "ts":1666461359949209, "dur":0, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461358710224, "dur":232, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461358710457, "dur":4074, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461358714535, "dur":395, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/4.5/settings.map" }}
+,{ "pid":12345, "tid":5, "ts":1666461358714931, "dur":47, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461358714979, "dur":9021, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/4.0/machine.config" }}
+,{ "pid":12345, "tid":5, "ts":1666461358724001, "dur":33, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461358724035, "dur":84147, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/UnityCrashHandler64.exe" }}
+,{ "pid":12345, "tid":5, "ts":1666461358808182, "dur":60, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461358808244, "dur":37841, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UnityWebRequestAudioModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461358846086, "dur":59, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461358846147, "dur":37305, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UmbraModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461358883453, "dur":370, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461358883826, "dur":133553, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UI.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461359017380, "dur":66, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359017450, "dur":21832, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461359039283, "dur":74, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359039359, "dur":67776, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.ParticleSystemModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461359107136, "dur":409, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359107546, "dur":30197, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461359137743, "dur":1729, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359139475, "dur":21526, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.ClusterInputModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461359161002, "dur":56, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359161060, "dur":22413, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.ARModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461359183474, "dur":309, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359183786, "dur":48955, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.AIModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461359232741, "dur":52, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359232796, "dur":66325, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.VisualScripting.Antlr3.Runtime.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461359299122, "dur":75, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359299200, "dur":2450, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.Services.Core.Threading.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461359301651, "dur":69, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359301722, "dur":54439, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.Services.Core.Telemetry.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461359356162, "dur":71, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359356235, "dur":122227, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.ServiceModel.Internals.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461359478464, "dur":87, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359478553, "dur":116762, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.IO.Compression.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461359595316, "dur":69, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359595387, "dur":140395, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Newtonsoft.Json.dll" }}
+,{ "pid":12345, "tid":5, "ts":1666461359735783, "dur":67, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359735852, "dur":205, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/ScriptingAssemblies.json" }}
+,{ "pid":12345, "tid":5, "ts":1666461359736057, "dur":37, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359736095, "dur":854, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/RuntimeInitializeOnLoads.json" }}
+,{ "pid":12345, "tid":5, "ts":1666461359736949, "dur":42, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359736992, "dur":21, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/resources.assets" }}
+,{ "pid":12345, "tid":5, "ts":1666461359737017, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1666461359751445, "dur":93431, "ph":"X", "name": "CopyFiles",  "args": { "detail":"Client/RTSCameraController_Data/resources.assets" }}
+,{ "pid":12345, "tid":5, "ts":1666461359844897, "dur":104352, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461358710266, "dur":203, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461358710469, "dur":4026, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461358714499, "dur":34985, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/mconfig/config.xml" }}
+,{ "pid":12345, "tid":6, "ts":1666461358749485, "dur":54, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461358749542, "dur":23629, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.VRModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461358773172, "dur":96, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461358773271, "dur":41404, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.VFXModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461358814676, "dur":71, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461358814750, "dur":21394, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UnityTestProtocolModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461358836144, "dur":231, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461358836376, "dur":72012, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UNETModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461358908389, "dur":128, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461358908519, "dur":53870, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.TextCoreFontEngineModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461358962390, "dur":62, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461358962454, "dur":33020, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.SubstanceModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461358995475, "dur":194, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461358995671, "dur":35367, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.SharedInternalsModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359031039, "dur":173, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359031214, "dur":53631, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.Physics2DModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359084846, "dur":167, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359085017, "dur":22264, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.ImageConversionModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359107281, "dur":32, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359107314, "dur":30721, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.DSPGraphModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359138035, "dur":223, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359138260, "dur":21303, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.ClusterRendererModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359159564, "dur":90, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359159656, "dur":39733, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.AssetBundleModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359199390, "dur":483, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359199876, "dur":23882, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.AccessibilityModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359223760, "dur":57, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359223819, "dur":85717, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.VisualScripting.Flow.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359309537, "dur":65, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359309604, "dur":847, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.Services.Core.Scheduler.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359310451, "dur":53, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359310506, "dur":3642, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.Services.Core.Networking.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359314148, "dur":311, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359314462, "dur":53208, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.Services.Core.Internal.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359367670, "dur":170, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359367843, "dur":175886, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.Runtime.Serialization.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359543730, "dur":69, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359543803, "dur":130986, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.Configuration.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359674790, "dur":115, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359674908, "dur":52501, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/netstandard.dll" }}
+,{ "pid":12345, "tid":6, "ts":1666461359727411, "dur":69, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359727482, "dur":21, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/sharedassets0.assets" }}
+,{ "pid":12345, "tid":6, "ts":1666461359727509, "dur":1, "ph":"X", "name": "StoreTimestampsOfNonGeneratedInputFiles",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359742987, "dur":4865, "ph":"X", "name": "CopyFiles",  "args": { "detail":"Client/RTSCameraController_Data/sharedassets0.assets" }}
+,{ "pid":12345, "tid":6, "ts":1666461359747868, "dur":196, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/boot.config" }}
+,{ "pid":12345, "tid":6, "ts":1666461359748065, "dur":30, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1666461359748096, "dur":201137, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358710309, "dur":171, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358710480, "dur":4029, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358714513, "dur":214, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser" }}
+,{ "pid":12345, "tid":7, "ts":1666461358714727, "dur":258, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358714986, "dur":106, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx" }}
+,{ "pid":12345, "tid":7, "ts":1666461358715092, "dur":449, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358715542, "dur":133, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx" }}
+,{ "pid":12345, "tid":7, "ts":1666461358715675, "dur":234, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358715911, "dur":109, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/config" }}
+,{ "pid":12345, "tid":7, "ts":1666461358716020, "dur":344, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358716365, "dur":140, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/browscap.ini" }}
+,{ "pid":12345, "tid":7, "ts":1666461358716506, "dur":29, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358716537, "dur":45761, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461358762299, "dur":59, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358762361, "dur":46393, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.VideoModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461358808755, "dur":116, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358808872, "dur":26801, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461358835674, "dur":193, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358835907, "dur":24759, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UnityConnectModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461358860667, "dur":59, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358860728, "dur":42625, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UIElementsNativeModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461358903354, "dur":309, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358903666, "dur":41233, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.TextRenderingModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461358944901, "dur":102, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461358945006, "dur":76779, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.TerrainModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461359021786, "dur":61, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461359021849, "dur":37898, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.PhysicsModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461359059747, "dur":136, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461359059886, "dur":26634, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.InputModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461359086521, "dur":350, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461359086874, "dur":20293, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.HotReloadModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461359107168, "dur":38, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461359107208, "dur":57007, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.GameCenterModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461359164216, "dur":166, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461359164385, "dur":59714, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.AnimationModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461359224099, "dur":39, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461359224139, "dur":91571, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.VisualScripting.Core.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461359315710, "dur":131, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461359315843, "dur":7531, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.Services.Core.Environments.Internal.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461359323374, "dur":70, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461359323447, "dur":11865, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.Services.Core.Environments.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461359335313, "dur":116, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461359335430, "dur":24865, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.Services.Core.Configuration.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461359360296, "dur":71, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461359360369, "dur":149044, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.Security.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461359509415, "dur":262, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461359509680, "dur":195872, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.Data.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461359705553, "dur":55, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461359705610, "dur":138621, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Cinemachine.dll" }}
+,{ "pid":12345, "tid":7, "ts":1666461359844231, "dur":45, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1666461359844278, "dur":104957, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461358710352, "dur":140, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461358710493, "dur":4027, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461358714523, "dur":10382, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/MonoBleedingEdge/etc/mono/4.5/web.config" }}
+,{ "pid":12345, "tid":8, "ts":1666461358724906, "dur":28, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461358724935, "dur":27461, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.WindModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461358752397, "dur":147, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461358752547, "dur":49753, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.VirtualTexturingModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461358802301, "dur":252, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461358802556, "dur":22367, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UnityWebRequestTextureModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461358824924, "dur":121, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461358825054, "dur":23662, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UnityCurlModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461358848717, "dur":64, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461358848783, "dur":37582, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.UIModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461358886366, "dur":118, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461358886486, "dur":20371, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.TLSModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461358906858, "dur":65, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461358906925, "dur":130439, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.TextCoreTextEngineModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461359037365, "dur":316, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461359037684, "dur":18609, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.PerformanceReportingModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461359056294, "dur":66, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461359056362, "dur":45596, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.JSONSerializeModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461359101959, "dur":57, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461359102019, "dur":20563, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.GIModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461359122582, "dur":242, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461359122825, "dur":20443, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.CrashReportingModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461359143270, "dur":69, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461359143343, "dur":31419, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.ClothModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461359174763, "dur":67, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461359174832, "dur":160611, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/UnityEngine.AndroidJNIModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461359335444, "dur":38, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461359335482, "dur":7803, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Unity.Services.Core.Analytics.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461359343287, "dur":70, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461359343360, "dur":361372, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/System.Xml.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461359704733, "dur":76, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461359704811, "dur":182568, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles Client/RTSCameraController_Data/Managed/Mono.Security.dll" }}
+,{ "pid":12345, "tid":8, "ts":1666461359887380, "dur":49, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1666461359887430, "dur":61810, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1666461359952324, "dur":1214, "ph":"X", "name": "ProfilerWriteOutput" }
+,{ "pid": 0, "tid": 1, "ts": 1666461359977112, "dur": 394, "ph": "X", "name": "backend_profiler1.traceevents", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1666461359973940, "dur": 3582, "ph": "X", "name": "Write chrome-trace events", "args": {} },
