@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using UnityEditor;
 
 public class RTSCameraTargetController : MonoBehaviour
 {
-    [SerializeField] [Tooltip("The Cinemachine Virtual Camera to be controlled by the controller.")]
+    [SerializeField]
+    [Tooltip("The Cinemachine Virtual Camera to be controlled by the controller.")]
     private CinemachineVirtualCamera virtualCamera;
+    public CinemachineVirtualCamera VirtualCamera { get => virtualCamera; }
 
     [SerializeField] [Tooltip("The ground layer for the height check.")]
     private LayerMask groundLayer;
@@ -16,6 +19,8 @@ public class RTSCameraTargetController : MonoBehaviour
     [Space] [Header("Time Scale")]
     [SerializeField] [Tooltip("Check to make the controller be independent on the Time Scale.")]
     private bool independentTimeScale = true;
+    [SerializeField] [Tooltip("Check to make the Cinemachine Brain be independent on the Time Scale.")]
+    private bool independentCinemachineBrainTimeScale = true;
 
     [Space][Header("Properties")]
     [SerializeField][Tooltip("Allows or Disallows rotation of the Camera.")]
@@ -112,10 +117,18 @@ public class RTSCameraTargetController : MonoBehaviour
     private Transform lockedOnTransform;
     private bool hardLocked;
     private float lockedOnZoom;
+    private CinemachineBrain cinemachineBrain;
+
+    void OnValidate()
+    {
+        Selection.activeGameObject = virtualCamera.gameObject;
+        
+    }
 
     private void Awake()
     {
         cam = Camera.main;
+        cinemachineBrain = cam.gameObject.GetComponent<CinemachineBrain>();
     }
 
     private void Start() 
@@ -133,6 +146,7 @@ public class RTSCameraTargetController : MonoBehaviour
 
     private void Update()
     {
+        cinemachineBrain.m_IgnoreTimeScale = independentCinemachineBrainTimeScale;
         Vector3 vectorChange = Vector3.zero;
         Vector3 mousePos = Input.mousePosition;
 
