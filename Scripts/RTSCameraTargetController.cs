@@ -5,6 +5,10 @@ using UnityEditor;
 
 public class RTSCameraTargetController : MonoBehaviour
 {
+    public static RTSCameraTargetController Instance;
+
+    #region Public Fields
+
     [SerializeField]
     [Tooltip("The Cinemachine Virtual Camera to be controlled by the controller.")]
     private CinemachineVirtualCamera virtualCamera;
@@ -12,123 +16,155 @@ public class RTSCameraTargetController : MonoBehaviour
 
     [SerializeField] [Tooltip("The ground layer for the height check.")]
     private LayerMask groundLayer;
+    public LayerMask GroundLayer { get { return groundLayer; } set { groundLayer = value; } }
 
     [SerializeField] [Tooltip("The target for the camera to follow.")]
     private Transform cameraTarget;
+    public Transform CameraTarget { get { return cameraTarget; } set { cameraTarget = value; } }
 
     [Space] [Header("Time Scale")]
     [SerializeField] [Tooltip("Check to make the controller be independent on the Time Scale.")]
     private bool independentTimeScale = true;
+    public bool IndependentTimeScale { get { return independentTimeScale; } set { independentTimeScale = value; } }
+
     [SerializeField] [Tooltip("Check to make the Cinemachine Brain be independent on the Time Scale.")]
     private bool independentCinemachineBrainTimeScale = true;
+    public bool IndependentCinemachineBrainTimeScale { get { return independentCinemachineBrainTimeScale; } set { independentCinemachineBrainTimeScale = value; } }
 
     [Space][Header("Properties")]
     [SerializeField][Tooltip("Allows or Disallows rotation of the Camera.")]
     private bool allowRotate = true;
+    public bool AllowRotate { get { return allowRotate; } set { allowRotate = value; } }
 
     [SerializeField] [Tooltip("Allows or Disallows rotation of the Cameras Tilt.")]
     private bool allowTiltRotate = true;
+    public bool AllowTiltRotate { get { return allowTiltRotate; } set { allowTiltRotate = value; } }
 
     [SerializeField] [Tooltip("Allows or Disallows Zooming.")]
     private bool allowZoom = true;
+    public bool AllowZoom { get { return allowZoom; } set { allowZoom = value; } }
 
     [SerializeField] [Tooltip("Allows or Disallows mouse drag movement.")]
     private bool allowDragMove = true;
+    public bool AllowDragMove { get { return allowDragMove; } set { allowDragMove = value; } }
 
     [SerializeField] [Tooltip("Allows or Disallows camera movement with keys/gamepad input.")]
     private bool allowKeysMove = true;
+    public bool AllowKeysMove { get { return allowKeysMove; } set { allowKeysMove = value; } }
 
     [SerializeField] [Tooltip("Allows or Disallows camera movement using the screen sides.")]
     private bool allowScreenSideMove = true;
+    public bool AllowScreenSideMove { get { return allowScreenSideMove; } set { allowScreenSideMove = value; } }
 
     [Space] [Header("Camera")]
     [SerializeField] [Tooltip("The Minimum and Maximum Tilt of the camera, valid range: 0-89 (Do not go 90 or above)")]
     private Vector2 cameraTiltMinMax = new Vector2(15.0f, 75.0f);
+    public Vector2 CameraTiltMinMax { get { return cameraTiltMinMax; } set { cameraTiltMinMax = value; } }
 
     [SerializeField]
     private float cameraMouseSpeed = 2.0f;
+    public float CameraMouseSpeed { get { return cameraMouseSpeed; } set { cameraMouseSpeed = value; } }
 
     [SerializeField]
     private float cameraRotateSpeed = 4.0f;
+    public float CameraRotateSpeed { get { return cameraRotateSpeed; } set { cameraRotateSpeed = value; } }
 
     [SerializeField]
     private float cameraKeysSpeed = 6.0f;
+    public float CameraKeysSpeed { get { return cameraKeysSpeed; } set { cameraKeysSpeed = value; } }
 
     [SerializeField]
     private float cameraZoomSpeed = 4f;
+    public float CameraZoomSpeed { get { return cameraZoomSpeed; } set { cameraZoomSpeed = value; } }
 
     [SerializeField]
     private float cameraMoveDeadZone = 5f;
+    public float CameraMoveDeadZone { get { return cameraMoveDeadZone; } set { cameraMoveDeadZone = value; } }
 
     [SerializeField]
     private float screenSidesZoneSize = 60f;
+    public float ScreenSidesZoneSize { get { return screenSidesZoneSize; } set { screenSidesZoneSize = value; } }
 
     [SerializeField]
     private float targetLockSpeed = 1.5f;
+    public float TargetLockSpeed { get { return targetLockSpeed; } set { targetLockSpeed = value; } }
 
     [SerializeField]
     private float cameraTargetGroundHeightCheckSmoothTime = 4f;
-
+    public float CameraTargetGroundHeightCheckSmoothTime { get { return cameraTargetGroundHeightCheckSmoothTime; } set { cameraTargetGroundHeightCheckSmoothTime = value; } }
 
     [Space] [Header("Camera Zoom")]
     [SerializeField]
     private float cameraZoomSmoothTime = 7f;
+    public float CameraZoomSmoothTime { get { return cameraZoomSmoothTime; } set { cameraZoomSmoothTime = value; } }
 
     [SerializeField] [Tooltip("The Minimum and Maximum zoom factor. X = Min | Y = Max")]
     private Vector2 cameraZoomMinMax = new Vector2(5, 100);
+    public Vector2 CameraZoomMinMax { get { return cameraZoomMinMax; } set { cameraZoomMinMax = value; } }
 
     [Space]
     [SerializeField] [Header("Camera Zoom Slider (Optional)")]
     private Slider cameraZoomSlider;
+    public Slider CameraZoomSlider { get { return cameraZoomSlider; } set { cameraZoomSlider = value; } }
 
     [Space] [Header("Drag Mouse Canvas (Optional)")]
     [SerializeField]
     private GameObject mouseDragCanvasGameObject;
+    public GameObject MouseDragCanvasGameObject { get { return mouseDragCanvasGameObject; } set { mouseDragCanvasGameObject = value; } }
 
     [SerializeField]
     private GameObject mouseDragStartPoint;
+    public GameObject MouseDragStartPoint { get { return mouseDragStartPoint; } set { mouseDragStartPoint = value; } }
 
     [SerializeField]
     private GameObject mouseDragEndPoint;
+    public GameObject MouseDragEndPoint { get { return mouseDragEndPoint; } set { mouseDragEndPoint = value; } }
 
     [Space] [Header("Rotate Camera Canvas (Optional)")]
     [SerializeField]
     private GameObject rotateCameraCanvasGameObject;
+    public GameObject RotateCameraCanvasGameObject { get { return rotateCameraCanvasGameObject; } set { rotateCameraCanvasGameObject = value; } }
 
     [SerializeField]
     private GameObject compasUiImageGameObject;
+    public GameObject CompasUiImageGameObject { get { return compasUiImageGameObject; } set { compasUiImageGameObject = value; } }
+
+    #endregion
+
+    #region Private Fields
 
     private Vector3 mouseLockPos;
+    private Vector3 lockedOnPosition;
     private Camera cam;
+    private CinemachineBrain cinemachineBrain;
     private CinemachineFramingTransposer framingTransposer;
     private GameObject virtualCameraGameObject;
+    private Transform lockedOnTransform;
     private float currentCameraZoom;
     private float cameraZoomSmoothDampVel_ref;
     private float RotateFlipSmoothDampVel_ref;
     private float currentCameraRotate;
     private float currentCameraTilt;
+    private float lockedOnZoom;
     private bool currentRotateDir;
     private bool isRotating;
     private bool isDragging;
     private bool isSideZoneMoving;
     private bool isLockedOnTarget;
-
-    private Vector3 lockedOnPosition;
-    private Transform lockedOnTransform;
     private bool hardLocked;
-    private float lockedOnZoom;
-    private CinemachineBrain cinemachineBrain;
 
-    void OnValidate()
-    {
-        Selection.activeGameObject = virtualCamera.gameObject;
-        
-    }
+    #endregion
 
+    #region Callbacks
     private void Awake()
     {
         cam = Camera.main;
         cinemachineBrain = cam.gameObject.GetComponent<CinemachineBrain>();
+        if(Instance != null)
+        {
+            Destroy(Instance);
+        }
+        Instance = this;
     }
 
     private void Start() 
@@ -161,6 +197,8 @@ public class RTSCameraTargetController : MonoBehaviour
         if (compasUiImageGameObject != null)
             compasUiImageGameObject.transform.rotation = Quaternion.Euler(0, 0, virtualCameraGameObject.transform.eulerAngles.y);
     }
+
+    #endregion
 
     #region Internal Functions
 
@@ -396,7 +434,7 @@ public class RTSCameraTargetController : MonoBehaviour
 
     #endregion
 
-    #region Functions
+    #region Public Functions
 
     /// <summary>
     /// Locks the camera to a target position
@@ -438,28 +476,6 @@ public class RTSCameraTargetController : MonoBehaviour
         lockedOnPosition = Vector3.zero;
         lockedOnTransform = null;
     }
-
-    #endregion
-
-    #region Getters and Setters
-
-    public void SetAllowRotate(bool allow) => this.allowRotate = allow;
-    public bool GetAllowRotate() => this.allowRotate;
-
-    public void SetAllowTiltRotate(bool allow) => this.allowTiltRotate = allow;
-    public bool GetAllowTiltRotate() => this.allowTiltRotate;
-
-    public void SetAllowZoomRotate(bool allow) => this.allowZoom = allow;
-    public bool GetAllowZoomRotate() => this.allowZoom;
-
-    public void SetAllowDragMove(bool allow) => this.allowDragMove = allow;
-    public bool GetAllowDragMove() => this.allowDragMove;
-
-    public void SetAllowKeysMove(bool allow) => this.allowKeysMove = allow;
-    public bool GetAllowKeysMove() => this.allowKeysMove;
-
-    public void SetAllowScreenSideMove(bool allow) => this.allowScreenSideMove = allow;
-    public bool GetAllowScreenSideMove() => this.allowScreenSideMove;
 
     #endregion
 }

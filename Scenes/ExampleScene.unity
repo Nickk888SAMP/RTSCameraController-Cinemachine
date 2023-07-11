@@ -4032,22 +4032,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: timeScale
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: independentTimeScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5524602137149729665, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5524602137660462666, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4059,26 +4043,6 @@ PrefabInstance:
     - target: {fileID: 5524602137660462666, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5524602138043651669, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: m_XDamping
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5524602138043651669, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: m_YDamping
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5524602138043651669, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: m_ZDamping
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5524602138043651752, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: m_AmplitudeGain
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5524602138043651752, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: m_FrequencyGain
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5524602138380265802, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_Name
@@ -4127,10 +4091,6 @@ PrefabInstance:
     - target: {fileID: 5524602138380265803, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5524602138545185833, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
