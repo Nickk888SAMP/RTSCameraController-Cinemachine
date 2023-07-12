@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/Nickk888/RTSCameraController/Scenes/ExampleScene.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0

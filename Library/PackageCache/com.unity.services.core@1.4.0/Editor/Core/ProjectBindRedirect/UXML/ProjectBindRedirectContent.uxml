@@ -1,6 +1,0 @@
-<UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns="UnityEngine.UIElements" editor-extension-mode="False">
-   <VisualElement class="project-bind-redirect-content">
-       <Label text="To use Unity services, you must link your Unity project to a Project ID." class="label project-id-info" />
-       <Label text="Go to Project Settings to select your organization, select your project, and link a project ID." class="label next-step-instructions" />
-   </VisualElement>
-</UXML>
