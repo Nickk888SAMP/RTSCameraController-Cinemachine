@@ -1,6 +1,7 @@
 # Unity 3D Real Time Strategy Camera Controller for Cinemachine Virtual Camera
 
 <img src="/Preview/1.gif" width="250" height="250"><img src="/Preview/2.gif" width="250" height="250"><img src="/Preview/3.gif" width="250" height="250">
+<img src="/Preview/4.png" width="750">
 
 This project is a Camera Controller for RTS style games.
 It works by adding the script to a Gameobject and placing references for the Virtual Camera and the Target itself.
