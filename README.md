@@ -19,7 +19,7 @@ The script controlls the Target and the Virtual Camera.
 
 ## Requirements
 * Cinemachine
-* Old Input System
+* Old Input System or Both
 
 ## How To Use
 * Make sure you have installed the "Cinemachine" package from the Package Manager.
