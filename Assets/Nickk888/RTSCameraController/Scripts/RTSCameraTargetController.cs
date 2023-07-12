@@ -7,7 +7,7 @@ public class RTSCameraTargetController : MonoBehaviour
 {
     public static RTSCameraTargetController Instance;
 
-    #region Public Fields
+    #region Properties
 
     [SerializeField]
     [Tooltip("The Cinemachine Virtual Camera to be controlled by the controller.")]
