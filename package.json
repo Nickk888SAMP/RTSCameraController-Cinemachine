@@ -1,0 +1,14 @@
+{
+	"name": "com.nickk888.rtscc",
+	"displayName": "RTS Camera Controller for Cinemachine",
+	"version": "1.1.2",
+	"unity": "2021.3",
+	"author": "Nickk888",
+	"description": "A Camera Controller for RTS style games.",
+	"dependencies": {
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Nickk888SAMP/RTSCameraController-Cinemachine.git"
+	}
+}

@@ -7,8 +7,18 @@ public class RTSCameraTargetController : MonoBehaviour
 {
     public static RTSCameraTargetController Instance;
 
+    private enum MouseButton
+    {
+        Left,
+        Right,
+        Middle,
+        forward,
+        Back
+    }
+
     #region Properties
 
+    [Header("Setup")]
     [SerializeField]
     [Tooltip("The Cinemachine Virtual Camera to be controlled by the controller.")]
     private CinemachineVirtualCamera virtualCamera;
@@ -21,6 +31,25 @@ public class RTSCameraTargetController : MonoBehaviour
     [SerializeField] [Tooltip("The target for the camera to follow.")]
     private Transform cameraTarget;
     public Transform CameraTarget { get { return cameraTarget; } set { cameraTarget = value; } }
+
+    [Space] [Header("Input")]
+    [SerializeField] [Tooltip("The Horizontal movement Input Axis.")]
+    private string horizontalMovementAxisName = "Horizontal";
+    
+    [SerializeField] [Tooltip("The Vertical movement Input Axis.")]
+    private string verticalMovementAxisName = "Vertical";
+
+    [SerializeField] [Tooltip("The Horizontal mouse Input Axis.")]
+    private string horizontalMouseAxisName = "Mouse X";
+    
+    [SerializeField] [Tooltip("The Vertical mouse Input Axis.")]
+    private string verticalMouseAxisName = "Mouse Y";
+
+    [SerializeField] [Tooltip("The mouse button for rotating.")]
+    private MouseButton rotationMouseButton = MouseButton.Right;
+
+    [SerializeField] [Tooltip("The mouse button for drag move.")]
+    private MouseButton dragMoveMouseButton = MouseButton.Middle;
 
     [Space] [Header("Time Scale")]
     [SerializeField] [Tooltip("Check to make the controller be independent on the Time Scale.")]
@@ -263,8 +292,8 @@ public class RTSCameraTargetController : MonoBehaviour
     {
         if (!isDragging && !isSideZoneMoving && allowKeysMove)
         {
-            float horizontalInput = Input.GetAxisRaw("Horizontal");
-            float verticalInput = Input.GetAxisRaw("Vertical");
+            float horizontalInput = Input.GetAxisRaw(horizontalMovementAxisName);
+            float verticalInput = Input.GetAxisRaw(verticalMovementAxisName);
 
             Vector3 vectorChange = new Vector3(horizontalInput, 0, verticalInput);
             // Move target relative to Camera
@@ -280,7 +309,7 @@ public class RTSCameraTargetController : MonoBehaviour
     {
         if (!isRotating && !isSideZoneMoving)
         {
-            if (Input.GetMouseButtonDown(2) && allowDragMove)
+            if (Input.GetMouseButtonDown((int)dragMoveMouseButton) && allowDragMove)
             {
                 if (mouseDragCanvasGameObject != null)
                     mouseDragCanvasGameObject.SetActive(true);
@@ -290,14 +319,14 @@ public class RTSCameraTargetController : MonoBehaviour
                 if (mouseDragStartPoint != null)
                     mouseDragStartPoint.transform.position = new Vector2(mouseLockPos.x, mouseLockPos.y);
             }
-            if ((isDragging && Input.GetMouseButtonUp(2)) || (isDragging && !allowDragMove))
+            if ((isDragging && Input.GetMouseButtonUp((int)dragMoveMouseButton)) || (isDragging && !allowDragMove))
             {
                 if (mouseDragCanvasGameObject != null)
                     mouseDragCanvasGameObject.SetActive(false);
                 Cursor.visible = true;
                 isDragging = false;
             }
-            if (Input.GetMouseButton(2) && isDragging && allowDragMove)
+            if (Input.GetMouseButton((int)dragMoveMouseButton) && isDragging && allowDragMove)
             {
                 Vector3 vectorChange = new Vector3(mouseLockPos.x - mousePos.x, 0, mouseLockPos.y - mousePos.y) * -1;
                 float distance = vectorChange.sqrMagnitude;
@@ -349,7 +378,7 @@ public class RTSCameraTargetController : MonoBehaviour
     {
         if (!isDragging)
         {
-            if (Input.GetMouseButtonDown(1) && allowRotate)
+            if (Input.GetMouseButtonDown((int)rotationMouseButton) && allowRotate)
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
@@ -357,7 +386,7 @@ public class RTSCameraTargetController : MonoBehaviour
                 if (rotateCameraCanvasGameObject != null)
                     rotateCameraCanvasGameObject.SetActive(true);
             }
-            if ((isRotating && Input.GetMouseButtonUp(1)) || (isRotating && !allowRotate))
+            if ((isRotating && Input.GetMouseButtonUp((int)rotationMouseButton)) || (isRotating && !allowRotate))
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -365,10 +394,10 @@ public class RTSCameraTargetController : MonoBehaviour
                 if (rotateCameraCanvasGameObject != null)
                     rotateCameraCanvasGameObject.SetActive(false);
             }
-            if (Input.GetMouseButton(1) && allowRotate)
+            if (Input.GetMouseButton((int)rotationMouseButton) && allowRotate)
             {
-                float horizontalMouse = Input.GetAxisRaw("Mouse X");
-                float verticalMouse = Input.GetAxisRaw("Mouse Y");
+                float horizontalMouse = Input.GetAxisRaw(horizontalMouseAxisName);
+                float verticalMouse = Input.GetAxisRaw(verticalMouseAxisName);
                 if (horizontalMouse != 0)
                 {
                     currentRotateDir = (horizontalMouse > 0 ? true : false);
