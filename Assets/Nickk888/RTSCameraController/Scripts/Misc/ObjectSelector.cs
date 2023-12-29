@@ -26,7 +26,7 @@ public class ObjectSelector : MonoBehaviour
                     currentSelected = null;
                 }
             }
-            if (hit.transform.tag == "Cubes")
+            if (hit.transform.CompareTag($"Cubes"))
             {
                 if (currentSelected != hit.transform)
                 {
