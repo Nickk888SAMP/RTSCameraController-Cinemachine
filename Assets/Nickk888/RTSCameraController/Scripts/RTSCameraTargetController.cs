@@ -21,15 +21,15 @@ public class RTSCameraTargetController : MonoBehaviour
     [SerializeField]
     [Tooltip("The Cinemachine Virtual Camera to be controlled by the controller.")]
     private CinemachineVirtualCamera virtualCamera;
-    public CinemachineVirtualCamera VirtualCamera { get => virtualCamera; }
+    public CinemachineVirtualCamera VirtualCamera => virtualCamera;
 
     [SerializeField] [Tooltip("The ground layer for the height check.")]
     private LayerMask groundLayer;
-    public LayerMask GroundLayer { get { return groundLayer; } set { groundLayer = value; } }
+    public LayerMask GroundLayer { get => groundLayer; set => groundLayer = value; }
 
     [SerializeField] [Tooltip("The target for the camera to follow.")]
     private Transform cameraTarget;
-    public Transform CameraTarget { get { return cameraTarget; } set { cameraTarget = value; } }
+    public Transform CameraTarget { get => cameraTarget; set => cameraTarget = value; }
 
     [Space] [Header("Input")]
     [SerializeField] [Tooltip("The Horizontal movement Input Axis.")]
@@ -53,141 +53,141 @@ public class RTSCameraTargetController : MonoBehaviour
     [Space] [Header("Time Scale")]
     [SerializeField] [Tooltip("Check to make the controller be independent on the Time Scale.")]
     private bool independentTimeScale = true;
-    public bool IndependentTimeScale { get { return independentTimeScale; } set { independentTimeScale = value; } }
+    public bool IndependentTimeScale { get => independentTimeScale; set => independentTimeScale = value; }
 
     [SerializeField] [Tooltip("Check to make the Cinemachine Brain be independent on the Time Scale.")]
     private bool independentCinemachineBrainTimeScale = true;
-    public bool IndependentCinemachineBrainTimeScale { get { return independentCinemachineBrainTimeScale; } set { independentCinemachineBrainTimeScale = value; } }
+    public bool IndependentCinemachineBrainTimeScale { get => independentCinemachineBrainTimeScale; set => independentCinemachineBrainTimeScale = value; }
 
     [Space][Header("Properties")]
     [SerializeField][Tooltip("Allows or Disallows rotation of the Camera.")]
     private bool allowRotate = true;
-    public bool AllowRotate { get { return allowRotate; } set { allowRotate = value; } }
+    public bool AllowRotate { get => allowRotate; set => allowRotate = value; }
 
     [SerializeField] [Tooltip("Allows or Disallows rotation of the Cameras Tilt.")]
     private bool allowTiltRotate = true;
-    public bool AllowTiltRotate { get { return allowTiltRotate; } set { allowTiltRotate = value; } }
+    public bool AllowTiltRotate { get => allowTiltRotate; set => allowTiltRotate = value; }
 
     [SerializeField] [Tooltip("Allows or Disallows Zooming.")]
     private bool allowZoom = true;
-    public bool AllowZoom { get { return allowZoom; } set { allowZoom = value; } }
+    public bool AllowZoom { get => allowZoom; set => allowZoom = value; }
 
     [SerializeField] [Tooltip("Allows or Disallows mouse drag movement.")]
     private bool allowDragMove = true;
-    public bool AllowDragMove { get { return allowDragMove; } set { allowDragMove = value; } }
+    public bool AllowDragMove { get => allowDragMove; set => allowDragMove = value; }
 
     [SerializeField] [Tooltip("Allows or Disallows camera movement with keys/gamepad input.")]
     private bool allowKeysMove = true;
-    public bool AllowKeysMove { get { return allowKeysMove; } set { allowKeysMove = value; } }
+    public bool AllowKeysMove { get => allowKeysMove; set => allowKeysMove = value; }
 
     [SerializeField] [Tooltip("Allows or Disallows camera movement using the screen sides.")]
     private bool allowScreenSideMove = true;
-    public bool AllowScreenSideMove { get { return allowScreenSideMove; } set { allowScreenSideMove = value; } }
+    public bool AllowScreenSideMove { get => allowScreenSideMove; set => allowScreenSideMove = value; }
 
     [Space] [Header("Camera")]
     [SerializeField] [Tooltip("The Minimum and Maximum Tilt of the camera, valid range: 0-89 (Do not go 90 or above)")]
     private Vector2 cameraTiltMinMax = new Vector2(15.0f, 75.0f);
-    public Vector2 CameraTiltMinMax { get { return cameraTiltMinMax; } set { cameraTiltMinMax = value; } }
+    public Vector2 CameraTiltMinMax { get => cameraTiltMinMax; set => cameraTiltMinMax = value; }
 
     [SerializeField]
     private float cameraMouseSpeed = 2.0f;
-    public float CameraMouseSpeed { get { return cameraMouseSpeed; } set { cameraMouseSpeed = value; } }
+    public float CameraMouseSpeed { get => cameraMouseSpeed; set => cameraMouseSpeed = value; }
 
     [SerializeField]
     private float cameraRotateSpeed = 4.0f;
-    public float CameraRotateSpeed { get { return cameraRotateSpeed; } set { cameraRotateSpeed = value; } }
+    public float CameraRotateSpeed { get => cameraRotateSpeed; set => cameraRotateSpeed = value; }
 
     [SerializeField]
     private float cameraKeysSpeed = 6.0f;
-    public float CameraKeysSpeed { get { return cameraKeysSpeed; } set { cameraKeysSpeed = value; } }
+    public float CameraKeysSpeed { get => cameraKeysSpeed; set => cameraKeysSpeed = value; }
 
     [SerializeField]
     private float cameraZoomSpeed = 4f;
-    public float CameraZoomSpeed { get { return cameraZoomSpeed; } set { cameraZoomSpeed = value; } }
+    public float CameraZoomSpeed { get => cameraZoomSpeed; set => cameraZoomSpeed = value; }
 
     [SerializeField]
     private float cameraMoveDeadZone = 5f;
-    public float CameraMoveDeadZone { get { return cameraMoveDeadZone; } set { cameraMoveDeadZone = value; } }
+    public float CameraMoveDeadZone { get => cameraMoveDeadZone; set => cameraMoveDeadZone = value; }
 
     [SerializeField]
     private float screenSidesZoneSize = 60f;
-    public float ScreenSidesZoneSize { get { return screenSidesZoneSize; } set { screenSidesZoneSize = value; } }
+    public float ScreenSidesZoneSize { get => screenSidesZoneSize; set => screenSidesZoneSize = value; }
 
     [SerializeField]
     private float targetLockSpeed = 1.5f;
-    public float TargetLockSpeed { get { return targetLockSpeed; } set { targetLockSpeed = value; } }
+    public float TargetLockSpeed { get => targetLockSpeed; set => targetLockSpeed = value; }
 
     [SerializeField]
     private float cameraTargetGroundHeightCheckSmoothTime = 4f;
-    public float CameraTargetGroundHeightCheckSmoothTime { get { return cameraTargetGroundHeightCheckSmoothTime; } set { cameraTargetGroundHeightCheckSmoothTime = value; } }
+    public float CameraTargetGroundHeightCheckSmoothTime { get => cameraTargetGroundHeightCheckSmoothTime; set => cameraTargetGroundHeightCheckSmoothTime = value; }
 
     [Space] [Header("Camera Zoom")]
     [SerializeField]
     private float cameraZoomSmoothTime = 7f;
-    public float CameraZoomSmoothTime { get { return cameraZoomSmoothTime; } set { cameraZoomSmoothTime = value; } }
+    public float CameraZoomSmoothTime { get => cameraZoomSmoothTime; set => cameraZoomSmoothTime = value; }
 
     [SerializeField] [Tooltip("The Minimum and Maximum zoom factor. X = Min | Y = Max")]
     private Vector2 cameraZoomMinMax = new Vector2(5, 100);
-    public Vector2 CameraZoomMinMax { get { return cameraZoomMinMax; } set { cameraZoomMinMax = value; } }
+    public Vector2 CameraZoomMinMax { get => cameraZoomMinMax; set => cameraZoomMinMax = value; }
 
     [Space]
     [SerializeField] [Header("Camera Zoom Slider (Optional)")]
     private Slider cameraZoomSlider;
-    public Slider CameraZoomSlider { get { return cameraZoomSlider; } set { cameraZoomSlider = value; } }
+    public Slider CameraZoomSlider { get => cameraZoomSlider; set => cameraZoomSlider = value; }
 
     [Space] [Header("Drag Mouse Canvas (Optional)")]
     [SerializeField]
     private GameObject mouseDragCanvasGameObject;
-    public GameObject MouseDragCanvasGameObject { get { return mouseDragCanvasGameObject; } set { mouseDragCanvasGameObject = value; } }
+    public GameObject MouseDragCanvasGameObject { get => mouseDragCanvasGameObject; set => mouseDragCanvasGameObject = value; }
 
     [SerializeField]
     private GameObject mouseDragStartPoint;
-    public GameObject MouseDragStartPoint { get { return mouseDragStartPoint; } set { mouseDragStartPoint = value; } }
+    public GameObject MouseDragStartPoint { get => mouseDragStartPoint; set => mouseDragStartPoint = value; }
 
     [SerializeField]
     private GameObject mouseDragEndPoint;
-    public GameObject MouseDragEndPoint { get { return mouseDragEndPoint; } set { mouseDragEndPoint = value; } }
+    public GameObject MouseDragEndPoint { get => mouseDragEndPoint; set => mouseDragEndPoint = value; }
 
     [Space] [Header("Rotate Camera Canvas (Optional)")]
     [SerializeField]
     private GameObject rotateCameraCanvasGameObject;
-    public GameObject RotateCameraCanvasGameObject { get { return rotateCameraCanvasGameObject; } set { rotateCameraCanvasGameObject = value; } }
+    public GameObject RotateCameraCanvasGameObject { get => rotateCameraCanvasGameObject; set => rotateCameraCanvasGameObject = value; }
 
     [SerializeField]
-    private GameObject compasUiImageGameObject;
-    public GameObject CompasUiImageGameObject { get { return compasUiImageGameObject; } set { compasUiImageGameObject = value; } }
+    private GameObject compassUiImageGameObject;
+    public GameObject CompassUiImageGameObject { get => compassUiImageGameObject; set => compassUiImageGameObject = value; }
 
     #endregion
 
     #region Private Fields
 
-    private Vector3 mouseLockPos;
-    private Vector3 lockedOnPosition;
-    private Camera cam;
-    private CinemachineBrain cinemachineBrain;
-    private CinemachineFramingTransposer framingTransposer;
-    private GameObject virtualCameraGameObject;
-    private Transform lockedOnTransform;
-    private float currentCameraZoom;
-    private float cameraZoomSmoothDampVel_ref;
-    private float RotateFlipSmoothDampVel_ref;
-    private float currentCameraRotate;
-    private float currentCameraTilt;
-    private float lockedOnZoom;
-    private bool currentRotateDir;
-    private bool isRotating;
-    private bool isDragging;
-    private bool isSideZoneMoving;
-    private bool isLockedOnTarget;
-    private bool hardLocked;
+    private Vector3 _mouseLockPos;
+    private Vector3 _lockedOnPosition;
+    private Camera _cam;
+    private CinemachineBrain _cinemachineBrain;
+    private CinemachineFramingTransposer _framingTransposer;
+    private GameObject _virtualCameraGameObject;
+    private Transform _lockedOnTransform;
+    private float _currentCameraZoom;
+    private float _cameraZoomSmoothDampVelRef;
+    private float _rotateFlipSmoothDampVelRef;
+    private float _currentCameraRotate;
+    private float _currentCameraTilt;
+    private float _lockedOnZoom;
+    private bool _currentRotateDir;
+    private bool _isRotating;
+    private bool _isDragging;
+    private bool _isSideZoneMoving;
+    private bool _isLockedOnTarget;
+    private bool _hardLocked;
 
     #endregion
 
     #region Callbacks
     private void Awake()
     {
-        cam = Camera.main;
-        cinemachineBrain = cam.gameObject.GetComponent<CinemachineBrain>();
+        _cam = Camera.main;
+        if (_cam != null) _cinemachineBrain = _cam.gameObject.GetComponent<CinemachineBrain>();
         if(Instance != null)
         {
             Destroy(Instance);
@@ -197,11 +197,11 @@ public class RTSCameraTargetController : MonoBehaviour
 
     private void Start() 
     {
-        virtualCameraGameObject = virtualCamera.gameObject;
-        currentCameraTilt = Mathf.Lerp(cameraTiltMinMax.x, cameraTiltMinMax.y, 0.5f);
-        virtualCameraGameObject.transform.eulerAngles = new Vector3(currentCameraTilt, virtualCameraGameObject.transform.eulerAngles.y, 0);
-        framingTransposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
-        currentCameraZoom = framingTransposer.m_CameraDistance;
+        _virtualCameraGameObject = virtualCamera.gameObject;
+        _currentCameraTilt = Mathf.Lerp(cameraTiltMinMax.x, cameraTiltMinMax.y, 0.5f);
+        _virtualCameraGameObject.transform.eulerAngles = new Vector3(_currentCameraTilt, _virtualCameraGameObject.transform.eulerAngles.y, 0);
+        _framingTransposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        _currentCameraZoom = _framingTransposer.m_CameraDistance;
         if(mouseDragCanvasGameObject != null)
             mouseDragCanvasGameObject.SetActive(false);
         if(rotateCameraCanvasGameObject != null)
@@ -210,8 +210,7 @@ public class RTSCameraTargetController : MonoBehaviour
 
     private void Update()
     {
-        cinemachineBrain.m_IgnoreTimeScale = independentCinemachineBrainTimeScale;
-        Vector3 vectorChange = Vector3.zero;
+        _cinemachineBrain.m_IgnoreTimeScale = independentCinemachineBrainTimeScale;
         Vector3 mousePos = Input.mousePosition;
 
         HandleScreenSideMove(mousePos);
@@ -222,8 +221,8 @@ public class RTSCameraTargetController : MonoBehaviour
         HandleTargetLock();
         GroundHeightCorrection();
 
-        if (compasUiImageGameObject != null)
-            compasUiImageGameObject.transform.rotation = Quaternion.Euler(0, 0, virtualCameraGameObject.transform.eulerAngles.y);
+        if (compassUiImageGameObject != null)
+            compassUiImageGameObject.transform.rotation = Quaternion.Euler(0, 0, _virtualCameraGameObject.transform.eulerAngles.y);
     }
 
     #endregion
@@ -232,42 +231,30 @@ public class RTSCameraTargetController : MonoBehaviour
 
     private void GroundHeightCorrection()
     {
-        if (!isLockedOnTarget)
+        if (!_isLockedOnTarget)
         {
             if (Physics.Raycast(new Vector3(cameraTarget.position.x, 9999999, cameraTarget.position.z), Vector3.down, out RaycastHit hit, Mathf.Infinity, groundLayer))
             {
-                cameraTarget.position = Vector3.Lerp(cameraTarget.position, new Vector3(cameraTarget.position.x, hit.point.y, cameraTarget.position.z), cameraTargetGroundHeightCheckSmoothTime * GetTimeScale());
+                Vector3 position = cameraTarget.position;
+                position = Vector3.Lerp(position, new Vector3(position.x, hit.point.y, position.z), cameraTargetGroundHeightCheckSmoothTime * GetTimeScale());
+                cameraTarget.position = position;
             }
         }
     }
 
     private void HandleTargetLock()
     {
-        if (isLockedOnTarget)
+        if (_isLockedOnTarget)
         {
-            if(lockedOnTransform == null)
+            if(_lockedOnTransform == null)
             {
-                if(hardLocked)
-                {
-                    cameraTarget.position = lockedOnPosition;
-                }
-                else
-                {
-                    cameraTarget.position = Vector3.Lerp(cameraTarget.position, lockedOnPosition, targetLockSpeed * GetTimeScale());
-                }
+                cameraTarget.position = _hardLocked ? _lockedOnPosition : Vector3.Lerp(cameraTarget.position, _lockedOnPosition, targetLockSpeed * GetTimeScale());
             }
             else
             {
-                if(hardLocked)
-                {
-                    cameraTarget.position = lockedOnTransform.position;
-                }
-                else
-                {
-                    cameraTarget.position = Vector3.Lerp(cameraTarget.position, lockedOnTransform.position, targetLockSpeed * GetTimeScale());
-                }
+                cameraTarget.position = _hardLocked ? _lockedOnTransform.position : Vector3.Lerp(cameraTarget.position, _lockedOnTransform.position, targetLockSpeed * GetTimeScale());
             }
-            currentCameraZoom = Mathf.Lerp(currentCameraZoom, lockedOnZoom, targetLockSpeed * GetTimeScale());
+            _currentCameraZoom = Mathf.Lerp(_currentCameraZoom, _lockedOnZoom, targetLockSpeed * GetTimeScale());
         }
     }
 
@@ -275,21 +262,21 @@ public class RTSCameraTargetController : MonoBehaviour
     {
         GetMouseScreenSide(mousePos, out int widthPos, out int heightPos);
         Vector3 moveVector = new Vector3(widthPos, 0, heightPos);
-        if (moveVector != Vector3.zero && !isDragging && !isRotating && allowScreenSideMove)
+        if (moveVector != Vector3.zero && !_isDragging && !_isRotating && allowScreenSideMove)
         {
             CancelTargetLock();
             MoveTargetRelativeToCamera(moveVector, cameraKeysSpeed);
-            isSideZoneMoving = true;
+            _isSideZoneMoving = true;
         }
         else
         {
-            isSideZoneMoving = false;
+            _isSideZoneMoving = false;
         }
     }
 
     private void HandleKeysMove()
     {
-        if (!isDragging && !isSideZoneMoving && allowKeysMove)
+        if (!_isDragging && !_isSideZoneMoving && allowKeysMove)
         {
             float horizontalInput = Input.GetAxisRaw(horizontalMovementAxisName);
             float verticalInput = Input.GetAxisRaw(verticalMovementAxisName);
@@ -306,28 +293,28 @@ public class RTSCameraTargetController : MonoBehaviour
 
     private void HandleMouseDrag(Vector3 mousePos)
     {
-        if (!isRotating && !isSideZoneMoving)
+        if (!_isRotating && !_isSideZoneMoving)
         {
             if (Input.GetMouseButtonDown((int)dragMoveMouseButton) && allowDragMove)
             {
                 if (mouseDragCanvasGameObject != null)
                     mouseDragCanvasGameObject.SetActive(true);
-                mouseLockPos = mousePos;
-                isDragging = true;
+                _mouseLockPos = mousePos;
+                _isDragging = true;
                 CancelTargetLock();
                 if (mouseDragStartPoint != null)
-                    mouseDragStartPoint.transform.position = new Vector2(mouseLockPos.x, mouseLockPos.y);
+                    mouseDragStartPoint.transform.position = new Vector2(_mouseLockPos.x, _mouseLockPos.y);
             }
-            if ((isDragging && Input.GetMouseButtonUp((int)dragMoveMouseButton)) || (isDragging && !allowDragMove))
+            if ((_isDragging && Input.GetMouseButtonUp((int)dragMoveMouseButton)) || (_isDragging && !allowDragMove))
             {
                 if (mouseDragCanvasGameObject != null)
                     mouseDragCanvasGameObject.SetActive(false);
                 Cursor.visible = true;
-                isDragging = false;
+                _isDragging = false;
             }
-            if (Input.GetMouseButton((int)dragMoveMouseButton) && isDragging && allowDragMove)
+            if (Input.GetMouseButton((int)dragMoveMouseButton) && _isDragging && allowDragMove)
             {
-                Vector3 vectorChange = new Vector3(mouseLockPos.x - mousePos.x, 0, mouseLockPos.y - mousePos.y) * -1;
+                Vector3 vectorChange = new Vector3(_mouseLockPos.x - mousePos.x, 0, _mouseLockPos.y - mousePos.y) * -1;
                 float distance = vectorChange.sqrMagnitude;
                 if (distance > (cameraMoveDeadZone * cameraMoveDeadZone))
                 {
@@ -357,39 +344,39 @@ public class RTSCameraTargetController : MonoBehaviour
     {
         if (allowZoom)
         {
-            currentCameraZoom -= Input.mouseScrollDelta.y * cameraZoomSpeed;
-            currentCameraZoom = Mathf.Clamp(currentCameraZoom, cameraZoomMinMax.x, cameraZoomMinMax.y);
+            _currentCameraZoom -= Input.mouseScrollDelta.y * cameraZoomSpeed;
+            _currentCameraZoom = Mathf.Clamp(_currentCameraZoom, cameraZoomMinMax.x, cameraZoomMinMax.y);
             if(Input.mouseScrollDelta.y != 0)
             {
                 CancelTargetLock();
             }
         }
-        framingTransposer.m_CameraDistance = Mathf.SmoothDamp(framingTransposer.m_CameraDistance, currentCameraZoom, ref cameraZoomSmoothDampVel_ref, (cameraZoomSmoothTime / 100), Mathf.Infinity, GetTimeScale());
+        _framingTransposer.m_CameraDistance = Mathf.SmoothDamp(_framingTransposer.m_CameraDistance, _currentCameraZoom, ref _cameraZoomSmoothDampVelRef, (cameraZoomSmoothTime / 100), Mathf.Infinity, GetTimeScale());
         if (cameraZoomSlider != null)
         {
             cameraZoomSlider.minValue = cameraZoomMinMax.x;
             cameraZoomSlider.maxValue = cameraZoomMinMax.y;
-            cameraZoomSlider.value = framingTransposer.m_CameraDistance;
+            cameraZoomSlider.value = _framingTransposer.m_CameraDistance;
         }
     }
 
     private void HandleRotation()
     {
-        if (!isDragging)
+        if (!_isDragging)
         {
             if (Input.GetMouseButtonDown((int)rotationMouseButton) && allowRotate)
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                isRotating = true;
+                _isRotating = true;
                 if (rotateCameraCanvasGameObject != null)
                     rotateCameraCanvasGameObject.SetActive(true);
             }
-            if ((isRotating && Input.GetMouseButtonUp((int)rotationMouseButton)) || (isRotating && !allowRotate))
+            if ((_isRotating && Input.GetMouseButtonUp((int)rotationMouseButton)) || (_isRotating && !allowRotate))
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                isRotating = false;
+                _isRotating = false;
                 if (rotateCameraCanvasGameObject != null)
                     rotateCameraCanvasGameObject.SetActive(false);
             }
@@ -399,36 +386,42 @@ public class RTSCameraTargetController : MonoBehaviour
                 float verticalMouse = Input.GetAxisRaw(verticalMouseAxisName);
                 if (horizontalMouse != 0)
                 {
-                    currentRotateDir = (horizontalMouse > 0 ? true : false);
-                    currentCameraRotate += horizontalMouse * cameraRotateSpeed;
-                    virtualCameraGameObject.transform.eulerAngles = new Vector3(virtualCameraGameObject.transform.eulerAngles.x, currentCameraRotate, 0);
+                    _currentRotateDir = (horizontalMouse > 0 ? true : false);
+                    _currentCameraRotate += horizontalMouse * cameraRotateSpeed;
+                    _virtualCameraGameObject.transform.eulerAngles = new Vector3(_virtualCameraGameObject.transform.eulerAngles.x, _currentCameraRotate, 0);
                     if (rotateCameraCanvasGameObject != null)
-                        rotateCameraCanvasGameObject.transform.rotation = Quaternion.Euler(rotateCameraCanvasGameObject.transform.eulerAngles.x, rotateCameraCanvasGameObject.transform.eulerAngles.y, virtualCameraGameObject.transform.eulerAngles.y * (currentRotateDir ? 1 : -1));
+                    {
+                        var eulerAngles = rotateCameraCanvasGameObject.transform.eulerAngles;
+                        rotateCameraCanvasGameObject.transform.rotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, _virtualCameraGameObject.transform.eulerAngles.y * (_currentRotateDir ? 1 : -1));
+                    }
                 }
                 if (verticalMouse != 0 && allowTiltRotate)
                 {
-                    currentCameraTilt += verticalMouse * cameraRotateSpeed;
-                    currentCameraTilt = Mathf.Clamp(currentCameraTilt, cameraTiltMinMax.x, cameraTiltMinMax.y);
-                    virtualCameraGameObject.transform.eulerAngles = new Vector3(currentCameraTilt, virtualCameraGameObject.transform.eulerAngles.y, 0);
+                    _currentCameraTilt += verticalMouse * cameraRotateSpeed;
+                    _currentCameraTilt = Mathf.Clamp(_currentCameraTilt, cameraTiltMinMax.x, cameraTiltMinMax.y);
+                    _virtualCameraGameObject.transform.eulerAngles = new Vector3(_currentCameraTilt, _virtualCameraGameObject.transform.eulerAngles.y, 0);
                 }
                 if (rotateCameraCanvasGameObject != null)
-                    rotateCameraCanvasGameObject.transform.rotation = Quaternion.Euler(rotateCameraCanvasGameObject.transform.eulerAngles.x, Mathf.SmoothDamp(rotateCameraCanvasGameObject.transform.eulerAngles.y, (currentRotateDir ? 180 : 0), ref RotateFlipSmoothDampVel_ref, 0.1f, Mathf.Infinity,  GetTimeScale()), rotateCameraCanvasGameObject.transform.eulerAngles.z);
+                {
+                    var eulerAngles = rotateCameraCanvasGameObject.transform.eulerAngles;
+                    rotateCameraCanvasGameObject.transform.rotation = Quaternion.Euler(eulerAngles.x, Mathf.SmoothDamp(eulerAngles.y, (_currentRotateDir ? 180 : 0), ref _rotateFlipSmoothDampVelRef, 0.1f, Mathf.Infinity,  GetTimeScale()), rotateCameraCanvasGameObject.transform.eulerAngles.z);
+                }
             }
         }
     }
 
     private void MoveTargetRelativeToCamera(Vector3 direction, float speed)
     {
-        float relativeZoomCameraMoveSpeed = (framingTransposer.m_CameraDistance / cameraZoomMinMax.x);
-        Vector3 camForward = virtualCameraGameObject.transform.forward;
-        Vector3 camRight = virtualCameraGameObject.transform.right;
+        float relativeZoomCameraMoveSpeed = (_framingTransposer.m_CameraDistance / cameraZoomMinMax.x);
+        Vector3 camForward = _virtualCameraGameObject.transform.forward;
+        Vector3 camRight = _virtualCameraGameObject.transform.right;
         camForward.y = 0f;
         camRight.y = 0f;
         camForward.Normalize();
         camRight.Normalize();
         Vector3 relativeDir = (camForward * direction.z) + (camRight * direction.x);
 
-        cameraTarget.Translate(relativeDir * (relativeZoomCameraMoveSpeed * speed) * GetTimeScale());
+        cameraTarget.Translate(relativeDir * (relativeZoomCameraMoveSpeed * speed * GetTimeScale()));
     }
 
     private float GetTimeScale()
@@ -473,10 +466,10 @@ public class RTSCameraTargetController : MonoBehaviour
     public void LockOnTarget(Vector3 position, float zoomFactor, bool hardLock = false)
     {
         CancelTargetLock();
-        lockedOnPosition = position;
-        lockedOnZoom = zoomFactor;
-        hardLocked = hardLock;
-        isLockedOnTarget = true;
+        _lockedOnPosition = position;
+        _lockedOnZoom = zoomFactor;
+        _hardLocked = hardLock;
+        _isLockedOnTarget = true;
     }
 
     /// <summary>
@@ -488,10 +481,10 @@ public class RTSCameraTargetController : MonoBehaviour
     public void LockOnTarget(Transform transform, float zoomFactor, bool hardLock = false)
     {
         CancelTargetLock();
-        lockedOnTransform = transform;
-        lockedOnZoom = zoomFactor;
-        hardLocked = hardLock;
-        isLockedOnTarget = true;
+        _lockedOnTransform = transform;
+        _lockedOnZoom = zoomFactor;
+        _hardLocked = hardLock;
+        _isLockedOnTarget = true;
     }
 
     /// <summary>
@@ -500,9 +493,9 @@ public class RTSCameraTargetController : MonoBehaviour
 
     public void CancelTargetLock()
     {
-        isLockedOnTarget = false;
-        lockedOnPosition = Vector3.zero;
-        lockedOnTransform = null;
+        _isLockedOnTarget = false;
+        _lockedOnPosition = Vector3.zero;
+        _lockedOnTransform = null;
     }
 
     #endregion
