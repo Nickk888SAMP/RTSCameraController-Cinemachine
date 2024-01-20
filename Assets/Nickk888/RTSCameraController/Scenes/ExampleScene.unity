@@ -3455,6 +3455,11 @@ MonoBehaviour:
     - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+--- !u!1 &526638604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5524602138380265802, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
+  m_PrefabInstance: {fileID: 611717299}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &531774483
 GameObject:
   m_ObjectHideFlags: 0
@@ -4032,6 +4037,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
+      propertyPath: allowTiltRotate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
+      propertyPath: cameraRotateSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5524602137660462666, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -5093,12 +5106,30 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1835259192517180277, guid: 48b147c9aa2a8394082c7e10a44f6b94, type: 3}
   m_PrefabInstance: {fileID: 611717299}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 526638604}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d57dde2bf9c4d00499473219ddadc409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &841961747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526638604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35c43712f121c648919254e1962bc91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalMovementAxisName: Horizontal
+  verticalMovementAxisName: Vertical
+  horizontalMouseAxisName: Mouse X
+  verticalMouseAxisName: Mouse Y
+  rotationMouseButton: 1
+  dragMoveMouseButton: 2
 --- !u!1 &849115676
 GameObject:
   m_ObjectHideFlags: 0

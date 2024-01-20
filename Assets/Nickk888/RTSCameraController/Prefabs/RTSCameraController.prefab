@@ -1105,6 +1105,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   cameraTarget: {fileID: 5524602137987408595}
+  horizontalMovementAxisName: Horizontal
+  verticalMovementAxisName: Vertical
+  horizontalMouseAxisName: Mouse X
+  verticalMouseAxisName: Mouse Y
+  rotationMouseButton: 1
+  dragMoveMouseButton: 2
   independentTimeScale: 1
   independentCinemachineBrainTimeScale: 1
   allowRotate: 1
@@ -1129,7 +1135,7 @@ MonoBehaviour:
   mouseDragStartPoint: {fileID: 5524602137227135747}
   mouseDragEndPoint: {fileID: 5524602137349566288}
   rotateCameraCanvasGameObject: {fileID: 5524602137610333466}
-  compasUiImageGameObject: {fileID: 5524602138760156461}
+  compassUiImageGameObject: {fileID: 5524602138760156461}
 --- !u!1 &5524602138529658979
 GameObject:
   m_ObjectHideFlags: 0
