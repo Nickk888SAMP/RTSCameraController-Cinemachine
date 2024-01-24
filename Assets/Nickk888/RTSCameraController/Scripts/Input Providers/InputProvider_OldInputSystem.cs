@@ -60,4 +60,14 @@ public class InputProvider_OldInputSystem : MonoBehaviour, IRTSCInputProvider
     {
         return Input.mousePosition;
     }
+
+    public bool HeightUpButtonInput()
+    {
+        return Input.GetKey(KeyCode.R);
+    }
+
+    public bool HeightDownButtonInput()
+    {
+        return Input.GetKey(KeyCode.F);
+    }
 }

@@ -42,4 +42,14 @@ public class InputProvider_NewInputSystem : MonoBehaviour, IRTSCInputProvider
     {
         return inputActions.RTSCC.Zoom.ReadValue<float>();
     }
+
+    public bool HeightUpButtonInput()
+    {
+        return inputActions.RTSCC.HeightUp.IsPressed();
+    }
+
+    public bool HeightDownButtonInput()
+    {
+        return inputActions.RTSCC.HeightDown.IsPressed();
+    }
 }

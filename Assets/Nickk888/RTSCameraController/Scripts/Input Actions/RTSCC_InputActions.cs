@@ -80,6 +80,24 @@ public partial class @RTSCC_InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""HeightUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""790b6c85-d905-4070-874c-2674f9ab27b7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HeightDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""d586a954-fbbe-4214-9507-120e70752720"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -98,6 +116,17 @@ public partial class @RTSCC_InputActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""f6d4b417-1106-491d-88b5-00e899ee8a6f"",
                     ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38bcb516-ddf0-47f7-bb44-48bf6f86a95e"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -173,10 +202,32 @@ public partial class @RTSCC_InputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""bf351461-c950-4a42-a73d-84e947accec2"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""7bef1325-0c55-403e-a2f7-917b52366343"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": ""ScaleVector2(x=0.1,y=0.1)"",
+                    ""groups"": """",
+                    ""action"": ""Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""443a84f7-7d3b-4ab4-9bda-da3726b9926c"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Mouse"",
                     ""isComposite"": false,
@@ -190,6 +241,50 @@ public partial class @RTSCC_InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57dda9e4-069f-444a-a2a4-971b19610fe4"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HeightUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79fb2f14-0471-4f81-ad47-84bcce387890"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HeightUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a329fcb4-6d2a-4f75-bbfa-1fcf7f443734"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HeightDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e843c1bb-33d0-4a2c-8f45-8ce146eb77b8"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HeightDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -206,6 +301,8 @@ public partial class @RTSCC_InputActions : IInputActionCollection2, IDisposable
         m_RTSCC_Move = m_RTSCC.FindAction("Move", throwIfNotFound: true);
         m_RTSCC_Mouse = m_RTSCC.FindAction("Mouse", throwIfNotFound: true);
         m_RTSCC_Position = m_RTSCC.FindAction("Position", throwIfNotFound: true);
+        m_RTSCC_HeightUp = m_RTSCC.FindAction("HeightUp", throwIfNotFound: true);
+        m_RTSCC_HeightDown = m_RTSCC.FindAction("HeightDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -271,6 +368,8 @@ public partial class @RTSCC_InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_RTSCC_Move;
     private readonly InputAction m_RTSCC_Mouse;
     private readonly InputAction m_RTSCC_Position;
+    private readonly InputAction m_RTSCC_HeightUp;
+    private readonly InputAction m_RTSCC_HeightDown;
     public struct RTSCCActions
     {
         private @RTSCC_InputActions m_Wrapper;
@@ -281,6 +380,8 @@ public partial class @RTSCC_InputActions : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_RTSCC_Move;
         public InputAction @Mouse => m_Wrapper.m_RTSCC_Mouse;
         public InputAction @Position => m_Wrapper.m_RTSCC_Position;
+        public InputAction @HeightUp => m_Wrapper.m_RTSCC_HeightUp;
+        public InputAction @HeightDown => m_Wrapper.m_RTSCC_HeightDown;
         public InputActionMap Get() { return m_Wrapper.m_RTSCC; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -308,6 +409,12 @@ public partial class @RTSCC_InputActions : IInputActionCollection2, IDisposable
                 @Position.started -= m_Wrapper.m_RTSCCActionsCallbackInterface.OnPosition;
                 @Position.performed -= m_Wrapper.m_RTSCCActionsCallbackInterface.OnPosition;
                 @Position.canceled -= m_Wrapper.m_RTSCCActionsCallbackInterface.OnPosition;
+                @HeightUp.started -= m_Wrapper.m_RTSCCActionsCallbackInterface.OnHeightUp;
+                @HeightUp.performed -= m_Wrapper.m_RTSCCActionsCallbackInterface.OnHeightUp;
+                @HeightUp.canceled -= m_Wrapper.m_RTSCCActionsCallbackInterface.OnHeightUp;
+                @HeightDown.started -= m_Wrapper.m_RTSCCActionsCallbackInterface.OnHeightDown;
+                @HeightDown.performed -= m_Wrapper.m_RTSCCActionsCallbackInterface.OnHeightDown;
+                @HeightDown.canceled -= m_Wrapper.m_RTSCCActionsCallbackInterface.OnHeightDown;
             }
             m_Wrapper.m_RTSCCActionsCallbackInterface = instance;
             if (instance != null)
@@ -330,6 +437,12 @@ public partial class @RTSCC_InputActions : IInputActionCollection2, IDisposable
                 @Position.started += instance.OnPosition;
                 @Position.performed += instance.OnPosition;
                 @Position.canceled += instance.OnPosition;
+                @HeightUp.started += instance.OnHeightUp;
+                @HeightUp.performed += instance.OnHeightUp;
+                @HeightUp.canceled += instance.OnHeightUp;
+                @HeightDown.started += instance.OnHeightDown;
+                @HeightDown.performed += instance.OnHeightDown;
+                @HeightDown.canceled += instance.OnHeightDown;
             }
         }
     }
@@ -342,5 +455,7 @@ public partial class @RTSCC_InputActions : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
         void OnPosition(InputAction.CallbackContext context);
+        void OnHeightUp(InputAction.CallbackContext context);
+        void OnHeightDown(InputAction.CallbackContext context);
     }
 }

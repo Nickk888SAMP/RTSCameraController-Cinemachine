@@ -26,7 +26,7 @@ public class ObjectSelector : MonoBehaviour
                     currentSelected = null;
                 }
             }
-            if (hit.transform.CompareTag($"Cubes"))
+            if (hit.transform.CompareTag($"Selectable"))
             {
                 if (currentSelected != hit.transform)
                 {
@@ -35,14 +35,7 @@ public class ObjectSelector : MonoBehaviour
                 }
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if(hit.transform.gameObject.GetComponent<MoveToRandomPosition>() == null)
-                    {
-                        cameraTargetController.LockOnTarget(hit.transform.position, 10);
-                    }
-                    else
-                    {
-                        cameraTargetController.LockOnTarget(hit.transform, 20, true);
-                    }
+                    cameraTargetController.LockOnTarget(hit.transform, 20, true);
                 }
             }
         }

@@ -7,5 +7,7 @@ public interface IRTSCInputProvider
     public float ZoomInput();
     public bool RotationButtonInput();
     public bool DragButtonInput();
+    public bool HeightUpButtonInput();
+    public bool HeightDownButtonInput();
     public Vector2 MousePosition();
 }
