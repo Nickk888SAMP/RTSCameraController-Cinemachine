@@ -7,6 +7,8 @@ public class RTSCameraTargetController : MonoBehaviour
 {
     public static RTSCameraTargetController Instance;
 
+    #region Events
+
     public event EventHandler OnRotateStarted;
     public event EventHandler OnRotateStopped;
     public event EventHandler<OnRotateHandledEventArgs> OnRotateHandled;
@@ -38,7 +40,10 @@ public class RTSCameraTargetController : MonoBehaviour
         public float minZoom;
         public float maxZoom;
     }
-    #region Properties
+
+    #endregion
+
+    #region Members
 
     [Header("Setup")]
     [SerializeField]
@@ -77,6 +82,9 @@ public class RTSCameraTargetController : MonoBehaviour
     [SerializeField] [Tooltip("Allows or Disallows camera movement using the screen sides.")]
     public bool AllowScreenSideMove = true;
 
+    [SerializeField] [Tooltip("Allows or Disallows camera height offset.")]
+    public bool AllowHeightOffsetChange = true;
+
     [SerializeField] [Tooltip("Lock the mouse while using the rotate feature?")]
     public bool MouseLockOnRotate = true;
 
@@ -91,7 +99,7 @@ public class RTSCameraTargetController : MonoBehaviour
     public float CameraMouseSpeed = 2.0f;
 
     [SerializeField, Min(0)]
-    public float CameraRotateSpeed = 2.0f;
+    public float CameraRotateSpeed = 3.0f;
 
     [SerializeField, Min(0)]
     public float CameraKeysSpeed = 6.0f;
@@ -103,7 +111,7 @@ public class RTSCameraTargetController : MonoBehaviour
     public float CameraZoomSpeed = 4f;
 
     [SerializeField, Min(0)]
-    public float TargetLockSpeed = 1.5f;
+    public float TargetLockSpeed = 10f;
 
     [SerializeField, Min(0)]
     public float HeightOffsetSpeed = 20f;
@@ -120,7 +128,7 @@ public class RTSCameraTargetController : MonoBehaviour
     [Header("Limits")]
     [SerializeField]
     [Tooltip("The Minimum for the cameras height Offset.")]
-    public float HeightOffsetMin = 0.0f;
+    public float HeightOffsetMin = 1.0f;
 
     [SerializeField]
     [Tooltip("The Maximum for the cameras height Offset.")]
@@ -261,6 +269,9 @@ public class RTSCameraTargetController : MonoBehaviour
 
     private void HandleHeightOffset()
     {
+        if (!AllowHeightOffsetChange)
+            return;
+
         if(_inputProvider.HeightUpButtonInput())
         {
             _heightOffset += GetTimeScale() * HeightOffsetSpeed;
@@ -320,7 +331,10 @@ public class RTSCameraTargetController : MonoBehaviour
 
     private void HandleKeysMove()
     {
-        if (!_isDragging && !_isSideZoneMoving && AllowKeysMove)
+        if (!AllowKeysMove)
+            return;
+            
+        if (!_isDragging && !_isSideZoneMoving)
         {
             Vector2 movementInput = _inputProvider.MovementInput();
             Vector3 vectorChange = new Vector3(movementInput.x, 0, movementInput.y);
@@ -496,6 +510,7 @@ public class RTSCameraTargetController : MonoBehaviour
     {
         CancelTargetLock();
         _lockedOnPosition = position;
+        _heightOffset = HeightOffsetMin;
         _lockedOnZoom = zoomFactor;
         _hardLocked = hardLock;
         _isLockedOnTarget = true;
@@ -511,6 +526,7 @@ public class RTSCameraTargetController : MonoBehaviour
     {
         CancelTargetLock();
         _lockedOnTransform = transform;
+        _heightOffset = HeightOffsetMin;
         _lockedOnZoom = zoomFactor;
         _hardLocked = hardLock;
         _isLockedOnTarget = true;
