@@ -9,5 +9,7 @@ public interface IRTSCInputProvider
     public bool DragButtonInput();
     public bool HeightUpButtonInput();
     public bool HeightDownButtonInput();
+    public bool RotateRightButtonInput();
+    public bool RotateLeftButtonInput();
     public Vector2 MousePosition();
 }

@@ -36,10 +36,7 @@ public class RTSCanvasController : MonoBehaviour
     private RTSCameraTargetController cameraTargetController;
     private float _rotateFlipSmoothDampVelRef;
 
-    private void Awake()
-    {
-        cameraTargetController = GetComponent<RTSCameraTargetController>();
-    }
+    private void Awake() => cameraTargetController = GetComponent<RTSCameraTargetController>();
 
     private void Start()
     {
@@ -76,25 +73,20 @@ public class RTSCanvasController : MonoBehaviour
 
     private void RTSCameraTargetController_OnRotateHandled(object sender, RTSCameraTargetController.OnRotateHandledEventArgs e)
     {
+        float smoothSpeed = 0.2f;
         rotateCameraCanvasGameObject.transform.rotation = Quaternion.Euler(0, 
             Mathf.SmoothDamp(
                 rotateCameraCanvasGameObject.transform.eulerAngles.y, 
                 e.clockwise ? 180 : 0, 
                 ref _rotateFlipSmoothDampVelRef,
-                0.2f, Mathf.Infinity,  cameraTargetController.GetTimeScale()), e.currentRotation.x * (e.clockwise ? 1 : -1));
+                smoothSpeed, Mathf.Infinity,  cameraTargetController.GetTimeScale()), e.currentRotation.x * (e.clockwise ? 1 : -1));
 
         compassUiImageGameObject.transform.rotation = Quaternion.Euler(0, 0, e.currentRotation.x);
     }
 
-    private void RTSCameraTargetController_OnRotateStopped(object sender, EventArgs e)
-    {
-        rotateCameraCanvasGameObject.gameObject.SetActive(false);
-    }
+    private void RTSCameraTargetController_OnRotateStopped(object sender, EventArgs e) => rotateCameraCanvasGameObject.gameObject.SetActive(false);
 
-    private void RTSCameraTargetController_OnRotateStarted(object sender, EventArgs e)
-    {
-        rotateCameraCanvasGameObject.gameObject.SetActive(true);
-    }
+    private void RTSCameraTargetController_OnRotateStarted(object sender, EventArgs e) => rotateCameraCanvasGameObject.gameObject.SetActive(true);
 
     private void RTSCameraTargetController_OnMouseDragStarted(object sender, RTSCameraTargetController.OnMouseDragStartedEventArgs e)
     {
@@ -102,10 +94,7 @@ public class RTSCanvasController : MonoBehaviour
         mouseDragCanvasGameObject.SetActive(true);
     }
 
-    private void RTSCameraTargetController_OnMouseDragStopped(object sender, EventArgs e)
-    {
-        mouseDragCanvasGameObject.SetActive(false);
-    }
+    private void RTSCameraTargetController_OnMouseDragStopped(object sender, EventArgs e) => mouseDragCanvasGameObject.SetActive(false);
    
     private void RTSCameraTargetController_OnMouseDragHandled(object sender, RTSCameraTargetController.OnMouseDragHandledEventArgs e)
     {

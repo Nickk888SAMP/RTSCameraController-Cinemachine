@@ -31,43 +31,37 @@ public class InputProvider_OldInputSystem : MonoBehaviour, IRTSCInputProvider
     [SerializeField] [Tooltip("The mouse button for drag move.")]
     private MouseButton dragMoveMouseButton = MouseButton.Middle;
 
-    public bool DragButtonInput()
-    {
-        return Input.GetMouseButton((int)dragMoveMouseButton);
-    }
+    [SerializeField] [Tooltip("The button to move the camera Upwards.")]
+    private KeyCode heightUpButton = KeyCode.R;
+
+    [SerializeField] [Tooltip("The button to move the camera Downwards.")]
+    private KeyCode heightDownButton = KeyCode.F;
+
+    [SerializeField] [Tooltip("The button to rotate the camera Right.")]
+    private KeyCode rotateRightButton = KeyCode.E;
+
+    [SerializeField] [Tooltip("The button to rotate the camera Left.")]
+    private KeyCode rotateLeftButton = KeyCode.Q;
+
+    public bool DragButtonInput() => Input.GetMouseButton((int)dragMoveMouseButton);
 
     public Vector2 MouseInput()
-    {
-        return new Vector2(Input.GetAxisRaw(horizontalMouseAxisName), Input.GetAxisRaw(verticalMouseAxisName));
-    }
+        => new Vector2(Input.GetAxisRaw(horizontalMouseAxisName), Input.GetAxisRaw(verticalMouseAxisName));
 
-    public Vector2 MovementInput()
-    {
-        return new Vector2(Input.GetAxis(horizontalMovementAxisName), Input.GetAxis(verticalMovementAxisName));
-    }
+    public Vector2 MovementInput() 
+        => new Vector2(Input.GetAxis(horizontalMovementAxisName), Input.GetAxis(verticalMovementAxisName));
 
-    public bool RotationButtonInput()
-    {
-        return Input.GetMouseButton((int)rotationMouseButton);
-    }
+    public bool RotationButtonInput() => Input.GetMouseButton((int)rotationMouseButton);
 
-    public float ZoomInput()
-    {
-        return Input.mouseScrollDelta.y;
-    }
+    public float ZoomInput() => Input.mouseScrollDelta.y;
 
-    public Vector2 MousePosition()
-    {
-        return Input.mousePosition;
-    }
+    public Vector2 MousePosition() => Input.mousePosition;
 
-    public bool HeightUpButtonInput()
-    {
-        return Input.GetKey(KeyCode.R);
-    }
+    public bool HeightUpButtonInput() => Input.GetKey(heightUpButton);
 
-    public bool HeightDownButtonInput()
-    {
-        return Input.GetKey(KeyCode.F);
-    }
+    public bool HeightDownButtonInput() => Input.GetKey(heightDownButton);
+
+    public bool RotateRightButtonInput() => Input.GetKey(rotateRightButton);
+
+    public bool RotateLeftButtonInput() => Input.GetKey(rotateLeftButton);
 }

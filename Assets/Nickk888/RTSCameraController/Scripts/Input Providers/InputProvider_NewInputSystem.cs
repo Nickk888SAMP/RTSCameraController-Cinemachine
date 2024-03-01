@@ -13,43 +13,23 @@ public class InputProvider_NewInputSystem : MonoBehaviour, IRTSCInputProvider
         inputActions.Enable();
     }
 
-    public bool DragButtonInput()
-    {
-        return inputActions.RTSCC.Drag.IsPressed();
-    }
+    public bool DragButtonInput() => inputActions.RTSCC.Drag.IsPressed();
 
-    public Vector2 MouseInput()
-    {
-        return inputActions.RTSCC.Mouse.ReadValue<Vector2>();
-    }
+    public Vector2 MouseInput() => inputActions.RTSCC.Mouse.ReadValue<Vector2>();
 
-    public Vector2 MousePosition()
-    {
-        return inputActions.RTSCC.Position.ReadValue<Vector2>();
-    }
+    public Vector2 MousePosition() => inputActions.RTSCC.Position.ReadValue<Vector2>();
 
-    public Vector2 MovementInput()
-    {
-        return inputActions.RTSCC.Move.ReadValue<Vector2>();
-    }
+    public Vector2 MovementInput() => inputActions.RTSCC.Move.ReadValue<Vector2>();
 
-    public bool RotationButtonInput()
-    {
-        return inputActions.RTSCC.Rotate.IsPressed();
-    }
+    public bool RotationButtonInput() => inputActions.RTSCC.Rotate.IsPressed();
 
-    public float ZoomInput()
-    {
-        return inputActions.RTSCC.Zoom.ReadValue<float>();
-    }
+    public float ZoomInput() => inputActions.RTSCC.Zoom.ReadValue<float>();
 
-    public bool HeightUpButtonInput()
-    {
-        return inputActions.RTSCC.HeightUp.IsPressed();
-    }
+    public bool HeightUpButtonInput() => inputActions.RTSCC.HeightUp.IsPressed();
 
-    public bool HeightDownButtonInput()
-    {
-        return inputActions.RTSCC.HeightDown.IsPressed();
-    }
+    public bool HeightDownButtonInput() => inputActions.RTSCC.HeightDown.IsPressed();
+
+    public bool RotateRightButtonInput() => inputActions.RTSCC.RotateRight.IsPressed();
+
+    public bool RotateLeftButtonInput() => inputActions.RTSCC.RotateLeft.IsPressed();
 }

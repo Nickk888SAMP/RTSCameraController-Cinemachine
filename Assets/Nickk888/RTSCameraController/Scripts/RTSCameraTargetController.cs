@@ -50,6 +50,8 @@ public class RTSCameraTargetController : MonoBehaviour
     [Tooltip("The Cinemachine Virtual Camera to be controlled by the controller.")]
     public CinemachineVirtualCamera VirtualCamera;
 
+    public RectTransform RTSCanvasRectTransform;
+
     [SerializeField] [Tooltip("The ground layer for the height check.")]
     public LayerMask GroundLayer;
 
@@ -65,7 +67,10 @@ public class RTSCameraTargetController : MonoBehaviour
 
     [Space][Header("Properties")]
     [SerializeField][Tooltip("Allows or Disallows rotation of the Camera.")]
-    public bool AllowRotate = true;
+    public bool AllowMouseRotate = true;
+
+    [SerializeField] [Tooltip("Allows or Disallows camera rotation with keys/gamepad input.")]
+    public bool AllowKeysRotate = true;
 
     [SerializeField] [Tooltip("Allows or Disallows rotation of the Cameras Tilt.")]
     public bool AllowTiltRotate = true;
@@ -99,7 +104,11 @@ public class RTSCameraTargetController : MonoBehaviour
     public float CameraMouseSpeed = 2.0f;
 
     [SerializeField, Min(0)]
-    public float CameraRotateSpeed = 3.0f;
+    public float CameraRotateSpeed = 2.0f;
+
+    [SerializeField, Min(0)]
+    [Tooltip("This value multiplies the Keys Rotation input which is 1 or -1 depending on the direction.")]
+    public float CameraKeysRotateSpeedMultiplier = 50.0f;
 
     [SerializeField, Min(0)]
     public float CameraKeysSpeed = 6.0f;
@@ -118,7 +127,7 @@ public class RTSCameraTargetController : MonoBehaviour
 
     [Space] [Header("Screen Sides")]
     [SerializeField, Min(0)] [Tooltip("The size of the Screen Sides Zone in pixels.")]
-    public float ScreenSidesZoneSize = 60f;
+    public float ScreenSidesZoneSize = 75f;
 
     [Space] [Header("Mouse Drag")]
     [SerializeField, Min(0)] [Tooltip("The Dead Zone of the drag feature. How far from the circles center has the cursor be, to start draging?")]
@@ -215,7 +224,7 @@ public class RTSCameraTargetController : MonoBehaviour
     private void Start() 
     {
         _virtualCameraGameObject = VirtualCamera.gameObject;
-        _currentCameraTilt = Mathf.Lerp(CameraTiltMin, CameraTiltMax, 0.5f);
+        _currentCameraTilt = Mathf.Lerp(CameraTiltMin, CameraTiltMax, 0.5f); // 0.5f is the value so it gets the middle value between Min and Max of the Camera Tilt.
         _targetCameraTilt = _currentCameraTilt;
         _virtualCameraGameObject.transform.eulerAngles = new Vector3(_currentCameraTilt, _virtualCameraGameObject.transform.eulerAngles.y, 0);
         _framingTransposer = VirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
@@ -247,6 +256,7 @@ public class RTSCameraTargetController : MonoBehaviour
         HandleHeightOffset();
     }
 
+    #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         if(enableBoundaries)
@@ -262,6 +272,8 @@ public class RTSCameraTargetController : MonoBehaviour
             Handles.Label(new Vector3(0, 0, BoundaryMaxZ), $"Max Z: {BoundaryMaxZ}");
         }
     }
+    #endif
+
 
     #endregion
 
@@ -400,26 +412,36 @@ public class RTSCameraTargetController : MonoBehaviour
             OnZoomHandled?.Invoke(this, new OnZoomHandledEventArgs { currentZoomValue = _framingTransposer.m_CameraDistance, targetZoomValue = _currentCameraZoom, minZoom = CameraZoomMin, maxZoom = CameraZoomMax });
         }
     }
-
     private void HandleRotation()
     {
         if (!_isDragging)
         {
-            if (_inputProvider.RotationButtonInput() && AllowRotate)
+            // Check if ANY Rotation button has been pressed
+            bool rotationMousePressed = _inputProvider.RotationButtonInput() && AllowMouseRotate;
+            bool rotationKeysPressed = (_inputProvider.RotateRightButtonInput() || _inputProvider.RotateLeftButtonInput()) && AllowKeysRotate;
+            if (!_isRotating && (rotationMousePressed || rotationKeysPressed))
             {
                 if(MouseLockOnRotate) LockMouse(true);
                 _isRotating = true;
                 OnRotateStarted?.Invoke(this, EventArgs.Empty);
             }
-            if ((_isRotating && !_inputProvider.RotationButtonInput()) || (_isRotating && !AllowRotate))
+
+            // Check if ANY Rotation button has been released
+            bool mouseRelease = !_inputProvider.RotationButtonInput() && AllowMouseRotate || !AllowMouseRotate;
+            bool keysRelease = (!_inputProvider.RotateRightButtonInput() && !_inputProvider.RotateLeftButtonInput() && AllowKeysRotate) || !AllowKeysRotate;
+            if (_isRotating && mouseRelease && keysRelease)
             {
                 if(MouseLockOnRotate) LockMouse(false);
                 _isRotating = false;
                 OnRotateStopped?.Invoke(this, EventArgs.Empty);
             }
-            if (_inputProvider.RotationButtonInput() && AllowRotate)
+
+            // Rotation Value Handling
+            if (_isRotating)
             {
-                Vector2 rotationInput = _inputProvider.MouseInput();
+                Vector2 rotationInput = _inputProvider.MouseInput() != Vector2.zero && !rotationKeysPressed && AllowMouseRotate ? _inputProvider.MouseInput() : 
+                    _inputProvider.RotateRightButtonInput() && AllowKeysRotate ? -Vector2.right * GetTimeScale() * CameraKeysRotateSpeedMultiplier : 
+                    _inputProvider.RotateLeftButtonInput() && AllowKeysRotate ? Vector2.right * GetTimeScale() * CameraKeysRotateSpeedMultiplier : Vector2.zero;
                 if (rotationInput.x != 0)
                 {
                     _currentRotateDir = rotationInput.x > 0 ? true : false;
@@ -432,6 +454,8 @@ public class RTSCameraTargetController : MonoBehaviour
                 }
             }
         }
+
+        // Rotation Handling
         _currentCameraRotate = Mathf.SmoothDamp(_currentCameraRotate, _targetCameraRotate, ref _cameraRotateSmoothDampVelRef, CameraTargetRotateSmoothTime / 100,  Mathf.Infinity, GetTimeScale());
         _currentCameraTilt = Mathf.SmoothDamp(_currentCameraTilt, _targetCameraTilt, ref _cameraTiltSmoothDampVelRef, CameraTargetRotateSmoothTime / 100, Mathf.Infinity, GetTimeScale());
         _virtualCameraGameObject.transform.eulerAngles = new Vector3(_currentCameraTilt, _currentCameraRotate, 0);
