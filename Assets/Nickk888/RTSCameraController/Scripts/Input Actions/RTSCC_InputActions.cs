@@ -342,7 +342,7 @@ public partial class @RTSCC_InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""09e25fa9-34a1-4612-a55e-ff3ae26b8ca4"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
