@@ -1,9 +1,9 @@
 # Unity 3D Real Time Strategy/City Builder Camera Controller for Cinemachine Virtual Camera
 
 <img src="/Preview/1.gif" width="400" height="150"><img src="/Preview/2.gif" width="400" height="150">
-<img src="/Preview/5.gif" width="400" height="150"><img src="/Preview/6.gif" width="400" height="150">
-<img src="/Preview/7.gif" width="400" height="150"><img src="/Preview/8.gif" width="400" height="150">
-<img src="/Preview/3.gif" width="400" height="150"><img src="/Preview/4.gif" width="400" height="150">
+<img src="/Preview/3.gif" width="400" height="150"><img src="/Preview/6.gif" width="400" height="150">
+<img src="/Preview/8.gif" width="400" height="150"><img src="/Preview/7.gif" width="400" height="150">
+<img src="/Preview/5.gif" width="400" height="150"><img src="/Preview/4.gif" width="400" height="150">
 
 This project is a Camera Controller for RTS style games, it'll also fit perfectly into a City Builder!
 It works by adding the script to a Gameobject and placing references for the Virtual Camera and the Target itself.
