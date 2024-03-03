@@ -1053,7 +1053,7 @@ Camera:
   m_GameObject: {fileID: 5524602138118368239}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1208,9 +1208,9 @@ GameObject:
   - component: {fileID: 5524602138380265803}
   - component: {fileID: 1835259192517180277}
   - component: {fileID: 841961752}
-  - component: {fileID: 841961754}
+  - component: {fileID: -4100610310851711462}
   m_Layer: 0
-  m_Name: RTSCameraController
+  m_Name: RTSCameraController_OldInputSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1308,7 +1308,7 @@ MonoBehaviour:
   mouseDragEndPoint: {fileID: 5524602137349566288}
   rotateCameraCanvasGameObject: {fileID: 5524602137610333466}
   compassUiImageGameObject: {fileID: 5524602138760156461}
---- !u!114 &841961754
+--- !u!114 &-4100610310851711462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1317,9 +1317,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 5524602138380265802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777110f53205c70418623d789bf24c81, type: 3}
+  m_Script: {fileID: 11500000, guid: c35c43712f121c648919254e1962bc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontalMovementAxisName: Horizontal
+  verticalMovementAxisName: Vertical
+  horizontalMouseAxisName: Mouse X
+  verticalMouseAxisName: Mouse Y
+  rotationMouseButton: 1
+  dragMoveMouseButton: 2
+  heightUpButton: 114
+  heightDownButton: 102
+  rotateRightButton: 101
+  rotateLeftButton: 113
 --- !u!1 &5524602138529658979
 GameObject:
   m_ObjectHideFlags: 0
