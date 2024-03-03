@@ -34,6 +34,17 @@ The script controlls the Target and the Virtual Camera. Use ANY Input System usi
 ## Requirements
 * Cinemachine
 
+## Want to use Unity's Input System?
+To get the files, unpack ```RTSCameraController_NewInputSystem.unitypackage``` that's located in the ```RTSCameraController``` directory while in the editor.
+Use the ```RTSCameraController_NewInputSystem.prefab``` instead or just swap the ```InputProvider_OldInputSystem.cs``` with ```InputProvider_NewInputSystem.cs``` in the ```RTSCameraController``` Game Object. Makes sure to install the ```Input System``` package from the Package Manager of course.
+
+## Create your own input provider script
+Just create a new Script and inherit from the  ```IRTSCInputProvider``` interface and let your editor automatically populate with all the methods from the ```IRTSCInputProvider```.
+Return the values (Bool, float or Vector2) to the specific Methods.
+Place the script alongside the Controller script and that's it.
+Just make sure there's only one Input Provider placed as a component.
+You can use the premade Input Providers as a guide.
+
 ## How To Use
 * Make sure you have installed the "Cinemachine" package from the Package Manager.
 * If any, delete the default Main Camera from the Scene.
@@ -49,10 +60,3 @@ Right Mouse Button or Q or E - Rotation
 Mouse Scroll Wheel - Zoom-In/Zoom-Out
 
 R or F - Height Change
-
-## Create your own input provider script
-Just create a new Script and inherit from the  ```IRTSCInputProvider``` interface and let your editor automatically populate with all the methods from the ```IRTSCInputProvider```.
-Return the values (Bool, float or Vector2) to the specific Methods.
-Place the script alongside the Controller script and that's it.
-Just make sure there's only one Input Provider placed as a component.
-You can use the premade Input Providers as a guide.
