@@ -60,3 +60,5 @@ Right Mouse Button or Q or E - Rotation
 Mouse Scroll Wheel - Zoom-In/Zoom-Out
 
 R or F - Height Change
+
+[![forthebadge](https://forthebadge.com/images/featured/featured-built-with-love.svg)](https://forthebadge.com)
