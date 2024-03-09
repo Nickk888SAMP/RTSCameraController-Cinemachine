@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,7 +34,8 @@ public class RTSCanvasController : MonoBehaviour
     private RTSCameraTargetController cameraTargetController;
     private float _rotateFlipSmoothDampVelRef;
 
-    private void Awake() => cameraTargetController = GetComponent<RTSCameraTargetController>();
+    private void Awake() 
+        => cameraTargetController = GetComponent<RTSCameraTargetController>();
 
     private void Start()
     {
@@ -84,9 +83,11 @@ public class RTSCanvasController : MonoBehaviour
         compassUiImageGameObject.transform.rotation = Quaternion.Euler(0, 0, e.currentRotation.x);
     }
 
-    private void RTSCameraTargetController_OnRotateStopped(object sender, EventArgs e) => rotateCameraCanvasGameObject.gameObject.SetActive(false);
+    private void RTSCameraTargetController_OnRotateStopped(object sender, EventArgs e) 
+        => rotateCameraCanvasGameObject.gameObject.SetActive(false);
 
-    private void RTSCameraTargetController_OnRotateStarted(object sender, EventArgs e) => rotateCameraCanvasGameObject.gameObject.SetActive(true);
+    private void RTSCameraTargetController_OnRotateStarted(object sender, EventArgs e) 
+        => rotateCameraCanvasGameObject.gameObject.SetActive(true);
 
     private void RTSCameraTargetController_OnMouseDragStarted(object sender, RTSCameraTargetController.OnMouseDragStartedEventArgs e)
     {
@@ -94,7 +95,8 @@ public class RTSCanvasController : MonoBehaviour
         mouseDragCanvasGameObject.SetActive(true);
     }
 
-    private void RTSCameraTargetController_OnMouseDragStopped(object sender, EventArgs e) => mouseDragCanvasGameObject.SetActive(false);
+    private void RTSCameraTargetController_OnMouseDragStopped(object sender, EventArgs e) 
+        => mouseDragCanvasGameObject.SetActive(false);
    
     private void RTSCameraTargetController_OnMouseDragHandled(object sender, RTSCameraTargetController.OnMouseDragHandledEventArgs e)
     {

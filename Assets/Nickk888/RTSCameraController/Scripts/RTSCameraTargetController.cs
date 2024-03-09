@@ -1,11 +1,11 @@
-using UnityEngine;
-using Cinemachine;
-using UnityEditor;
 using System;
+using UnityEngine;
+using UnityEditor;
+using Cinemachine;
 
 public class RTSCameraTargetController : MonoBehaviour
 {
-    public static RTSCameraTargetController Instance;
+    public static RTSCameraTargetController Instance { get; private set; }
 
     #region Events
 
@@ -183,6 +183,7 @@ public class RTSCameraTargetController : MonoBehaviour
     #region Private Fields
 
     private IRTSCInputProvider _inputProvider;
+    private Vector2 _currentMousePosition;
     private Vector3 _mouseLockPos;
     private Vector3 _lockedOnPosition;
     private Camera _cam;
@@ -210,14 +211,16 @@ public class RTSCameraTargetController : MonoBehaviour
     #endregion
 
     #region Callbacks
+
     private void Awake()
     {
         _cam = Camera.main;
-        if (_cam != null) _cinemachineBrain = _cam.gameObject.GetComponent<CinemachineBrain>();
-        if(Instance != null)
-        {
+        if (_cam is not null) 
+            _cinemachineBrain = _cam.gameObject.GetComponent<CinemachineBrain>();
+        else 
+            Debug.LogError("Main Camera wasn't found. Can't get the Cinemachine Brain.");
+        if(Instance is not null)
             Destroy(Instance);
-        }
         Instance = this;
     }
 
@@ -231,7 +234,7 @@ public class RTSCameraTargetController : MonoBehaviour
         _currentCameraZoom = _framingTransposer.m_CameraDistance;
         
         _inputProvider = GetComponent<IRTSCInputProvider>();
-        if (_inputProvider == null)
+        if (_inputProvider is null)
             Debug.LogError("No Input Provider found! Please ensure there's a input provider script attached to the game object.");
 
         OnZoomHandled?.Invoke(this, new OnZoomHandledEventArgs { currentZoomValue = _framingTransposer.m_CameraDistance, targetZoomValue = _currentCameraZoom, minZoom = CameraZoomMin, maxZoom = CameraZoomMax });
@@ -239,14 +242,14 @@ public class RTSCameraTargetController : MonoBehaviour
 
     private void Update()
     {
-        if (_inputProvider == null)
+        if (_inputProvider is null)
             return;
 
         _cinemachineBrain.m_IgnoreTimeScale = IndependentCinemachineBrainTimeScale;
-        Vector2 mousePos = _inputProvider.MousePosition();
+        _currentMousePosition = _inputProvider.MousePosition();
 
-        HandleScreenSideMove(mousePos);
-        HandleMouseDrag(mousePos);
+        HandleScreenSideMove(_currentMousePosition);
+        HandleMouseDrag(_currentMousePosition);
         HandleKeysMove();
         HandleZoom();
         HandleRotation();
@@ -285,13 +288,10 @@ public class RTSCameraTargetController : MonoBehaviour
             return;
 
         if(_inputProvider.HeightUpButtonInput())
-        {
             _heightOffset += GetTimeScale() * HeightOffsetSpeed;
-        }
         else if(_inputProvider.HeightDownButtonInput())
-        {
             _heightOffset -= GetTimeScale() * HeightOffsetSpeed;
-        }
+
         _heightOffset = Mathf.Clamp(_heightOffset, HeightOffsetMin, HeightOffsetMax);
         _framingTransposer.m_TrackedObjectOffset = new Vector3(0, _heightOffset, 0);
     }
@@ -314,13 +314,9 @@ public class RTSCameraTargetController : MonoBehaviour
         if (_isLockedOnTarget)
         {
             if(_lockedOnTransform == null)
-            {
                 CameraTarget.position = _hardLocked ? _lockedOnPosition : Vector3.Lerp(CameraTarget.position, _lockedOnPosition, TargetLockSpeed * GetTimeScale());
-            }
             else
-            {
                 CameraTarget.position = _hardLocked ? _lockedOnTransform.position : Vector3.Lerp(CameraTarget.position, _lockedOnTransform.position, TargetLockSpeed * GetTimeScale());
-            }
             _currentCameraZoom = Mathf.Lerp(_currentCameraZoom, _lockedOnZoom, TargetLockSpeed * GetTimeScale());
         }
     }
@@ -336,9 +332,7 @@ public class RTSCameraTargetController : MonoBehaviour
             _isSideZoneMoving = true;
         }
         else
-        {
             _isSideZoneMoving = false;
-        }
     }
 
     private void HandleKeysMove()
@@ -383,11 +377,11 @@ public class RTSCameraTargetController : MonoBehaviour
                 float distance = vectorChange.sqrMagnitude;
                 bool canMove = distance > (CameraDragDeadZone * CameraDragDeadZone);
                 Cursor.visible = !canMove;
+
+                // Move target relative to Camera
                 if (canMove)
-                {
-                    // Move target relative to Camera
                     MoveTargetRelativeToCamera(vectorChange, CameraMouseSpeed / 100);
-                }
+
                 OnMouseDragHandled?.Invoke(this, new OnMouseDragHandledEventArgs { isMoving = canMove, mousePosition = mousePos });
             }
         }
@@ -401,17 +395,14 @@ public class RTSCameraTargetController : MonoBehaviour
             _currentCameraZoom -= zoomInput * CameraZoomSpeed;
             _currentCameraZoom = Mathf.Clamp(_currentCameraZoom, CameraZoomMin, CameraZoomMax);
             if(zoomInput!= 0)
-            {
                 CancelTargetLock();
-            }
         }
         _framingTransposer.m_CameraDistance = Mathf.SmoothDamp(_framingTransposer.m_CameraDistance, _currentCameraZoom, ref _cameraZoomSmoothDampVelRef, CameraZoomSmoothTime / 100, Mathf.Infinity, GetTimeScale());
         
         if(Math.Round(_framingTransposer.m_CameraDistance - _currentCameraZoom, 4) != 0)
-        {
             OnZoomHandled?.Invoke(this, new OnZoomHandledEventArgs { currentZoomValue = _framingTransposer.m_CameraDistance, targetZoomValue = _currentCameraZoom, minZoom = CameraZoomMin, maxZoom = CameraZoomMax });
-        }
     }
+    
     private void HandleRotation()
     {
         if (!_isDragging)
@@ -494,28 +485,18 @@ public class RTSCameraTargetController : MonoBehaviour
         CameraTarget.Translate(relativeDir * (relativeZoomCameraMoveSpeed * speed * GetTimeScale()));
     }
 
-    public float GetTimeScale() => IndependentTimeScale ? Time.unscaledDeltaTime : Time.deltaTime;
-
     private void GetMouseScreenSide(Vector3 mousePosition, out int width, out int height)
     {
         int heightPos = 0;
         int widthPos = 0;
         if(mousePosition.x >= 0 && mousePosition.x <= ScreenSidesZoneSize)
-        {
             widthPos = -1;
-        }
         else if(mousePosition.x >= Screen.width - ScreenSidesZoneSize && mousePosition.x <= Screen.width)
-        {
             widthPos = 1;
-        }
         if(mousePosition.y >= 0 && mousePosition.y <= ScreenSidesZoneSize)
-        {
             heightPos = -1;
-        }
         else if(mousePosition.y >= Screen.height - ScreenSidesZoneSize && mousePosition.y <= Screen.height)
-        {
             heightPos = 1;
-        }
         width = widthPos;
         height = heightPos;
     }
@@ -566,6 +547,12 @@ public class RTSCameraTargetController : MonoBehaviour
         _lockedOnPosition = Vector3.zero;
         _lockedOnTransform = null;
     }
+
+    /// <summary>
+    /// Get's the corresponding Delta Time depending on the Independent Time Scale variable.
+    /// </summary>
+    /// <returns></returns>
+    public float GetTimeScale() => IndependentTimeScale ? Time.unscaledDeltaTime : Time.deltaTime;
 
     #endregion
 }
