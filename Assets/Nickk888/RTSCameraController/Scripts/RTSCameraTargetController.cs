@@ -232,6 +232,7 @@ public class RTSCameraTargetController : MonoBehaviour
         _virtualCameraGameObject.transform.eulerAngles = new Vector3(_currentCameraTilt, _virtualCameraGameObject.transform.eulerAngles.y, 0);
         _framingTransposer = VirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         _currentCameraZoom = _framingTransposer.m_CameraDistance;
+        _targetCameraRotate = _virtualCameraGameObject.transform.eulerAngles.y;
         
         _inputProvider = GetComponent<IRTSCInputProvider>();
         if (_inputProvider is null)
