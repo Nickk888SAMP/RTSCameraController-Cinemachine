@@ -91,8 +91,11 @@ public class RTSCanvasController : MonoBehaviour
 
     private void RTSCameraTargetController_OnMouseDragStarted(object sender, RTSCameraTargetController.OnMouseDragStartedEventArgs e)
     {
-        mouseDragStartPoint.transform.position = new Vector2(e.mouseLockPosition.x, e.mouseLockPosition.y);
-        mouseDragCanvasGameObject.SetActive(true);
+        if(e.mouseDragStyle == RTSCameraTargetController.MouseDragStyle.MouseDirection)
+        {
+            mouseDragStartPoint.transform.position = new Vector2(e.mouseLockPosition.x, e.mouseLockPosition.y);
+            mouseDragCanvasGameObject.SetActive(true);
+        }
     }
 
     private void RTSCameraTargetController_OnMouseDragStopped(object sender, EventArgs e) 
@@ -100,10 +103,13 @@ public class RTSCanvasController : MonoBehaviour
    
     private void RTSCameraTargetController_OnMouseDragHandled(object sender, RTSCameraTargetController.OnMouseDragHandledEventArgs e)
     {
-        mouseDragEndPoint.transform.position = e.mousePosition;
-        Vector3 dir = (Vector3)e.mousePosition - mouseDragStartPoint.transform.position;
-        mouseDragEndPoint.transform.right = dir;
-        mouseDragEndPoint.SetActive(e.isMoving);
+        if (e.mouseDragStyle == RTSCameraTargetController.MouseDragStyle.MouseDirection)
+        {
+            mouseDragEndPoint.transform.position = e.mousePosition;
+            Vector3 dir = (Vector3)e.mousePosition - mouseDragStartPoint.transform.position;
+            mouseDragEndPoint.transform.right = dir;
+            mouseDragEndPoint.SetActive(e.isMoving);
+        }
     }
 
     private void RTSCameraTargetController_OnZoomHandled(object sender, RTSCameraTargetController.OnZoomHandledEventArgs e)

@@ -1260,13 +1260,14 @@ MonoBehaviour:
   AllowTiltRotate: 1
   AllowZoom: 1
   AllowDragMove: 1
+  mouseDragStyle: 0
   AllowKeysMove: 1
   AllowScreenSideMove: 1
   AllowHeightOffsetChange: 1
   MouseLockOnRotate: 1
   InvertMouseVertical: 0
   InvertMouseHorizontal: 0
-  CameraMouseSpeed: 2
+  CameraMouseSpeed: 8
   CameraRotateSpeed: 2
   CameraKeysRotateSpeedMultiplier: 50
   CameraKeysSpeed: 6

@@ -22,14 +22,17 @@ public class RTSCameraTargetController : MonoBehaviour
     public event EventHandler<OnMouseDragStartedEventArgs> OnMouseDragStarted;
     public class OnMouseDragStartedEventArgs : EventArgs
     {
+        public MouseDragStyle mouseDragStyle;
         public Vector2 mouseLockPosition;
     }
     public event EventHandler OnMouseDragStopped;
     public event EventHandler<OnMouseDragHandledEventArgs> OnMouseDragHandled;
     public class OnMouseDragHandledEventArgs : EventArgs
     {
+        public MouseDragStyle mouseDragStyle;
         public bool isMoving;
         public Vector2 mousePosition;
+        public Vector2 vectorChange;
     }
 
     public event EventHandler<OnZoomHandledEventArgs> OnZoomHandled;
@@ -81,6 +84,10 @@ public class RTSCameraTargetController : MonoBehaviour
     [SerializeField] [Tooltip("Allows or Disallows mouse drag movement.")]
     public bool AllowDragMove = true;
 
+    public enum MouseDragStyle { MouseDirection, Direct }
+    [SerializeField] [Tooltip("The style of mouse Drag.")]
+    private MouseDragStyle mouseDragStyle = MouseDragStyle.MouseDirection;
+
     [SerializeField] [Tooltip("Allows or Disallows camera movement with keys/gamepad input.")]
     public bool AllowKeysMove = true;
 
@@ -99,9 +106,11 @@ public class RTSCameraTargetController : MonoBehaviour
     [SerializeField] [Tooltip("Invert the horizontal mouse input?")]
     public bool InvertMouseHorizontal = false;
 
+   
+
     [Space] [Header("Speed")]
     [SerializeField, Min(0)]
-    public float CameraMouseSpeed = 2.0f;
+    public float CameraMouseSpeed = 8.0f;
 
     [SerializeField, Min(0)]
     public float CameraRotateSpeed = 2.0f;
@@ -219,8 +228,8 @@ public class RTSCameraTargetController : MonoBehaviour
             _cinemachineBrain = _cam.gameObject.GetComponent<CinemachineBrain>();
         else 
             Debug.LogError("Main Camera wasn't found. Can't get the Cinemachine Brain.");
-        if(Instance is not null)
-            Destroy(Instance);
+        // if(Instance is not null)
+        //     Destroy(Instance);
         Instance = this;
     }
 
@@ -359,32 +368,62 @@ public class RTSCameraTargetController : MonoBehaviour
     {
         if (!_isRotating && !_isSideZoneMoving)
         {
-            if (_inputProvider.DragButtonInput() && AllowDragMove && !_isDragging)
+            switch(mouseDragStyle)
             {
-                _mouseLockPos = mousePos;
-                _isDragging = true;
-                CancelTargetLock();
-                OnMouseDragStarted?.Invoke(this, new OnMouseDragStartedEventArgs { mouseLockPosition = mousePos });
-            }
-            if ((_isDragging && !_inputProvider.DragButtonInput()) || (_isDragging && !AllowDragMove))
-            {
-                Cursor.visible = true;
-                _isDragging = false;
-                OnMouseDragStopped?.Invoke(this, EventArgs.Empty);
-            }
-            if (_inputProvider.DragButtonInput() && _isDragging && AllowDragMove)
-            {
-                Vector3 vectorChange = new Vector3(_mouseLockPos.x - mousePos.x, 0, _mouseLockPos.y - mousePos.y) * -1;
-                float distance = vectorChange.sqrMagnitude;
-                bool canMove = distance > (CameraDragDeadZone * CameraDragDeadZone);
-                Cursor.visible = !canMove;
+                case MouseDragStyle.MouseDirection:
+                    if (_inputProvider.DragButtonInput() && AllowDragMove && !_isDragging)
+                    {
+                        _mouseLockPos = mousePos;
+                        _isDragging = true;
+                        CancelTargetLock();
+                        OnMouseDragStarted?.Invoke(this, new OnMouseDragStartedEventArgs { mouseLockPosition = mousePos, mouseDragStyle = MouseDragStyle.MouseDirection });
+                    }
+                    if ((_isDragging && !_inputProvider.DragButtonInput()) || (_isDragging && !AllowDragMove))
+                    {
+                        Cursor.visible = true;
+                        _isDragging = false;
+                        OnMouseDragStopped?.Invoke(this, EventArgs.Empty);
+                    }
+                    if (_inputProvider.DragButtonInput() && _isDragging && AllowDragMove)
+                    {
+                        Vector3 vectorChange = new Vector3(_mouseLockPos.x - mousePos.x, 0, _mouseLockPos.y - mousePos.y) * -1;
+                        float distance = vectorChange.sqrMagnitude;
+                        bool canMove = distance > (CameraDragDeadZone * CameraDragDeadZone);
+                        Cursor.visible = !canMove;
 
-                // Move target relative to Camera
-                if (canMove)
-                    MoveTargetRelativeToCamera(vectorChange, CameraMouseSpeed / 100);
+                        // Move target relative to Camera
+                        if (canMove)
+                            MoveTargetRelativeToCamera(vectorChange, CameraMouseSpeed / 100);
 
-                OnMouseDragHandled?.Invoke(this, new OnMouseDragHandledEventArgs { isMoving = canMove, mousePosition = mousePos });
+                        OnMouseDragHandled?.Invoke(this, new OnMouseDragHandledEventArgs { isMoving = canMove, mousePosition = mousePos });
+                    }
+                    break;
+                case MouseDragStyle.Direct:
+                    if(_inputProvider.DragButtonInput() && AllowDragMove && !_isDragging)
+                    {
+                        Cursor.visible = false;
+                        Cursor.lockState = CursorLockMode.Locked;
+                        _isDragging = true;
+                        CancelTargetLock();
+                        OnMouseDragStarted?.Invoke(this, new OnMouseDragStartedEventArgs { mouseLockPosition = mousePos, mouseDragStyle = MouseDragStyle.Direct });
+                    }
+                    if ((_isDragging && !_inputProvider.DragButtonInput()) || (_isDragging && !AllowDragMove))
+                    {
+                        Cursor.visible = true;
+                        Cursor.lockState = CursorLockMode.None;
+                        _isDragging = false;
+                        OnMouseDragStopped?.Invoke(this, EventArgs.Empty);
+                    }
+                    if (_inputProvider.DragButtonInput() && _isDragging && AllowDragMove)
+                    {
+                        Vector3 vectorChange = _inputProvider.MouseInput();
+                        vectorChange.z = vectorChange.y;
+                        vectorChange.y = 0;
+                        MoveTargetRelativeToCamera(vectorChange, CameraMouseSpeed);
+                    }
+                    break;
             }
+            
         }
     }
 

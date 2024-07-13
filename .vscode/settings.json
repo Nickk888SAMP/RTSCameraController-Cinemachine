@@ -52,5 +52,5 @@
         "Temp/": true
     },
     "git.ignoreLimitWarning": true,
-    "dotnet.defaultSolution": "RTSCameraController.sln"
+    "dotnet.defaultSolution": "RTSCameraController-Cinemachine.sln"
 }
