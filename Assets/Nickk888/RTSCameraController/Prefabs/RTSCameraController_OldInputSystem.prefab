@@ -1267,7 +1267,7 @@ MonoBehaviour:
   MouseLockOnRotate: 1
   InvertMouseVertical: 0
   InvertMouseHorizontal: 0
-  CameraMouseSpeed: 8
+  CameraMouseSpeed: 16
   CameraRotateSpeed: 2
   CameraKeysRotateSpeedMultiplier: 50
   CameraKeysSpeed: 6
