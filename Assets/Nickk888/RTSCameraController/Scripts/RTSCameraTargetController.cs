@@ -84,7 +84,7 @@ public class RTSCameraTargetController : MonoBehaviour
     [SerializeField] [Tooltip("Allows or Disallows mouse drag movement.")]
     public bool AllowDragMove = true;
 
-    public enum MouseDragStyle { MouseDirection, Direct }
+    public enum MouseDragStyle { MouseDirection, Direct, DirectInverted }
     [SerializeField] [Tooltip("The style of mouse Drag.")]
     private MouseDragStyle mouseDragStyle = MouseDragStyle.MouseDirection;
 
@@ -398,8 +398,10 @@ public class RTSCameraTargetController : MonoBehaviour
                         OnMouseDragHandled?.Invoke(this, new OnMouseDragHandledEventArgs { isMoving = canMove, mousePosition = mousePos });
                     }
                     break;
+                case MouseDragStyle.DirectInverted:
                 case MouseDragStyle.Direct:
-                    if(_inputProvider.DragButtonInput() && AllowDragMove && !_isDragging)
+                    bool isInverted = mouseDragStyle == MouseDragStyle.DirectInverted;
+                    if (_inputProvider.DragButtonInput() && AllowDragMove && !_isDragging)
                     {
                         Cursor.visible = false;
                         Cursor.lockState = CursorLockMode.Locked;
@@ -419,7 +421,7 @@ public class RTSCameraTargetController : MonoBehaviour
                         Vector3 vectorChange = _inputProvider.MouseInput();
                         vectorChange.z = vectorChange.y;
                         vectorChange.y = 0;
-                        MoveTargetRelativeToCamera(vectorChange, CameraMouseSpeed);
+                        MoveTargetRelativeToCamera(isInverted ? -vectorChange : vectorChange, CameraMouseSpeed);
                     }
                     break;
             }

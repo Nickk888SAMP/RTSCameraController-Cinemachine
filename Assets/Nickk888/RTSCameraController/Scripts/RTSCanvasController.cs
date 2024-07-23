@@ -22,6 +22,11 @@ public class RTSCanvasController : MonoBehaviour
     private GameObject mouseDragEndPoint;
     public GameObject MouseDragEndPoint { get => mouseDragEndPoint; set => mouseDragEndPoint = value; }
 
+    [Space] [Header("Direct Drag Canvas")]
+    [SerializeField]
+    private GameObject dragUiImageGameObject;
+    public GameObject DragUiImageGameObject { get => dragUiImageGameObject; set => dragUiImageGameObject = value; }
+
     [Space] [Header("Rotate Camera Canvas")]
     [SerializeField]
     private GameObject rotateCameraCanvasGameObject;
@@ -30,6 +35,7 @@ public class RTSCanvasController : MonoBehaviour
     [SerializeField]
     private GameObject compassUiImageGameObject;
     public GameObject CompassUiImageGameObject { get => compassUiImageGameObject; set => compassUiImageGameObject = value; }
+
 
     private RTSCameraTargetController cameraTargetController;
     private float _rotateFlipSmoothDampVelRef;
@@ -40,6 +46,7 @@ public class RTSCanvasController : MonoBehaviour
     private void Start()
     {
         mouseDragCanvasGameObject.SetActive(false);
+        dragUiImageGameObject.gameObject.SetActive(false);
         rotateCameraCanvasGameObject.gameObject.SetActive(false);
     }
 
@@ -96,10 +103,17 @@ public class RTSCanvasController : MonoBehaviour
             mouseDragStartPoint.transform.position = new Vector2(e.mouseLockPosition.x, e.mouseLockPosition.y);
             mouseDragCanvasGameObject.SetActive(true);
         }
+        else if(e.mouseDragStyle == RTSCameraTargetController.MouseDragStyle.Direct || e.mouseDragStyle == RTSCameraTargetController.MouseDragStyle.DirectInverted)
+        {
+            dragUiImageGameObject.gameObject.SetActive(true);
+        }
     }
 
     private void RTSCameraTargetController_OnMouseDragStopped(object sender, EventArgs e) 
-        => mouseDragCanvasGameObject.SetActive(false);
+    {
+        mouseDragCanvasGameObject.SetActive(false);
+        dragUiImageGameObject.gameObject.SetActive(false);
+    }
    
     private void RTSCameraTargetController_OnMouseDragHandled(object sender, RTSCameraTargetController.OnMouseDragHandledEventArgs e)
     {

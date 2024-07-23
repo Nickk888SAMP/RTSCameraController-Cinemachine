@@ -5,9 +5,7 @@ using UnityEngine.InputSystem;
 #endif
 
 public class ObjectSelector : MonoBehaviour
-{
-    [SerializeField] private RTSCameraTargetController cameraTargetController;
-    
+{    
     private Camera mainCam;
     private bool mouseButtonPressed = false;
     private Vector3 mousePosition;
@@ -15,13 +13,11 @@ public class ObjectSelector : MonoBehaviour
     private void Start()
     {
         mainCam = Camera.main;
-        if (cameraTargetController is null)
-            Debug.LogError("[ObjectSelector] Reference to Camera Target Controller not found. Please reference the RTSCameraTargetController script.", this);
     }
 
     private void Update()
     {
-        if (cameraTargetController is null)
+        if (RTSCameraTargetController.Instance == null)
             return;
         
         mouseButtonPressed = false;
@@ -42,7 +38,7 @@ public class ObjectSelector : MonoBehaviour
             {
                 if (hit.transform.CompareTag($"Selectable"))
                 {
-                    cameraTargetController.LockOnTarget(hit.transform, 20, true);
+                    RTSCameraTargetController.Instance.LockOnTarget(hit.transform, 20, true);
                 }
             }
         }
