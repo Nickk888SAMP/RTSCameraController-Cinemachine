@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 #endif
 
 public class ObjectSelector : MonoBehaviour
-{    
+{
     private Camera mainCam;
-    private bool mouseButtonPressed = false;
+    private bool mouseButtonPressed;
     private Vector3 mousePosition;
 
     private void Start()
@@ -19,31 +19,41 @@ public class ObjectSelector : MonoBehaviour
     {
         if (RTSCameraTargetController.Instance == null)
             return;
-        
-        mouseButtonPressed = false;
-        mousePosition = Vector3.zero;
-        
+
+        UpdateInput();
+
+        if (mouseButtonPressed)
+        {
+            TrySelectObject();
+        }
+    }
+
+    /// <summary>
+    /// Updates the input state (mouse button press and mouse position).
+    /// </summary>
+    private void UpdateInput()
+    {
         #if ENABLE_INPUT_SYSTEM
         mouseButtonPressed = Mouse.current.leftButton.wasPressedThisFrame;
-        mousePosition = Mouse.current.position.value;
+        mousePosition = Mouse.current.position.ReadValue();
         #else
         mouseButtonPressed = Input.GetMouseButtonDown(0);
         mousePosition = Input.mousePosition;
         #endif
-
-        if(mouseButtonPressed)
-        {
-            Ray ray = mainCam.ScreenPointToRay(mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-                if (hit.transform.CompareTag($"Selectable"))
-                {
-                    RTSCameraTargetController.Instance.LockOnTarget(hit.transform, 20, true);
-                }
-            }
-        }
-
     }
 
-
+    /// <summary>
+    /// Attempts to select a selectable object based on the mouse click.
+    /// </summary>
+    private void TrySelectObject()
+    {
+        Ray ray = mainCam.ScreenPointToRay(mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            if (hit.transform.CompareTag("Selectable"))
+            {
+                RTSCameraTargetController.Instance.LockOnTarget(hit.transform, 20, true);
+            }
+        }
+    }
 }

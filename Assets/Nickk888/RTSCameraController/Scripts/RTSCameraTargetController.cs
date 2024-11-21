@@ -2,6 +2,10 @@ using System;
 using UnityEngine;
 using UnityEditor;
 using Cinemachine;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("PlayModeTests")]
+[assembly: InternalsVisibleTo("EditorModeTests")]
 
 public class RTSCameraTargetController : MonoBehaviour
 {
@@ -106,8 +110,6 @@ public class RTSCameraTargetController : MonoBehaviour
     [SerializeField] [Tooltip("Invert the horizontal mouse input?")]
     public bool InvertMouseHorizontal = false;
 
-   
-
     [Space] [Header("Speed")]
     [SerializeField, Min(0)]
     public float CameraMouseSpeed = 16.0f;
@@ -136,11 +138,11 @@ public class RTSCameraTargetController : MonoBehaviour
 
     [Space] [Header("Screen Sides")]
     [SerializeField, Min(0)] [Tooltip("The size of the Screen Sides Zone in pixels.")]
-    public float ScreenSidesZoneSize = 75f;
+    public int ScreenSidesZoneSize = 75;
 
     [Space] [Header("Mouse Drag")]
     [SerializeField, Min(0)] [Tooltip("The Dead Zone of the drag feature. How far from the circles center has the cursor be, to start draging?")]
-    public float CameraDragDeadZone = 5f;
+    public int CameraDragDeadZone = 5;
 
     [Space]
     [Header("Limits")]
@@ -216,57 +218,60 @@ public class RTSCameraTargetController : MonoBehaviour
     private bool _isSideZoneMoving;
     private bool _isLockedOnTarget;
     private bool _hardLocked;
+    private bool _isFocused;
 
     #endregion
 
-    #region Callbacks
+    #region Constants
+
+    private const float MaxRaycastHeight = 9999999f; // Max Raycast Length for the Ground Detection 
+    private const float CameraTiltMiddleValue = 0.5f; // The middle value for the camera Tilt
+
+    #endregion
+
+    #region Unity Methods
 
     private void Awake()
     {
         _cam = Camera.main;
-        if (_cam is not null) 
-            _cinemachineBrain = _cam.gameObject.GetComponent<CinemachineBrain>();
-        else 
-            Debug.LogError("Main Camera wasn't found. Can't get the Cinemachine Brain.");
-        // if(Instance is not null)
-        //     Destroy(Instance);
-        Instance = this;
+        if (_cam == null)
+        {
+            HandleCameraError();
+            return;
+        }
+
+        InitializeCinemachineBrain();
+        SetInstance();
     }
 
-    private void Start() 
+    private void OnEnable() => Application.focusChanged += Application_FocusChanged;
+
+    private void OnDisable() => Application.focusChanged -= Application_FocusChanged;
+
+    private void Start()
     {
         _virtualCameraGameObject = VirtualCamera.gameObject;
-        _currentCameraTilt = Mathf.Lerp(CameraTiltMin, CameraTiltMax, 0.5f); // 0.5f is the value so it gets the middle value between Min and Max of the Camera Tilt.
-        _targetCameraTilt = _currentCameraTilt;
-        _virtualCameraGameObject.transform.eulerAngles = new Vector3(_currentCameraTilt, _virtualCameraGameObject.transform.eulerAngles.y, 0);
-        _framingTransposer = VirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
-        _currentCameraZoom = _framingTransposer.m_CameraDistance;
-        _targetCameraRotate = _virtualCameraGameObject.transform.eulerAngles.y;
-        
-        _inputProvider = GetComponent<IRTSCInputProvider>();
-        if (_inputProvider is null)
-            Debug.LogError("No Input Provider found! Please ensure there's a input provider script attached to the game object.");
 
-        OnZoomHandled?.Invoke(this, new OnZoomHandledEventArgs { currentZoomValue = _framingTransposer.m_CameraDistance, targetZoomValue = _currentCameraZoom, minZoom = CameraZoomMin, maxZoom = CameraZoomMax });
+        InitializeCameraTilt();
+        InitializeFramingTransposer();
+        InitializeMousePosition();
+        InitializeInputProvider();
+        TriggerZoomHandledEvent();
     }
 
     private void Update()
     {
-        if (_inputProvider is null)
+        if (_inputProvider == null || !_isFocused)
+        {
             return;
+        }
 
-        _cinemachineBrain.m_IgnoreTimeScale = IndependentCinemachineBrainTimeScale;
+        UpdateCinemachineBrain();
         _currentMousePosition = _inputProvider.MousePosition();
 
-        HandleScreenSideMove(_currentMousePosition);
-        HandleMouseDrag(_currentMousePosition);
-        HandleKeysMove();
-        HandleZoom();
-        HandleRotation();
-        HandleGroundHeightCorrection();
-        HandleTargetLock();
-        HandleBoundaries();
-        HandleHeightOffset();
+        HandleCameraInput();
+        HandleMovement();
+        HandleCameraHeight();
     }
 
     #if UNITY_EDITOR
@@ -290,9 +295,86 @@ public class RTSCameraTargetController : MonoBehaviour
 
     #endregion
 
-    #region Internal Functions
+    #region Event Methods
 
-    private void HandleHeightOffset()
+    private void Application_FocusChanged(bool focused) => _isFocused = focused;
+
+    #endregion
+
+    #region Internal Functions
+    
+    internal void UpdateCinemachineBrain()
+        => _cinemachineBrain.m_IgnoreTimeScale = IndependentCinemachineBrainTimeScale;
+
+    internal void HandleCameraInput()
+    {
+        HandleScreenSideMove(_currentMousePosition);
+        HandleMouseDrag(_currentMousePosition);
+        HandleZoom();
+        HandleRotation();
+    }
+
+    internal void HandleMovement()
+    {
+        HandleKeysMove();
+        HandleTargetLock();
+        HandleBoundaries();
+    }
+
+    internal void HandleCameraHeight()
+    {
+        HandleGroundHeightCorrection();
+        HandleHeightOffset();
+    }
+    
+    internal void HandleCameraError()
+        => Debug.LogError("Main Camera wasn't found. Can't get the Cinemachine Brain.");
+
+    internal void InitializeCinemachineBrain()
+        => _cinemachineBrain = _cam.gameObject.GetComponent<CinemachineBrain>();
+
+    internal void SetInstance() => Instance = this;
+
+    internal void InitializeCameraTilt()
+    {
+        _currentCameraTilt = Mathf.Lerp(CameraTiltMin, CameraTiltMax, CameraTiltMiddleValue);
+        _targetCameraTilt = _currentCameraTilt;
+        _virtualCameraGameObject.transform.eulerAngles = new Vector3(_currentCameraTilt, _virtualCameraGameObject.transform.eulerAngles.y, 0);
+    }
+
+    internal void InitializeFramingTransposer()
+    {
+        _framingTransposer = VirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        _currentCameraZoom = _framingTransposer.m_CameraDistance;
+        _targetCameraRotate = _virtualCameraGameObject.transform.eulerAngles.y;
+    }
+
+    internal void InitializeMousePosition()
+    {
+        _currentMousePosition = new Vector2(Screen.width / 2, Screen.height / 2);
+    }
+
+    internal void InitializeInputProvider()
+    {
+        _inputProvider = GetComponent<IRTSCInputProvider>();
+        if (_inputProvider == null)
+        {
+            Debug.LogError("No Input Provider found! Please ensure there's a input provider script attached to the game object.");
+        }
+    }
+
+    internal void TriggerZoomHandledEvent()
+    {
+        OnZoomHandled?.Invoke(this, new OnZoomHandledEventArgs
+        {
+            currentZoomValue = _framingTransposer.m_CameraDistance,
+            targetZoomValue = _currentCameraZoom,
+            minZoom = CameraZoomMin,
+            maxZoom = CameraZoomMax
+        });
+    }
+
+    internal void HandleHeightOffset()
     {
         if (!AllowHeightOffsetChange)
             return;
@@ -306,20 +388,38 @@ public class RTSCameraTargetController : MonoBehaviour
         _framingTransposer.m_TrackedObjectOffset = new Vector3(0, _heightOffset, 0);
     }
 
-    private void HandleGroundHeightCorrection()
+    internal void HandleGroundHeightCorrection()
     {
-        if (!_isLockedOnTarget)
+        if (_isLockedOnTarget)
+            return;
+
+        if (TryGetGroundHeight(out float groundHeight))
         {
-            if (Physics.Raycast(new Vector3(CameraTarget.position.x, 9999999, CameraTarget.position.z), Vector3.down, out RaycastHit hit, Mathf.Infinity, GroundLayer))
-            {
-                Vector3 position = CameraTarget.position;
-                position = Vector3.Lerp(position, new Vector3(position.x, hit.point.y, position.z), CameraTargetGroundHeightCheckSmoothTime * GetTimeScale());
-                CameraTarget.position = position;
-            }
+            CorrectTargetHeight(groundHeight);
         }
     }
 
-    private void HandleTargetLock()
+    internal bool TryGetGroundHeight(out float groundHeight)
+    {
+        Ray ray = new Ray(new Vector3(CameraTarget.position.x, MaxRaycastHeight, CameraTarget.position.z), Vector3.down);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, GroundLayer))
+        {
+            groundHeight = hit.point.y;
+            return true;
+        }
+
+        groundHeight = 0f;
+        return false;
+    }
+
+    internal void CorrectTargetHeight(float targetHeight)
+    {
+        Vector3 position = CameraTarget.position;
+        position.y = Mathf.Lerp(position.y, targetHeight, CameraTargetGroundHeightCheckSmoothTime * GetTimeScale());
+        CameraTarget.position = position;
+    }
+
+    internal void HandleTargetLock()
     {
         if (_isLockedOnTarget)
         {
@@ -331,216 +431,320 @@ public class RTSCameraTargetController : MonoBehaviour
         }
     }
 
-    private void HandleScreenSideMove(Vector3 mousePos)
+    internal void HandleScreenSideMove(Vector2 mousePos)
     {
-        GetMouseScreenSide(mousePos, out int widthPos, out int heightPos);
-        Vector3 moveVector = new Vector3(widthPos, 0, heightPos);
-        if (moveVector != Vector3.zero && !_isDragging && !_isRotating && AllowScreenSideMove)
+        Vector3 moveVector = GetMoveVectorFromMousePosition(mousePos);
+        
+        if (ShouldMoveTarget(moveVector))
         {
-            CancelTargetLock();
-            MoveTargetRelativeToCamera(moveVector, CameraScreenSideSpeed);
+            MoveTarget(moveVector);
             _isSideZoneMoving = true;
         }
         else
+        {
             _isSideZoneMoving = false;
+        }
     }
 
-    private void HandleKeysMove()
+    internal Vector3 GetMoveVectorFromMousePosition(Vector2 mousePos)
     {
-        if (!AllowKeysMove)
+        GetMouseScreenSideXY(mousePos, out int x, out int y);
+        return new Vector3(x, 0, y);
+    }
+
+    internal bool ShouldMoveTarget(Vector3 moveVector)
+        => moveVector != Vector3.zero && !_isDragging && !_isRotating && AllowScreenSideMove;
+
+    internal void MoveTarget(Vector3 moveVector)
+    {
+        CancelTargetLock();
+        MoveTargetRelativeToCamera(moveVector, CameraScreenSideSpeed);
+    }
+
+    internal void HandleKeysMove()
+    {
+        if (!AllowKeysMove || !CanProcessKeyMovement())
             return;
-            
-        if (!_isDragging && !_isSideZoneMoving)
+
+        Vector3 movementVector = GetMovementVector();
+        if (movementVector != Vector3.zero)
         {
-            Vector2 movementInput = _inputProvider.MovementInput();
-            Vector3 vectorChange = new Vector3(movementInput.x, 0, movementInput.y);
-            
-            // Move target relative to Camera
-            if (vectorChange != Vector3.zero)
-            {
-                CancelTargetLock();
-                MoveTargetRelativeToCamera(vectorChange, CameraKeysSpeed);
-            }
+            CancelTargetLock();
+            MoveTargetRelativeToCamera(movementVector, CameraKeysSpeed);
         }
     }
 
-    private void HandleMouseDrag(Vector3 mousePos)
+    internal bool CanProcessKeyMovement() => !_isDragging && !_isSideZoneMoving;
+
+    internal Vector3 GetMovementVector()
     {
-        if (!_isRotating && !_isSideZoneMoving)
+        Vector2 movementInput = _inputProvider.MovementInput();
+        return new Vector3(movementInput.x, 0, movementInput.y);
+    }
+
+    internal void HandleMouseDrag(Vector3 mousePos)
+    {
+        if (_isRotating || _isSideZoneMoving) return;
+
+        switch (mouseDragStyle)
         {
-            switch(mouseDragStyle)
-            {
-                case MouseDragStyle.MouseDirection:
-                    if (_inputProvider.DragButtonInput() && AllowDragMove && !_isDragging)
-                    {
-                        _mouseLockPos = mousePos;
-                        _isDragging = true;
-                        CancelTargetLock();
-                        OnMouseDragStarted?.Invoke(this, new OnMouseDragStartedEventArgs { mouseLockPosition = mousePos, mouseDragStyle = MouseDragStyle.MouseDirection });
-                    }
-                    else if ((_isDragging && !_inputProvider.DragButtonInput()) || (_isDragging && !AllowDragMove))
-                    {
-                        Cursor.visible = true;
-                        _isDragging = false;
-                        OnMouseDragStopped?.Invoke(this, EventArgs.Empty);
-                    }
-                    else if (_inputProvider.DragButtonInput() && _isDragging && AllowDragMove)
-                    {
-                        Vector3 vectorChange = new Vector3(_mouseLockPos.x - mousePos.x, 0, _mouseLockPos.y - mousePos.y) * -1;
-                        float distance = vectorChange.sqrMagnitude;
-                        bool canMove = distance > (CameraDragDeadZone * CameraDragDeadZone);
-                        Cursor.visible = !canMove;
+            case MouseDragStyle.MouseDirection:
+                HandleMouseDirectionDrag(mousePos);
+                break;
 
-                        // Move target relative to Camera
-                        if (canMove)
-                            MoveTargetRelativeToCamera(vectorChange, CameraMouseSpeed / 100);
-
-                        OnMouseDragHandled?.Invoke(this, new OnMouseDragHandledEventArgs { isMoving = canMove, mousePosition = mousePos });
-                    }
-                    break;
-                case MouseDragStyle.DirectInverted:
-                case MouseDragStyle.Direct:
-                    bool isInverted = mouseDragStyle == MouseDragStyle.DirectInverted;
-                    if (_inputProvider.DragButtonInput() && AllowDragMove && !_isDragging)
-                    {
-                        Cursor.visible = false;
-                        Cursor.lockState = CursorLockMode.Locked;
-                        _isDragging = true;
-                        CancelTargetLock();
-                        OnMouseDragStarted?.Invoke(this, new OnMouseDragStartedEventArgs { mouseLockPosition = mousePos, mouseDragStyle = MouseDragStyle.Direct });
-                    }
-                    else if ((_isDragging && !_inputProvider.DragButtonInput()) || (_isDragging && !AllowDragMove))
-                    {
-                        Cursor.visible = true;
-                        Cursor.lockState = CursorLockMode.None;
-                        _isDragging = false;
-                        OnMouseDragStopped?.Invoke(this, EventArgs.Empty);
-                    }
-                    else if (_inputProvider.DragButtonInput() && _isDragging && AllowDragMove)
-                    {
-                        Vector3 vectorChange = _inputProvider.MouseInput();
-                        vectorChange.z = vectorChange.y;
-                        vectorChange.y = 0;
-                        MoveTargetRelativeToCamera(isInverted ? -vectorChange : vectorChange, CameraMouseSpeed);
-                    }
-                    break;
-            }
-            
+            case MouseDragStyle.DirectInverted:
+            case MouseDragStyle.Direct:
+                HandleDirectDrag(mousePos);
+                break;
         }
     }
 
-    private void HandleZoom()
+    internal void HandleMouseDirectionDrag(Vector3 mousePos)
+    {
+        if (_inputProvider.DragButtonInput() && AllowDragMove && !_isDragging)
+        {
+            StartDrag(mousePos, MouseDragStyle.MouseDirection);
+        }
+        else if (ShouldStopDrag())
+        {
+            StopDrag();
+        }
+        else if (_isDragging && AllowDragMove)
+        {
+            ProcessMouseDrag(mousePos);
+        }
+    }
+
+    internal void HandleDirectDrag(Vector3 mousePos)
+    {
+        bool isInverted = mouseDragStyle == MouseDragStyle.DirectInverted;
+
+        if (_inputProvider.DragButtonInput() && AllowDragMove && !_isDragging)
+        {
+            StartDrag(mousePos, MouseDragStyle.Direct);
+        }
+        else if (ShouldStopDrag())
+        {
+            StopDrag();
+        }
+        else if (_isDragging && AllowDragMove)
+        {
+            Vector3 vectorChange = _inputProvider.MouseInput();
+            vectorChange.z = vectorChange.y;
+            vectorChange.y = 0;
+            MoveTargetRelativeToCamera(isInverted ? -vectorChange : vectorChange, CameraMouseSpeed);
+        }
+    }
+
+    internal void StartDrag(Vector3 mousePos, MouseDragStyle dragStyle)
+    {
+        _mouseLockPos = mousePos;
+        _isDragging = true;
+        CancelTargetLock();
+        OnMouseDragStarted?.Invoke(this, new OnMouseDragStartedEventArgs { mouseLockPosition = mousePos, mouseDragStyle = dragStyle });
+    }
+
+    internal void StopDrag()
+    {
+        _isDragging = false;
+        LockMouse(false);
+        OnMouseDragStopped?.Invoke(this, EventArgs.Empty);
+    }
+
+    internal bool ShouldStopDrag()
+        => _isDragging && (!_inputProvider.DragButtonInput() || !AllowDragMove);
+
+    internal void ProcessMouseDrag(Vector3 mousePos)
+    {
+        Vector3 vectorChange = new Vector3(_mouseLockPos.x - mousePos.x, 0, _mouseLockPos.y - mousePos.y) * -1;
+        float distance = vectorChange.sqrMagnitude;
+        bool canMove = distance > (CameraDragDeadZone * CameraDragDeadZone);
+        Cursor.visible = !canMove;
+
+        if (canMove)
+            MoveTargetRelativeToCamera(vectorChange, CameraMouseSpeed / 100);
+
+        OnMouseDragHandled?.Invoke(this, new OnMouseDragHandledEventArgs { isMoving = canMove, mousePosition = mousePos });
+    }
+
+    internal void HandleZoom()
     {
         if (AllowZoom)
         {
-            float zoomInput = _inputProvider.ZoomInput();
+            HandleZoomInput();
+        }
+
+        UpdateCameraDistance();
+        CheckAndInvokeZoomEvent();
+    }
+
+    internal void HandleZoomInput()
+    {
+        float zoomInput = _inputProvider.ZoomInput();
+        if (zoomInput != 0)
+        {
             _currentCameraZoom -= zoomInput * CameraZoomSpeed;
             _currentCameraZoom = Mathf.Clamp(_currentCameraZoom, CameraZoomMin, CameraZoomMax);
-            if(zoomInput!= 0)
-                CancelTargetLock();
+            CancelTargetLock();
         }
-        _framingTransposer.m_CameraDistance = Mathf.SmoothDamp(_framingTransposer.m_CameraDistance, _currentCameraZoom, ref _cameraZoomSmoothDampVelRef, CameraZoomSmoothTime / 100, Mathf.Infinity, GetTimeScale());
-        
-        if(Math.Round(_framingTransposer.m_CameraDistance - _currentCameraZoom, 4) != 0)
-            OnZoomHandled?.Invoke(this, new OnZoomHandledEventArgs { currentZoomValue = _framingTransposer.m_CameraDistance, targetZoomValue = _currentCameraZoom, minZoom = CameraZoomMin, maxZoom = CameraZoomMax });
+    }
+
+    internal void UpdateCameraDistance()
+    {
+        _framingTransposer.m_CameraDistance = Mathf.SmoothDamp(
+            _framingTransposer.m_CameraDistance,
+            _currentCameraZoom,
+            ref _cameraZoomSmoothDampVelRef,
+            CameraZoomSmoothTime / 100,
+            Mathf.Infinity,
+            GetTimeScale()
+        );
+    }
+
+    internal void CheckAndInvokeZoomEvent()
+    {
+        if (Math.Round(_framingTransposer.m_CameraDistance - _currentCameraZoom, 4) != 0)
+        {
+            OnZoomHandled?.Invoke(this, new OnZoomHandledEventArgs
+            {
+                currentZoomValue = _framingTransposer.m_CameraDistance,
+                targetZoomValue = _currentCameraZoom,
+                minZoom = CameraZoomMin,
+                maxZoom = CameraZoomMax
+            });
+        }
     }
     
-    private void HandleRotation()
+    internal void HandleRotation()
     {
         if (!_isDragging)
         {
-            // Check if ANY Rotation button has been pressed
-            bool rotationMousePressed = _inputProvider.RotationButtonInput() && AllowMouseRotate;
-            bool rotationKeysPressed = (_inputProvider.RotateRightButtonInput() || _inputProvider.RotateLeftButtonInput()) && AllowKeysRotate;
-            if (!_isRotating && (rotationMousePressed || rotationKeysPressed))
-            {
-                if(MouseLockOnRotate) LockMouse(true);
-                _isRotating = true;
-                OnRotateStarted?.Invoke(this, EventArgs.Empty);
-            }
+            HandleRotationStartStop();
 
-            // Check if ANY Rotation button has been released
-            bool mouseRelease = !_inputProvider.RotationButtonInput() && AllowMouseRotate || !AllowMouseRotate;
-            bool keysRelease = (!_inputProvider.RotateRightButtonInput() && !_inputProvider.RotateLeftButtonInput() && AllowKeysRotate) || !AllowKeysRotate;
-            if (_isRotating && mouseRelease && keysRelease)
-            {
-                if(MouseLockOnRotate) LockMouse(false);
-                _isRotating = false;
-                OnRotateStopped?.Invoke(this, EventArgs.Empty);
-            }
-
-            // Rotation Value Handling
             if (_isRotating)
             {
-                Vector2 rotationInput = _inputProvider.MouseInput() != Vector2.zero && !rotationKeysPressed && AllowMouseRotate ? _inputProvider.MouseInput() : 
-                    _inputProvider.RotateRightButtonInput() && AllowKeysRotate ? -Vector2.right * GetTimeScale() * CameraKeysRotateSpeedMultiplier : 
-                    _inputProvider.RotateLeftButtonInput() && AllowKeysRotate ? Vector2.right * GetTimeScale() * CameraKeysRotateSpeedMultiplier : Vector2.zero;
-                if (rotationInput.x != 0)
-                {
-                    _currentRotateDir = rotationInput.x > 0 ? true : false;
-                    _targetCameraRotate += rotationInput.x * CameraRotateSpeed * (InvertMouseHorizontal ? -1 : 1);
-                }
-                if (rotationInput.y != 0 && AllowTiltRotate)
-                {
-                    _targetCameraTilt -= rotationInput.y * CameraRotateSpeed * (InvertMouseVertical ? -1 : 1);
-                    _targetCameraTilt = Mathf.Clamp(_targetCameraTilt, CameraTiltMin, CameraTiltMax);
-                }
+                HandleRotationInput();
             }
         }
 
-        // Rotation Handling
-        _currentCameraRotate = Mathf.SmoothDamp(_currentCameraRotate, _targetCameraRotate, ref _cameraRotateSmoothDampVelRef, CameraTargetRotateSmoothTime / 100,  Mathf.Infinity, GetTimeScale());
-        _currentCameraTilt = Mathf.SmoothDamp(_currentCameraTilt, _targetCameraTilt, ref _cameraTiltSmoothDampVelRef, CameraTargetRotateSmoothTime / 100, Mathf.Infinity, GetTimeScale());
-        _virtualCameraGameObject.transform.eulerAngles = new Vector3(_currentCameraTilt, _currentCameraRotate, 0);
-        OnRotateHandled?.Invoke(this, new OnRotateHandledEventArgs { clockwise = _currentRotateDir, currentRotation = new Vector2(_currentCameraRotate, _currentCameraTilt), targetRotation = new Vector2(_targetCameraRotate, _targetCameraTilt)});
+        SmoothRotate();
     }
 
-    private void LockMouse(bool lockMouse)
+    internal void HandleRotationStartStop()
+    {
+        bool rotationMousePressed = _inputProvider.RotationButtonInput() && AllowMouseRotate;
+        bool rotationKeysPressed = (_inputProvider.RotateRightButtonInput() || _inputProvider.RotateLeftButtonInput()) && AllowKeysRotate;
+
+        // Start Rotation
+        if (!_isRotating && (rotationMousePressed || rotationKeysPressed))
+        {
+            if (MouseLockOnRotate) LockMouse(true);
+            _isRotating = true;
+            OnRotateStarted?.Invoke(this, EventArgs.Empty);
+        }
+
+        // Stop Rotation
+        bool mouseRelease = !_inputProvider.RotationButtonInput() && AllowMouseRotate || !AllowMouseRotate;
+        bool keysRelease = (!_inputProvider.RotateRightButtonInput() && !_inputProvider.RotateLeftButtonInput() && AllowKeysRotate) || !AllowKeysRotate;
+        if (_isRotating && mouseRelease && keysRelease)
+        {
+            if (MouseLockOnRotate) LockMouse(false);
+            _isRotating = false;
+            OnRotateStopped?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    internal void HandleRotationInput()
+    {
+        Vector2 rotationInput = GetRotationInput();
+
+        if (rotationInput.x != 0)
+        {
+            _currentRotateDir = rotationInput.x > 0;
+            _targetCameraRotate += rotationInput.x * CameraRotateSpeed * (InvertMouseHorizontal ? -1 : 1);
+        }
+
+        if (rotationInput.y != 0 && AllowTiltRotate)
+        {
+            _targetCameraTilt -= rotationInput.y * CameraRotateSpeed * (InvertMouseVertical ? -1 : 1);
+            _targetCameraTilt = Mathf.Clamp(_targetCameraTilt, CameraTiltMin, CameraTiltMax);
+        }
+    }
+
+    internal Vector2 GetRotationInput()
+    {
+        if (_inputProvider.MouseInput() != Vector2.zero && AllowMouseRotate && !_inputProvider.RotateRightButtonInput() && !_inputProvider.RotateLeftButtonInput())
+            return _inputProvider.MouseInput();
+
+        if (_inputProvider.RotateRightButtonInput() && AllowKeysRotate)
+            return -Vector2.right * GetTimeScale() * CameraKeysRotateSpeedMultiplier;
+
+        if (_inputProvider.RotateLeftButtonInput() && AllowKeysRotate)
+            return Vector2.right * GetTimeScale() * CameraKeysRotateSpeedMultiplier;
+
+        return Vector2.zero;
+    }
+
+    internal void SmoothRotate()
+    {
+        _currentCameraRotate = Mathf.SmoothDamp(_currentCameraRotate, _targetCameraRotate, ref _cameraRotateSmoothDampVelRef, CameraTargetRotateSmoothTime / 100, Mathf.Infinity, GetTimeScale());
+        _currentCameraTilt = Mathf.SmoothDamp(_currentCameraTilt, _targetCameraTilt, ref _cameraTiltSmoothDampVelRef, CameraTargetRotateSmoothTime / 100, Mathf.Infinity, GetTimeScale());
+        _virtualCameraGameObject.transform.eulerAngles = new Vector3(_currentCameraTilt, _currentCameraRotate, 0);
+        OnRotateHandled?.Invoke(this, new OnRotateHandledEventArgs { clockwise = _currentRotateDir, currentRotation = new Vector2(_currentCameraRotate, _currentCameraTilt), targetRotation = new Vector2(_targetCameraRotate, _targetCameraTilt) });
+    }
+
+    internal void LockMouse(bool lockMouse)
     {
         Cursor.lockState = lockMouse ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = lockMouse ? false : true;
     }
 
-    private void HandleBoundaries()
+    internal void HandleBoundaries()
     {
-        if (CameraTarget.position.x > BoundaryMaxX)
-            CameraTarget.position = new Vector3(BoundaryMaxX, CameraTarget.position.y, CameraTarget.position.z);
-        if (CameraTarget.position.x < BoundaryMinX)
-            CameraTarget.position = new Vector3(BoundaryMinX, CameraTarget.position.y, CameraTarget.position.z);
-        if (CameraTarget.position.z > BoundaryMaxZ)
-            CameraTarget.position = new Vector3(CameraTarget.position.x, CameraTarget.position.y, BoundaryMaxZ);
-        if (CameraTarget.position.z < BoundaryMinZ)
-            CameraTarget.position = new Vector3(CameraTarget.position.x, CameraTarget.position.y, BoundaryMinZ);
+        float clampedX = Mathf.Clamp(CameraTarget.position.x, BoundaryMinX, BoundaryMaxX);
+        float clampedZ = Mathf.Clamp(CameraTarget.position.z, BoundaryMinZ, BoundaryMaxZ);
+        
+        CameraTarget.position = new Vector3(clampedX, CameraTarget.position.y, clampedZ);
     }
 
-    private void MoveTargetRelativeToCamera(Vector3 direction, float speed)
+    internal void MoveTargetRelativeToCamera(Vector3 direction, float speed)
     {
-        float relativeZoomCameraMoveSpeed = _framingTransposer.m_CameraDistance / CameraZoomMin;
+        float zoomAdjustedSpeed = CalculateZoomAdjustedSpeed(speed);
+        Vector3 relativeDirection = GetRelativeDirection(direction);
+
+        CameraTarget.Translate(relativeDirection * zoomAdjustedSpeed * GetTimeScale());
+    }
+
+    internal float CalculateZoomAdjustedSpeed(float speed) => _framingTransposer.m_CameraDistance / CameraZoomMin * speed;
+
+    internal Vector3 GetRelativeDirection(Vector3 inputDirection)
+    {
         Vector3 camForward = _virtualCameraGameObject.transform.forward;
         Vector3 camRight = _virtualCameraGameObject.transform.right;
+
+        // Project onto the XZ plane
         camForward.y = 0f;
         camRight.y = 0f;
         camForward.Normalize();
         camRight.Normalize();
-        Vector3 relativeDir = (camForward * direction.z) + (camRight * direction.x);
 
-        CameraTarget.Translate(relativeDir * (relativeZoomCameraMoveSpeed * speed * GetTimeScale()));
+        return (camForward * inputDirection.z) + (camRight * inputDirection.x);
     }
 
-    private void GetMouseScreenSide(Vector3 mousePosition, out int width, out int height)
+    internal void GetMouseScreenSideXY(Vector2 mousePosition, out int x, out int y)
     {
-        int heightPos = 0;
-        int widthPos = 0;
-        if(mousePosition.x >= 0 && mousePosition.x <= ScreenSidesZoneSize)
-            widthPos = -1;
-        else if(mousePosition.x >= Screen.width - ScreenSidesZoneSize && mousePosition.x <= Screen.width)
-            widthPos = 1;
-        if(mousePosition.y >= 0 && mousePosition.y <= ScreenSidesZoneSize)
-            heightPos = -1;
-        else if(mousePosition.y >= Screen.height - ScreenSidesZoneSize && mousePosition.y <= Screen.height)
-            heightPos = 1;
-        width = widthPos;
-        height = heightPos;
+        x = GetEdgeDirection(mousePosition.x, Screen.width);
+        y = GetEdgeDirection(mousePosition.y, Screen.height);
+    }
+
+    internal int GetEdgeDirection(float position, int screenSize)
+    {
+        if (position >= 0 && position <= ScreenSidesZoneSize)
+            return -1; // Near the start (Left/Top)
+        else if (position >= screenSize - ScreenSidesZoneSize && position <= screenSize)
+            return 1; // Near the end (Right/Bottom)
+        else
+            return 0; // Not near any edge
     }
 
     #endregion
@@ -548,31 +752,31 @@ public class RTSCameraTargetController : MonoBehaviour
     #region Public Functions
 
     /// <summary>
-    /// Locks the camera to a target position
+    /// Locks the camera to a target (position or transform)
     /// </summary>
-    /// <param name="position"></param>
-    /// <param name="zoomFactor"></param>
-        
-    public void LockOnTarget(Vector3 position, float zoomFactor, bool hardLock = false)
+    /// <param name="target">The target (either position or transform) to lock to</param>
+    /// <param name="zoomFactor">The zoom factor to apply</param>
+    /// <param name="hardLock">Whether the lock is hard or soft</param>
+    public void LockOnTarget(object target, float zoomFactor, bool hardLock = false)
     {
         CancelTargetLock();
-        _lockedOnPosition = position;
-        _heightOffset = HeightOffsetMin;
-        _lockedOnZoom = zoomFactor;
-        _hardLocked = hardLock;
-        _isLockedOnTarget = true;
-    }
 
-    /// <summary>
-    /// Locks the camera to a target transform
-    /// </summary>
-    /// <param name="transform"></param>
-    /// <param name="zoomFactor"></param>
+        if (target is Vector3 position)
+        {
+            _lockedOnPosition = position;
+            _lockedOnTransform = null;
+        }
+        else if (target is Transform transform)
+        {
+            _lockedOnTransform = transform;
+            _lockedOnPosition = Vector3.zero;
+        }
+        else
+        {
+            Debug.LogError("Invalid target type. Expected Vector3 or Transform.");
+            return;
+        }
 
-    public void LockOnTarget(Transform transform, float zoomFactor, bool hardLock = false)
-    {
-        CancelTargetLock();
-        _lockedOnTransform = transform;
         _heightOffset = HeightOffsetMin;
         _lockedOnZoom = zoomFactor;
         _hardLocked = hardLock;
@@ -582,7 +786,6 @@ public class RTSCameraTargetController : MonoBehaviour
     /// <summary>
     /// Cancels the target locking
     /// </summary>
-
     public void CancelTargetLock()
     {
         _isLockedOnTarget = false;

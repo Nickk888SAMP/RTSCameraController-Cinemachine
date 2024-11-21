@@ -77,7 +77,7 @@ public class RTSCanvasController : MonoBehaviour
         cameraTargetController.OnRotateHandled -= RTSCameraTargetController_OnRotateHandled;
     }
 
-    private void RTSCameraTargetController_OnRotateHandled(object sender, RTSCameraTargetController.OnRotateHandledEventArgs e)
+    internal void RTSCameraTargetController_OnRotateHandled(object sender, RTSCameraTargetController.OnRotateHandledEventArgs e)
     {
         float smoothSpeed = 0.2f;
         rotateCameraCanvasGameObject.transform.rotation = Quaternion.Euler(0, 
