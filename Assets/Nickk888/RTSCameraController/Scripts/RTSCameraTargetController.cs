@@ -435,7 +435,7 @@ public class RTSCameraTargetController : MonoBehaviour
     {
         Vector3 moveVector = GetMoveVectorFromMousePosition(mousePos);
         
-        if (ShouldMoveTarget(moveVector))
+        if (ShouldMoveTarget(moveVector) && !IsMousePositionOutsideScreen(mousePos))
         {
             MoveTarget(moveVector);
             _isSideZoneMoving = true;
@@ -738,6 +738,12 @@ public class RTSCameraTargetController : MonoBehaviour
         x = GetEdgeDirection(mousePosition.x, Screen.width);
         y = GetEdgeDirection(mousePosition.y, Screen.height);
     }
+
+    internal bool IsMousePositionOutsideScreen(Vector2 mousePosition)
+        => IsOutsideBounds(mousePosition.x, 0, Screen.width) || IsOutsideBounds(mousePosition.y, 0, Screen.height);
+
+    internal bool IsOutsideBounds(float value, float min, float max)
+        => value < min || value > max;
 
     internal int GetEdgeDirection(float position, int screenSize)
     {
