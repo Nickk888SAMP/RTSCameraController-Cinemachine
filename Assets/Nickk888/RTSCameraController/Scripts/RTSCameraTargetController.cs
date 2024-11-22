@@ -521,7 +521,7 @@ public class RTSCameraTargetController : MonoBehaviour
 
         if (_inputProvider.DragButtonInput() && AllowDragMove && !_isDragging)
         {
-            StartDrag(mousePos, MouseDragStyle.Direct);
+            StartDrag(mousePos, mouseDragStyle);
         }
         else if (ShouldStopDrag())
         {
@@ -538,9 +538,11 @@ public class RTSCameraTargetController : MonoBehaviour
 
     internal void StartDrag(Vector3 mousePos, MouseDragStyle dragStyle)
     {
+        bool isMouseDirectional = dragStyle == MouseDragStyle.MouseDirection;
         _mouseLockPos = mousePos;
         _isDragging = true;
         CancelTargetLock();
+        LockMouse(!isMouseDirectional);
         OnMouseDragStarted?.Invoke(this, new OnMouseDragStartedEventArgs { mouseLockPosition = mousePos, mouseDragStyle = dragStyle });
     }
 
