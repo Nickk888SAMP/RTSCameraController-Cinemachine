@@ -181,8 +181,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281150975
+  m_fontColor: {r: 1, g: 0.1745283, b: 0.1745283, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1139,10 +1139,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivotRectTransform: {fileID: 164791846426882385}
-  northRectTransform: {fileID: 6606021182576297169}
-  ostRectTransform: {fileID: 1014610146872901502}
-  southRectTransform: {fileID: 2997864276866379798}
-  westRectTransform: {fileID: 2460316914868441765}
+  cardinalPoints:
+  - rectTransform: {fileID: 6606021182576297169}
+    angle: 0
+  - rectTransform: {fileID: 1014610146872901502}
+    angle: 90
+  - rectTransform: {fileID: 2997864276866379798}
+    angle: 180
+  - rectTransform: {fileID: 2460316914868441765}
+    angle: 270
   distanceFromCenter: 50
 --- !u!1 &3354255521377307976
 GameObject:
