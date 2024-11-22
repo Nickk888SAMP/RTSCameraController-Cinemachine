@@ -33,6 +33,7 @@ The script controlls the Target and the Virtual Camera. Use ANY Input System usi
 
 ## Requirements
 * Cinemachine
+* TextMeshPro (For the UI)
 
 ## Want to use Unity's Input System?
 To get the files, unpack ```RTSCameraController_NewInputSystem.unitypackage``` that's located in the ```RTSCameraController``` directory while in the editor.
