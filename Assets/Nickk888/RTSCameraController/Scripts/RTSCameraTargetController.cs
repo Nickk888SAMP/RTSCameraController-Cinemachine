@@ -263,6 +263,7 @@ public class RTSCameraTargetController : MonoBehaviour
     {
         if (_inputProvider == null || !_isFocused)
         {
+            CancelTargetLock();
             return;
         }
 
