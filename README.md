@@ -33,7 +33,7 @@ The script controlls the Target and the Virtual Camera. Use ANY Input System usi
 
 ## Requirements
 * Unity 2022.3.11f1 or higher
-* Cinemachine
+* Cinemachine 2
 * TextMeshPro (For the UI)
 
 ## Want to use Unity's Input System?
