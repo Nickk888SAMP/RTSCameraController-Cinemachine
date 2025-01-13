@@ -32,9 +32,12 @@ The script controlls the Target and the Virtual Camera. Use ANY Input System usi
 * It's smooth, it's lightweight and it just works.
 
 ## Requirements
-* Unity 2022.3.11f1 or higher
-* Cinemachine 2
+* Unity 6000.0.24f1 or higher
+* Cinemachine 3
 * TextMeshPro (For the UI)
+
+## Still on Cinemachine 2?
+[Change to Master Branch](https://github.com/Nickk888SAMP/RTSCameraController-Cinemachine/tree/master)
 
 ## Want to use Unity's Input System?
 To get the files, unpack ```RTSCameraController_NewInputSystem.unitypackage``` that's located in the ```RTSCameraController``` directory while in the editor.
