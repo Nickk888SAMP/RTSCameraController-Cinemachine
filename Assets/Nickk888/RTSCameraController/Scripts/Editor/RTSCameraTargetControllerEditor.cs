@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using UnityEngine;
 using UnityEditor;
 
@@ -18,3 +20,5 @@ public class RTSCameraTargetControllerEditor : Editor
         DrawDefaultInspector();
     }
 }
+
+#endif
