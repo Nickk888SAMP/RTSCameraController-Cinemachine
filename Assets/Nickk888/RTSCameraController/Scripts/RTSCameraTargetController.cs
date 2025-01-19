@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEditor;
-using Cinemachine;
 using System.Runtime.CompilerServices;
+using Unity.Cinemachine;
 
 [assembly: InternalsVisibleTo("PlayModeTests")]
 [assembly: InternalsVisibleTo("EditorModeTests")]
@@ -55,7 +55,7 @@ public class RTSCameraTargetController : MonoBehaviour
     [Header("Setup")]
     [SerializeField]
     [Tooltip("The Cinemachine Virtual Camera to be controlled by the controller.")]
-    public CinemachineVirtualCamera VirtualCamera;
+    public CinemachineCamera VirtualCamera;
 
     public RectTransform RTSCanvasRectTransform;
 
@@ -199,7 +199,7 @@ public class RTSCameraTargetController : MonoBehaviour
     private Vector3 _lockedOnPosition;
     private Camera _cam;
     private CinemachineBrain _cinemachineBrain;
-    private CinemachineFramingTransposer _framingTransposer;
+    private CinemachinePositionComposer _positionComposer;
     private GameObject _virtualCameraGameObject;
     private Transform _lockedOnTransform;
     private float _currentCameraZoom;
@@ -231,7 +231,7 @@ public class RTSCameraTargetController : MonoBehaviour
 
     #region Unity Methods
 
-    private void Awake()
+    protected void Awake()
     {
         _cam = Camera.main;
         if (_cam == null)
@@ -244,11 +244,11 @@ public class RTSCameraTargetController : MonoBehaviour
         SetInstance();
     }
 
-    private void OnEnable() => Application.focusChanged += Application_FocusChanged;
+    protected void OnEnable() => Application.focusChanged += Application_FocusChanged;
 
-    private void OnDisable() => Application.focusChanged -= Application_FocusChanged;
+    protected void OnDisable() => Application.focusChanged -= Application_FocusChanged;
 
-    private void Start()
+    protected void Start()
     {
         _virtualCameraGameObject = VirtualCamera.gameObject;
 
@@ -259,7 +259,7 @@ public class RTSCameraTargetController : MonoBehaviour
         TriggerZoomHandledEvent();
     }
 
-    private void Update()
+    protected void Update()
     {
         if (_inputProvider == null || !_isFocused)
         {
@@ -276,7 +276,7 @@ public class RTSCameraTargetController : MonoBehaviour
     }
 
     #if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
+    protected void OnDrawGizmosSelected()
     {
         if(enableBoundaries)
         {
@@ -305,7 +305,7 @@ public class RTSCameraTargetController : MonoBehaviour
     #region Internal Functions
     
     internal void UpdateCinemachineBrain()
-        => _cinemachineBrain.m_IgnoreTimeScale = IndependentCinemachineBrainTimeScale;
+        => _cinemachineBrain.IgnoreTimeScale = IndependentCinemachineBrainTimeScale;
 
     internal void HandleCameraInput()
     {
@@ -345,8 +345,8 @@ public class RTSCameraTargetController : MonoBehaviour
 
     internal void InitializeFramingTransposer()
     {
-        _framingTransposer = VirtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
-        _currentCameraZoom = _framingTransposer.m_CameraDistance;
+        _positionComposer = VirtualCamera.GetComponent<CinemachinePositionComposer>();
+        _currentCameraZoom = _positionComposer.CameraDistance;
         _targetCameraRotate = _virtualCameraGameObject.transform.eulerAngles.y;
     }
 
@@ -368,7 +368,7 @@ public class RTSCameraTargetController : MonoBehaviour
     {
         OnZoomHandled?.Invoke(this, new OnZoomHandledEventArgs
         {
-            currentZoomValue = _framingTransposer.m_CameraDistance,
+            currentZoomValue = _positionComposer.CameraDistance,
             targetZoomValue = _currentCameraZoom,
             minZoom = CameraZoomMin,
             maxZoom = CameraZoomMax
@@ -386,7 +386,7 @@ public class RTSCameraTargetController : MonoBehaviour
             _heightOffset -= GetTimeScale() * HeightOffsetSpeed;
 
         _heightOffset = Mathf.Clamp(_heightOffset, HeightOffsetMin, HeightOffsetMax);
-        _framingTransposer.m_TrackedObjectOffset = new Vector3(0, _heightOffset, 0);
+        _positionComposer.TargetOffset = new Vector3(0, _heightOffset, 0);
     }
 
     internal void HandleGroundHeightCorrection()
@@ -594,8 +594,8 @@ public class RTSCameraTargetController : MonoBehaviour
 
     internal void UpdateCameraDistance()
     {
-        _framingTransposer.m_CameraDistance = Mathf.SmoothDamp(
-            _framingTransposer.m_CameraDistance,
+        _positionComposer.CameraDistance = Mathf.SmoothDamp(
+            _positionComposer.CameraDistance,
             _currentCameraZoom,
             ref _cameraZoomSmoothDampVelRef,
             CameraZoomSmoothTime / 100,
@@ -606,11 +606,11 @@ public class RTSCameraTargetController : MonoBehaviour
 
     internal void CheckAndInvokeZoomEvent()
     {
-        if (Math.Round(_framingTransposer.m_CameraDistance - _currentCameraZoom, 4) != 0)
+        if (Math.Round(_positionComposer.CameraDistance - _currentCameraZoom, 4) != 0)
         {
             OnZoomHandled?.Invoke(this, new OnZoomHandledEventArgs
             {
-                currentZoomValue = _framingTransposer.m_CameraDistance,
+                currentZoomValue = _positionComposer.CameraDistance,
                 targetZoomValue = _currentCameraZoom,
                 minZoom = CameraZoomMin,
                 maxZoom = CameraZoomMax
@@ -718,7 +718,7 @@ public class RTSCameraTargetController : MonoBehaviour
         CameraTarget.Translate(relativeDirection * zoomAdjustedSpeed * GetTimeScale());
     }
 
-    internal float CalculateZoomAdjustedSpeed(float speed) => _framingTransposer.m_CameraDistance / CameraZoomMin * speed;
+    internal float CalculateZoomAdjustedSpeed(float speed) => _positionComposer.CameraDistance / CameraZoomMin * speed;
 
     internal Vector3 GetRelativeDirection(Vector3 inputDirection)
     {
