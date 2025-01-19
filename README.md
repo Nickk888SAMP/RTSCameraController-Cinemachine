@@ -36,6 +36,9 @@ The script controlls the Target and the Virtual Camera. Use ANY Input System usi
 * Cinemachine 2
 * TextMeshPro (For the UI)
 
+## Upgrading to Cinemachine 3?
+[Change to Experimental Branch](https://github.com/Nickk888SAMP/RTSCameraController-Cinemachine/tree/Cinemachine3-Experimental)
+
 ## Want to use Unity's Input System?
 To get the files, unpack ```RTSCameraController_NewInputSystem.unitypackage``` that's located in the ```RTSCameraController``` directory while in the editor.
 Use the ```RTSCameraController_NewInputSystem.prefab``` instead or just swap the ```InputProvider_OldInputSystem.cs``` with ```InputProvider_NewInputSystem.cs``` in the ```RTSCameraController``` Game Object. Makes sure to install the ```Input System``` package from the Package Manager of course.
