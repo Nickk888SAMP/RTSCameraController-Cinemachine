@@ -18,7 +18,7 @@
                     "name": "Rotate",
                     "type": "Button",
                     "id": "846589ca-c1f8-4540-9e53-d8fee47a2993",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -27,7 +27,7 @@
                     "name": "Drag",
                     "type": "Button",
                     "id": "9b1943cc-b005-40b8-a699-bdfc1a1c215b",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -63,7 +63,7 @@
                     "name": "HeightUp",
                     "type": "Button",
                     "id": "790b6c85-d905-4070-874c-2674f9ab27b7",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -102,7 +102,7 @@
                     "id": "28fc3139-38d6-427e-9b9f-9dede674eb97",
                     "path": "<Mouse>/scroll/y",
                     "interactions": "",
-                    "processors": "Scale",
+                    "processors": "Scale(factor=0.01)",
                     "groups": "",
                     "action": "Zoom",
                     "isComposite": false,

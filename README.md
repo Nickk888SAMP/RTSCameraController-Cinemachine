@@ -32,8 +32,8 @@ The script controlls the Target and the Virtual Camera. Use ANY Input System usi
 * It's smooth, it's lightweight and it just works.
 
 ## Requirements
-* Unity 6000.0.24f1 or higher
-* Cinemachine 3
+* Unity 2022.3.11f1 or higher
+* Cinemachine 2
 * TextMeshPro (For the UI)
 
 ## Upgrading to Cinemachine 3?

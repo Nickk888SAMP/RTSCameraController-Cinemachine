@@ -48,18 +48,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4108745454873612436, guid: 62d953cb2c9a4a84e9117afa83d8ad21, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4108745454873612436, guid: 62d953cb2c9a4a84e9117afa83d8ad21, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4108745454873612436, guid: 62d953cb2c9a4a84e9117afa83d8ad21, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7254098112738338918, guid: 62d953cb2c9a4a84e9117afa83d8ad21, type: 3}
       propertyPath: m_Name
       value: RTSCameraController_OldInputSystem
