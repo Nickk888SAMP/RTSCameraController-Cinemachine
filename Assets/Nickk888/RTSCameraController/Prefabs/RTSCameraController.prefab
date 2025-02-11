@@ -2034,8 +2034,8 @@ GameObject:
   m_Component:
   - component: {fileID: 62651793542294555}
   - component: {fileID: 6047647483441301467}
-  - component: {fileID: 4267131581715548854}
   - component: {fileID: 6723006549657048208}
+  - component: {fileID: 4267131581715548854}
   m_Layer: 0
   m_Name: RTSCameraController
   m_TagString: Untagged
@@ -2102,7 +2102,7 @@ MonoBehaviour:
   CameraZoomSpeed: 4
   TargetLockSpeed: 10
   HeightOffsetSpeed: 20
-  ScreenSidesZoneSize: 75
+  ScreenSidesZoneSize: 50
   CameraDragDeadZone: 5
   HeightOffsetMin: 1
   HeightOffsetMax: 50
@@ -2118,18 +2118,6 @@ MonoBehaviour:
   BoundaryMaxX: 610
   BoundaryMinZ: -625
   BoundaryMaxZ: 580
---- !u!114 &4267131581715548854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7254098112738338918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18879e45399e97f41aa5bba56d30ef4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6723006549657048208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2149,6 +2137,18 @@ MonoBehaviour:
   dragUiImageGameObject: {fileID: 2867024676853595533}
   rotateCameraCanvasGameObject: {fileID: 3696286627343417229}
   compassUiImageGameObject: {fileID: 8075162235354373994}
+--- !u!114 &4267131581715548854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7254098112738338918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18879e45399e97f41aa5bba56d30ef4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7484046904810839497
 GameObject:
   m_ObjectHideFlags: 0

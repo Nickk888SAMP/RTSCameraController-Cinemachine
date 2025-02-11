@@ -18,10 +18,11 @@ public class RTSScreenSidesDebug : MonoBehaviour
         bool isSelected = rTSCameraTargetController.AllowScreenSideMove && Selection.transforms.FirstOrDefault(i => i == rTSCameraTargetController.transform) != null;
         if(isSelected)
         {
-            Rect top = new Rect(0, 0, Screen.width, rTSCameraTargetController.ScreenSidesZoneSize);
-            Rect bottom = new Rect(0, Screen.height, Screen.width, -rTSCameraTargetController.ScreenSidesZoneSize);
-            Rect left = new Rect(0, 0, rTSCameraTargetController.ScreenSidesZoneSize, Screen.height);
-            Rect right = new Rect(Screen.width, 0, -rTSCameraTargetController.ScreenSidesZoneSize, Screen.height);
+            float canvasScale = rTSCameraTargetController.RTSCanvasRectTransform.localScale.x;
+            Rect top = new Rect(0, 0, Screen.width, rTSCameraTargetController.ScreenSidesZoneSize * canvasScale);
+            Rect bottom = new Rect(0, Screen.height, Screen.width, -rTSCameraTargetController.ScreenSidesZoneSize * canvasScale);
+            Rect left = new Rect(0, 0, rTSCameraTargetController.ScreenSidesZoneSize * canvasScale, Screen.height);
+            Rect right = new Rect(Screen.width, 0, -rTSCameraTargetController.ScreenSidesZoneSize * canvasScale, Screen.height);
             EditorGUI.DrawRect(top, color);
             EditorGUI.DrawRect(bottom, color);
             EditorGUI.DrawRect(left, color);

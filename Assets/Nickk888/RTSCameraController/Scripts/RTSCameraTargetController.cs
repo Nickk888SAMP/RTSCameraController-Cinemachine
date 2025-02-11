@@ -138,7 +138,7 @@ public class RTSCameraTargetController : MonoBehaviour
 
     [Space] [Header("Screen Sides")]
     [SerializeField, Min(0)] [Tooltip("The size of the Screen Sides Zone in pixels.")]
-    public int ScreenSidesZoneSize = 75;
+    public int ScreenSidesZoneSize = 50;
 
     [Space] [Header("Mouse Drag")]
     [SerializeField, Min(0)] [Tooltip("The Dead Zone of the drag feature. How far from the circles center has the cursor be, to start draging?")]
@@ -586,7 +586,13 @@ public class RTSCameraTargetController : MonoBehaviour
         float zoomInput = _inputProvider.ZoomInput();
         if (zoomInput != 0)
         {
+            // A hacky fix for a WebGL Build Bug
+            #if !UNITY_EDITOR && UNITY_WEBGL
+            _currentCameraZoom -= zoomInput * (CameraZoomSpeed * 0.01f);
+            #else
             _currentCameraZoom -= zoomInput * CameraZoomSpeed;
+            #endif
+            //
             _currentCameraZoom = Mathf.Clamp(_currentCameraZoom, CameraZoomMin, CameraZoomMax);
             CancelTargetLock();
         }
@@ -748,9 +754,12 @@ public class RTSCameraTargetController : MonoBehaviour
 
     internal int GetEdgeDirection(float position, int screenSize)
     {
-        if (position >= 0 && position <= ScreenSidesZoneSize)
+        // Canvas Scale to make the Sides Zone the same Size at any Resolution
+        float canvasSize = RTSCanvasRectTransform.localScale.x;
+
+        if (position >= 0 && position <= (ScreenSidesZoneSize * canvasSize))
             return -1; // Near the start (Left/Top)
-        else if (position >= screenSize - ScreenSidesZoneSize && position <= screenSize)
+        else if (position >= screenSize - (ScreenSidesZoneSize * canvasSize) && position <= screenSize)
             return 1; // Near the end (Right/Bottom)
         else
             return 0; // Not near any edge

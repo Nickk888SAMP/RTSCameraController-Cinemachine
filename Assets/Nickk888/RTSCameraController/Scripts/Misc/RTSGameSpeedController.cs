@@ -44,7 +44,7 @@ public class RTSGameSpeedController : MonoBehaviour
             SetTimeScale(GameSpeed.Normal);
         else if(Keyboard.current.digit4Key.wasPressedThisFrame)
             SetTimeScale(GameSpeed.Double);
-        if(Keyboard.current.digit5Key.wasPressedThisFrame)
+        else if(Keyboard.current.digit5Key.wasPressedThisFrame)
             SetTimeScale(GameSpeed.Tripple);
         #else
         if(Input.GetKeyDown(KeyCode.Alpha1))
@@ -55,7 +55,7 @@ public class RTSGameSpeedController : MonoBehaviour
             SetTimeScale(GameSpeed.Normal);
         else if(Input.GetKeyDown(KeyCode.Alpha4))
             SetTimeScale(GameSpeed.Double);
-        if(Input.GetKeyDown(KeyCode.Alpha5))
+        else if(Input.GetKeyDown(KeyCode.Alpha5))
             SetTimeScale(GameSpeed.Tripple);
         #endif
     }
@@ -66,22 +66,13 @@ public class RTSGameSpeedController : MonoBehaviour
         OnGameSpeedChanged?.Invoke(this, new OnGameSpeedChangedEventArgs { gameSpeed = gameSpeed });
     }
 
-    private float GetTimeScaleFromGameSpeed(GameSpeed gameSpeed)
+    private float GetTimeScaleFromGameSpeed(GameSpeed gameSpeed) => gameSpeed switch
     {
-        switch(gameSpeed)
-        {
-            case GameSpeed.Paused:
-                return pausedTimeScale;
-            case GameSpeed.Half:
-                return halfTimeScale;
-            case GameSpeed.Normal:
-                return normalTimeScale;
-            case GameSpeed.Double:
-                return doubleTimeScale;
-            case GameSpeed.Tripple:
-                return trippleTimeScale;
-            default:
-                return normalTimeScale;
-        }
-    }
+        GameSpeed.Paused => pausedTimeScale,
+        GameSpeed.Half => halfTimeScale,
+        GameSpeed.Normal => normalTimeScale,
+        GameSpeed.Double => doubleTimeScale,
+        GameSpeed.Tripple => trippleTimeScale,
+        _ => normalTimeScale
+    };
 }
