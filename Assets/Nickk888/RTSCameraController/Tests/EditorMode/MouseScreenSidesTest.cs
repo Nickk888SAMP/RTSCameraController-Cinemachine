@@ -1,17 +1,23 @@
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MouseScreenSidesTest
 {
     GameObject gameObject;
     RTSCameraTargetController script;
+    Canvas canvas;
 
     [SetUp]
     public void SetUp()
     {
         gameObject = new GameObject();
+        
         script = gameObject.AddComponent<RTSCameraTargetController>();
-        script.ScreenSidesZoneSize = 75;
+        script.ScreenSidesZoneSize = 50;
+
+        canvas = gameObject.AddComponent<Canvas>();
+        script.RTSCanvasRectTransform = canvas.GetComponent<RectTransform>();
     }
 
     [TearDown]

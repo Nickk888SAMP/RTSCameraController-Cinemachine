@@ -50,20 +50,21 @@ public class RTSCameraTargetController : MonoBehaviour
 
     #endregion
 
-    #region Members
+    #region Public Fields
 
     [Header("Setup")]
     [SerializeField]
     [Tooltip("The Cinemachine Virtual Camera to be controlled by the controller.")]
     public CinemachineCamera VirtualCamera;
 
+    [SerializeField] [Tooltip("The target for the camera to follow.")]
+    public Transform CameraTarget;
+
+    [SerializeField] [Tooltip("The UI Canvas Rect Transform")]
     public RectTransform RTSCanvasRectTransform;
 
     [SerializeField] [Tooltip("The ground layer for the height check.")]
     public LayerMask GroundLayer;
-
-    [SerializeField] [Tooltip("The target for the camera to follow.")]
-    public Transform CameraTarget;
 
     [Space] [Header("Time Scale")]
     [SerializeField] [Tooltip("Check to make the controller be independent on the Time Scale.")]
@@ -302,7 +303,7 @@ public class RTSCameraTargetController : MonoBehaviour
 
     #endregion
 
-    #region Internal Functions
+    #region Internal Methods
     
     internal void UpdateCinemachineBrain()
         => _cinemachineBrain.IgnoreTimeScale = IndependentCinemachineBrainTimeScale;
@@ -767,7 +768,7 @@ public class RTSCameraTargetController : MonoBehaviour
 
     #endregion
 
-    #region Public Functions
+    #region Public Methods
 
     /// <summary>
     /// Locks the camera to a target (position or transform)
